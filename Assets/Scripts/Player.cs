@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 // TODO: Implement shooting mechanics
 public class Player : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveSpeed = 13f;
     Vector2 rawInput;
     Rigidbody2D rb;
 
@@ -26,14 +26,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
     }
 
+    // FixedUpdate is called once every 0.02 seconds
+    void FixedUpdate()
+    {
+        Move();    
+    }
     void Move()
     {
         Vector2 movement = new Vector2(rawInput.x, rawInput.y);
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
-
     }
 
 }

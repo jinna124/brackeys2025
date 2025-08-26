@@ -735,9 +735,10 @@ GameObject:
   m_Component:
   - component: {fileID: 967516051}
   - component: {fileID: 967516047}
-  - component: {fileID: 967516050}
   - component: {fileID: 967516049}
   - component: {fileID: 967516048}
+  - component: {fileID: 967516050}
+  - component: {fileID: 967516052}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -900,6 +901,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967516052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29348395cbff1614282f8157724fd574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemy_movement
+  movement_speed: 5
+  min_range: 5
+  max_range: 3
 --- !u!1 &1223953431
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +934,7 @@ GameObject:
   - component: {fileID: 1223953439}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -987,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4c777d5b1f641f08f052266bffafee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 25.86
+  moveSpeed: 13
 --- !u!50 &1223953435
 Rigidbody2D:
   serializedVersion: 5
@@ -1014,7 +1030,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1223953436
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
