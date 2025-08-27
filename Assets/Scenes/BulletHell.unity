@@ -537,7 +537,7 @@ Transform:
   m_GameObject: {fileID: 627988748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.416, y: 0.196, z: 0}
+  m_LocalPosition: {x: 0.19, y: 0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -552,9 +552,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 648271600}
-  - component: {fileID: 648271601}
   - component: {fileID: 648271602}
   - component: {fileID: 648271603}
+  - component: {fileID: 648271601}
+  - component: {fileID: 648271604}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -585,7 +586,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648271599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6441ad1483ec2476282b7fa2ea99c965, type: 3}
   m_Name: 
@@ -681,6 +682,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &648271604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648271599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15559c742257e9e4087ad0d3e50aa162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Default_Weapon
+  spawn_point: {fileID: 627988748}
+  bullet: {fileID: 4135567779468510222, guid: e05a3d3118d124989b3be206ffa0107b, type: 3}
+  projectile_speed: 20
+  projectile_lifetime: 5
+  firing_rate: 0.2
 --- !u!1 &654596881
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,11 +755,12 @@ GameObject:
   - component: {fileID: 967516047}
   - component: {fileID: 967516049}
   - component: {fileID: 967516048}
-  - component: {fileID: 967516050}
   - component: {fileID: 967516052}
+  - component: {fileID: 967516053}
+  - component: {fileID: 967516054}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -867,25 +886,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &967516050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967516046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed69b594d13fc46c4ae434ac8fe359bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  projectilePrefab: {fileID: 4135567779468510222, guid: e05a3d3118d124989b3be206ffa0107b, type: 3}
-  projectileSpeed: 10
-  projectileLifetime: 5
-  firingRate: 0.2
-  firingVariance: 0.05
-  minimumFiringTime: 0.1
-  isFiring: 0
 --- !u!4 &967516051
 Transform:
   m_ObjectHideFlags: 0
@@ -913,9 +913,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29348395cbff1614282f8157724fd574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy_movement
-  movement_speed: 5
-  min_range: 5
-  max_range: 3
+  movement_speed: 10
+  strafing_speed: 0.5
+  min_range: 8
+  max_range: 5
+  isBull: 1
+  pause_time: 2
+  chargingTime: 1
+  charging_speed: 30
+--- !u!114 &967516053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d73d1a9db6de8b4cbb1bb8d9e514937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Homing_Gun
+  projectilePrefab: {fileID: 4135567779468510222, guid: e05a3d3118d124989b3be206ffa0107b, type: 3}
+  projectileSpeed: 10
+  projectileLifetime: 5
+  projectileTurnRate: 3
+  homingDuration: 3
+  firingRate: 2
+  firingVariance: 0.05
+  minimumFiringTime: 0.1
+  isFiring: 0
+--- !u!114 &967516054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69b594d13fc46c4ae434ac8fe359bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Gun
+  projectilePrefab: {fileID: 4135567779468510222, guid: e05a3d3118d124989b3be206ffa0107b, type: 3}
+  projectileSpeed: 10
+  projectileLifetime: 5
+  firingRate: 0.2
+  firingVariance: 0.05
+  minimumFiringTime: 0.1
+  isFiring: 0
 --- !u!1 &1223953431
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,6 +77,9 @@ public class Enemy_Homing_Gun : MonoBehaviour
             // exception handling part to check for if there is a rigidbody for that instance
             if (rb != null)
             {
+                Vector2 direction = ((Vector2)(player.transform.position) - rb.position).normalized;
+                float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+                rb.transform.rotation = Quaternion.Euler(0f, 0f, angle);
                 StartCoroutine(HomingBullet(rb, player.transform, projectileSpeed, homingDuration, projectileTurnRate));
             }
 
@@ -95,6 +98,8 @@ public class Enemy_Homing_Gun : MonoBehaviour
         while(timer < homingDuration)
         {
             Vector2 direction = ((Vector2)(target.position) - rb.position).normalized;
+            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity.normalized, direction, turnRate * Time.fixedDeltaTime) * speed;
             timer += Time.fixedDeltaTime;
 

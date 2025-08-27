@@ -14,7 +14,7 @@ public class Enemy_Gun : MonoBehaviour
     [Space]
     [Header("____Range And Speed____")]
     [Tooltip("The Speed at which the bullet/projectile is fired")]
-    [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] float projectileSpeed = 30f;
     [Tooltip("Time in seconds before the projectile gets destroyed (contributes to the firing range)")]
     [SerializeField] float projectileLifetime = 5f;
     [Space]
@@ -76,8 +76,12 @@ public class Enemy_Gun : MonoBehaviour
                 // fetch the direction of movement towards the player with respect to the enemy
                 Vector2 direction = (player.transform.position - transform.position);
                 direction.Normalize();
-                Debug.Log(direction);     
-                
+                Debug.Log(direction);
+
+                float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+                rb.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
+
+
                 // move towards the player
                 rb.linearVelocity = direction * projectileSpeed;
 
