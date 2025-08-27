@@ -17,7 +17,7 @@ public class CardChoice : MonoBehaviour
     [SerializeField] TextMeshProUGUI cardSubtitleText;
     [SerializeField] TextMeshProUGUI cardDescriptionText;
     [SerializeField] Image cardImage;
-    string cardType;
+    Card.CardType cardType;
     bool hasRerolled;
 
     void Awake()
@@ -49,17 +49,39 @@ public class CardChoice : MonoBehaviour
 
     void OnChooseButtonClicked()
     {
-        if (cardType == "Buff")
+        if (cardType == Card.CardType.Buff)
         {
             // TODO: Apply buff
             Debug.Log("Buff card chosen: " + card.GetCardName);
             // TODO: Switch to Manufacturing scene with a scene transition
         }
-        else if (cardType == "Module")
+        else if (cardType == Card.CardType.Module)
         {
             // TODO: Add module to module list
             Debug.Log("Module card chosen: " + card.GetCardName);
             // TODO: Switch to Manufacturing scene with a scene transition
+        }
+        else if (cardType == Card.CardType.Weapon)
+        {
+            // TODO: Handle weapon card
+            Debug.Log("Weapon card chosen: " + card.GetCardName);
+            // TODO: Switch to appropriate scene with a scene transition
+        }
+        else if (cardType == Card.CardType.Upgrade)
+        {
+            // TODO: Handle upgrade card
+            Debug.Log("Upgrade card chosen: " + card.GetCardName);
+            // TODO: Switch to appropriate scene with a scene transition
+        }
+        else if (cardType == Card.CardType.Module)
+        {
+            // TODO: Handle module card
+            Debug.Log("Module card chosen: " + card.GetCardName);
+            // TODO: Switch to appropriate scene with a scene transition
+        }
+        else
+        {
+            Debug.Log("Unknown or null card type chosen: " + card.GetCardName);
         }
     }
 

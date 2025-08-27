@@ -6,10 +6,15 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] float health = 100f;
-    CookieManager cookieManager;
+    XPManager XPManager;
     [SerializeField] bool isEnemy;
-    [SerializeField] int cookieValue = 1;
+    [SerializeField] int XPValue = 1;
 
+    void Awake()
+    {
+        XPManager = FindAnyObjectByType<XPManager>();
+        Debug.Log("XP MANAGER:" + XPManager);
+    }
     public float GetHealth()
     {
         return health;
@@ -22,7 +27,9 @@ public class Health : MonoBehaviour
         {
             if (isEnemy)
             {
-                cookieManager.AddCookies(cookieValue);
+                XPShard xpShard = Instantiate(XPManager.GetXPShardPrefab(), transform.position, Quaternion.identity);
+                xpShard.SetXPValue(XPValue);
+                Debug.Log("Enemy defeated, creating XP shard worth " + XPValue + " XP");
                 Die();
             }
             else
