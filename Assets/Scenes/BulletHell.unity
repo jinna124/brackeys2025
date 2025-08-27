@@ -755,9 +755,11 @@ GameObject:
   - component: {fileID: 967516047}
   - component: {fileID: 967516049}
   - component: {fileID: 967516048}
-  - component: {fileID: 967516052}
   - component: {fileID: 967516053}
   - component: {fileID: 967516054}
+  - component: {fileID: 967516055}
+  - component: {fileID: 967516056}
+  - component: {fileID: 967516057}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -901,26 +903,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &967516052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967516046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29348395cbff1614282f8157724fd574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::enemy_movement
-  movement_speed: 10
-  strafing_speed: 0.5
-  min_range: 8
-  max_range: 5
-  isBull: 1
-  pause_time: 2
-  chargingTime: 1
-  charging_speed: 30
 --- !u!114 &967516053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,7 +931,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967516046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed69b594d13fc46c4ae434ac8fe359bc, type: 3}
   m_Name: 
@@ -961,6 +943,56 @@ MonoBehaviour:
   firingVariance: 0.05
   minimumFiringTime: 0.1
   isFiring: 0
+--- !u!114 &967516055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f5b540fed9a4840a2bbf1fd38857da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ranged_Enemy
+  movement_speed: 10
+  max_range: 8
+  min_range: 3
+  strafing_speed: 10
+  nextStrafeInterval: 3
+--- !u!114 &967516056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237d2c0a9988a4147be1f25013b2739e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  movement_speed: 10
+  max_range: 8
+  min_range: 5
+  pause_time: 3
+  chargingTime: 1
+  charging_speed: 20
+  cooldown: 1
+--- !u!114 &967516057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967516046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce9e7f66dba21644bb0848c4bf5d555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  movement_speed: 10
+  melee_range: 0.5
 --- !u!1 &1223953431
 GameObject:
   m_ObjectHideFlags: 0
