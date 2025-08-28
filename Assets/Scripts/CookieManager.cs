@@ -33,4 +33,16 @@ public class CookieManager : MonoBehaviour
         }
     }
 
+    public float GetCPS()
+    {
+        // Calculate cookies per second based on owned modules
+        Module[] modules = FindObjectsByType<Module>(FindObjectsSortMode.None);
+        float cps = 0f;
+        foreach (var module in modules)
+        {
+            cps += module.GetCPS();
+        }
+        return cps;
+    }
+
 }
