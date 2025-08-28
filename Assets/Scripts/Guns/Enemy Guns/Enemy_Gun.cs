@@ -27,6 +27,7 @@ public class Enemy_Gun : MonoBehaviour
     [SerializeField] float firingVariance = 0.05f;
     [Tooltip("This is the minimum firing rate in seconds aka: the minimum delay before another bullet gets shot")]
     [SerializeField] float minimumFiringTime = 0.1f;
+    [SerializeField] float firing_range = 8f;
 
     [HideInInspector] public bool isFiring;
     Player player;
@@ -51,11 +52,12 @@ public class Enemy_Gun : MonoBehaviour
 
     void Fire()
     {
-        if (isFiring && firingCoroutine == null)
+        float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
+        if (isFiring && firingCoroutine == null && distance_to_player <= firing_range)
         {
             firingCoroutine = StartCoroutine("FireContinuously");
         }
-        else if (!isFiring && firingCoroutine != null)
+        else if ((distance_to_player > firing_range || !isFiring) && firingCoroutine != null)
         {
             StopCoroutine(firingCoroutine);
             firingCoroutine = null;

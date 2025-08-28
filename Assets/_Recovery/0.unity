@@ -991,7 +991,7 @@ MonoBehaviour:
   projectile_speed: 20
   projectile_lifetime: 5
   firing_rate: 0.2
-  firing_range: 6
+  firing_range: 5
 --- !u!1 &654596881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,15 +1036,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bae8a541c2664db15555d4569b830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  enemy_prefab: {fileID: 1180437253118036063, guid: 36d5ce9a5efacf54baa205d77f2ae0c7, type: 3}
+  enemy_prefab: {fileID: 1180437253118036063, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
   enemy_layer:
     serializedVersion: 2
     m_Bits: 256
-  cooldown: 6
-  max_cluster_size: 1
-  min_cluster_size: 1
-  cluster_radius: 3
-  min_spacing_bet_enemies: 1
+  cooldown: 2
+  max_cluster_size: 5
+  min_cluster_size: 2
+  cluster_radius: 2
+  min_spacing_bet_enemies: 0.5
 --- !u!1 &1217595535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,48 +1645,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &2088249007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1180437253118036063, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
-  m_PrefabInstance: {fileID: 2016792463733961518}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2088249015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088249007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed69b594d13fc46c4ae434ac8fe359bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Gun
-  projectilePrefab: {fileID: 4135567779468510222, guid: 319dd81d919df384587f8e36b8950d8e, type: 3}
-  projectileSpeed: 20
-  projectileLifetime: 5
-  firingRate: 0.2
-  firingVariance: 0.05
-  minimumFiringTime: 0.1
-  firing_range: 10
-  isFiring: 0
---- !u!114 &2088249016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088249007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f5b540fed9a4840a2bbf1fd38857da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ranged_Enemy
-  movement_speed: 10
-  max_range: 8
-  min_range: 5
-  strafing_speed: 10
-  nextStrafeInterval: 3
 --- !u!1001 &2016792463733961518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1751,24 +1709,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3213440790472965307, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781562682757504000, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1180437253118036063, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2088249015}
-    - targetCorrespondingSourceObject: {fileID: 1180437253118036063, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2088249016}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

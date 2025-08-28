@@ -31,6 +31,7 @@ public class Enemy_Homing_Gun : MonoBehaviour
     [SerializeField] float firingVariance = 0.05f;
     [Tooltip("This is the minimum firing rate in seconds aka: the minimum delay before another bullet gets shot")]
     [SerializeField] float minimumFiringTime = 0.1f;
+    [SerializeField] float firing_range = 10f;
 
     [HideInInspector] public bool isFiring;
     Player player;
@@ -50,16 +51,19 @@ public class Enemy_Homing_Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Fire();
+        if (player != null)
+            Fire();
     }
 
     void Fire()
     {
-        if (isFiring && firingCoroutine == null)
+        float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
+
+        if (isFiring && firingCoroutine == null && distance_to_player <= firing_range)
         {
             firingCoroutine = StartCoroutine("FireContinuously");
         }
-        else if (!isFiring && firingCoroutine != null)
+        else if ((distance_to_player > firing_range || !isFiring) && firingCoroutine != null)
         {
             StopCoroutine(firingCoroutine);
             firingCoroutine = null;
@@ -75,7 +79,7 @@ public class Enemy_Homing_Gun : MonoBehaviour
             Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();
 
             // exception handling part to check for if there is a rigidbody for that instance
-            if (rb != null)
+            if (rb != null && player != null)
             {
                 Vector2 direction = ((Vector2)(player.transform.position) - rb.position).normalized;
                 float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
@@ -95,7 +99,7 @@ public class Enemy_Homing_Gun : MonoBehaviour
     {
         float timer = 0f;
 
-        while(timer < homingDuration)
+        while(timer < homingDuration  && target != null)
         {
             Vector2 direction = ((Vector2)(target.position) - rb.position).normalized;
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

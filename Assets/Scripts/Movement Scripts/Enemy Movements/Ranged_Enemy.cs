@@ -67,7 +67,7 @@ public class Ranged_Enemy : enemy_movement
         Debug.Log("Enemy is retreating");
 
         // start moving to that vector smoothly
-        rb.MovePosition(Vector2.Lerp(rb.position, target_position, 0.5f));
+        rb.MovePosition(Vector2.Lerp(rb.position, target_position, 0.3f));
     }
 
     void approach(Vector2 direction_to_player, float distance_to_player)
@@ -78,7 +78,7 @@ public class Ranged_Enemy : enemy_movement
 
         Debug.Log("Enemy is approaching");
 
-        rb.MovePosition(Vector2.Lerp(rb.position, target_position, 0.5f));
+        rb.MovePosition(Vector2.Lerp(rb.position, target_position, 0.3f));
     }
 
     void strafe(Vector2 direction_to_player)

@@ -49,6 +49,7 @@ public class Health : MonoBehaviour
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
         if (damageDealer != null)
         {
+            if (isEnemy && other.CompareTag("Enemy")) return;   //if i am the enemy and the other tag is not the player then ignore
             TakeDamage(damageDealer.GetDamage());
             damageDealer.Hit();
         }

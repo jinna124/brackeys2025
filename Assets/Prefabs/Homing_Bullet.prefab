@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5893402608305671080}
   - component: {fileID: 8949860938260671965}
   - component: {fileID: -1907634161218969193}
-  m_Layer: 7
-  m_Name: Bullet
+  m_Layer: 9
+  m_Name: Homing_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,4 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf564116584034550843dc44cd1669e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 10
+  damage: 30
