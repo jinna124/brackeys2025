@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class Phaser : MonoBehaviour
+public class ProductionManager : MonoBehaviour
 {
-    // doesn't exist yet
-    // creates waves of enemies that spawn randomly (in clusters if possible, maybe using noise or smth?)
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

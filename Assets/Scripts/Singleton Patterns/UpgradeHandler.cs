@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Modules : MonoBehaviour
+public class UpgradeHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

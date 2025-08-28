@@ -202,6 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116b56c0ccb63460e82ddc262e583d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  health: 200
+  health: 20
   isEnemy: 1
   XPValue: 50
