@@ -39,5 +39,9 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
     }
 
+    public void addMovSpd(float addedvalue)
+    {
+        moveSpeed += addedvalue;
+    }
 }
 

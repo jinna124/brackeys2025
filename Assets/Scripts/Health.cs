@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float health = 100f;
+    [SerializeField] float Maxhealth = 100f;
     [SerializeField] bool isEnemy;
     [SerializeField] float XPValue = 1f;
     XPManager XPManager;
-
+    private float currentHealth;
     private PlayerStats playerstats;
     void Awake()
     {
         if (tag == "Player")
         {
             playerstats = GetComponent<PlayerStats>();
-            health = playerstats.getMaxHp();
+            Maxhealth = playerstats.getMaxHp();
         }
 
         XPManager = FindAnyObjectByType<XPManager>();
         Debug.Log("XP MANAGER:" + XPManager);
     }
-    public float GetHealth() => health;
+    public float GetHealth() => Maxhealth;
 
     public void TakeDamage(float damage, DamageDealer dealer = null)
     {
@@ -33,8 +33,8 @@ public class Health : MonoBehaviour
         }
 
 
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             if (isEnemy && XPManager != null)
             {
@@ -81,5 +81,14 @@ public class Health : MonoBehaviour
                 Die(); // enemy dies after collision
             }
         }
+    }
+
+    public void addMaxHp(float addedvalue)
+    {
+        Maxhealth += addedvalue;
+    }
+    public void Fullheal()
+    {
+        currentHealth = Maxhealth;
     }
 }

@@ -9,6 +9,10 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] int weaponDamage = 10;
 
+    private Health healthComponent;
+    private Player movementComponent;
+    private GameObject[] playerBullets;
+    private DamageDealer damageDealer;
     public int getMaxHp() => maxHp;
     public float getMovementSpeed() => movementSpeed;
     public int getWeaponDamage() => weaponDamage;
@@ -16,20 +20,32 @@ public class PlayerStats : MonoBehaviour
     public void setMaxHp(int Hp)
     {
         // update maxHp
-        maxHp = Hp;
-        // full heal
-        currentHp = maxHp;
+        healthComponent.addMaxHp(Hp);
+        // heal fully
+        healthComponent.Fullheal();
     }
 
     public void setMovementSpeed(float MovementSpeed)
     {
         // update movementSpeed
-        movementSpeed = MovementSpeed;
+        movementComponent.addMovSpd(MovementSpeed);
     }
 
     public void setWeaponDamage(int WeaponDamage)
     {
         // update weaponDamage
-        weaponDamage = WeaponDamage;
+        foreach(GameObject bullet in  playerBullets)
+        {
+            damageDealer = bullet.GetComponent<DamageDealer>();
+            damageDealer.damage += weaponDamage;
+        }
+    }
+
+    private void Awake()
+    {
+        healthComponent = GetComponent<Health>();
+        movementComponent = GetComponent<Player>();
+
+        playerBullets = GameObject.FindGameObjectsWithTag("PlayerBullet");
     }
 }
