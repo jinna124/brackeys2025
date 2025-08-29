@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,8 +18,14 @@ public class CardChoice : MonoBehaviour
     [SerializeField] TextMeshProUGUI cardSubtitleText;
     [SerializeField] TextMeshProUGUI cardDescriptionText;
     [SerializeField] Image cardImage;
+    [SerializeField] Image panelImage;
+    [SerializeField] Image cardFrame;
     Card.CardType cardType;
     bool hasRerolled;
+    [SerializeField] TextMeshProUGUI rerollText;
+
+    SceneSwitcher sceneSwitcher;
+    UpgradeHandler upgradeHandler;
 
     void Awake()
     {
@@ -27,12 +34,17 @@ public class CardChoice : MonoBehaviour
         // cardSubtitleText = GetComponentInChildren<TextMeshProUGUI>();
         // cardDescriptionText = GetComponentInChildren<TextMeshProUGUI>();
         // cardImage = GetComponentInChildren<Image>();
+
+        upgradeHandler = FindAnyObjectByType<UpgradeHandler>();
+        sceneSwitcher = FindAnyObjectByType<SceneSwitcher>();
     }
+    
 
     void Start()
     {
         chooseButton.onClick.AddListener(OnChooseButtonClicked);
         RenderCard(SelectRandomCard());
+        
     }
 
     void RenderCard(Card card)
@@ -42,6 +54,9 @@ public class CardChoice : MonoBehaviour
         cardDescriptionText.text = card.GetCardDescription;
         cardImage.sprite = card.GetCardImage;
         cardType = card.GetCardType;
+        cardFrame.sprite = card.GetCardFrame;
+        panelImage.sprite = card.GetPanelImage;
+
 
         PlayCardAnimation();
         Debug.Log("Card Rendered: " + card.GetCardName);
@@ -53,12 +68,15 @@ public class CardChoice : MonoBehaviour
         {
             // TODO: Apply buff
             Debug.Log("Buff card chosen: " + card.GetCardName);
-            // TODO: Switch to Manufacturing scene with a scene transition
+            upgradeHandler.AddBuff(card.GetPrefab);
+            sceneSwitcher.LoadCombatScene();
         }
         else if (cardType == Card.CardType.Module)
         {
             // TODO: Add module to module list
             Debug.Log("Module card chosen: " + card.GetCardName);
+            upgradeHandler.AddModule(card.GetPrefab);
+            sceneSwitcher.LoadCombatScene();
             // TODO: Switch to Manufacturing scene with a scene transition
         }
         else if (cardType == Card.CardType.Weapon)
@@ -66,18 +84,22 @@ public class CardChoice : MonoBehaviour
             // TODO: Handle weapon card
             Debug.Log("Weapon card chosen: " + card.GetCardName);
             // TODO: Switch to appropriate scene with a scene transition
+            upgradeHandler.AddWeapon(card.GetPrefab);
+            sceneSwitcher.LoadCombatScene();
         }
         else if (cardType == Card.CardType.Upgrade)
         {
             // TODO: Handle upgrade card
             Debug.Log("Upgrade card chosen: " + card.GetCardName);
+            Debug.Log("Create Upgrade Weapon Card handling");
+            sceneSwitcher.LoadCombatScene();
             // TODO: Switch to appropriate scene with a scene transition
         }
-        else if (cardType == Card.CardType.Module)
+        else if (cardType == Card.CardType.Gacha)
         {
             // TODO: Handle module card
-            Debug.Log("Module card chosen: " + card.GetCardName);
-            // TODO: Switch to appropriate scene with a scene transition
+            Debug.Log("Gacha card chosen: " + card.GetCardName);
+
         }
         else
         {
@@ -101,7 +123,7 @@ public class CardChoice : MonoBehaviour
         else
         {
             Debug.Log("You can only reroll once!");
-            Debug.Log("TODO: Show message to user and update this button's text.");
+            rerollText.text = "Reroll (x0)";
         }
     }
 

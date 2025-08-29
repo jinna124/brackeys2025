@@ -21,8 +21,6 @@ public class PlayerStats : MonoBehaviour
     {
         // update maxHp
         healthComponent.addMaxHp(Hp);
-        // heal fully
-        healthComponent.Fullheal();
     }
 
     public void setMovementSpeed(float MovementSpeed)

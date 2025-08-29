@@ -23,6 +23,11 @@ public class SceneSwitcher : MonoBehaviour
         LoadScene("Manufacturing");
     }
 
+    public void LoadInventoryScene()
+    {
+        LoadScene("Inventory");
+    }
+
     void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

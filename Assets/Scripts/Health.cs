@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
         {
             playerstats = GetComponent<PlayerStats>();
             Maxhealth = playerstats.getMaxHp();
+            currentHealth = Maxhealth;
         }
 
         XPManager = FindAnyObjectByType<XPManager>();
