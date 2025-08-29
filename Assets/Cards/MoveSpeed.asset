@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
+  m_Name: MoveSpeed
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardName: 
+  cardSubtitle: Combat Buff
+  cardDescription: 
+  cardImage: {fileID: 4966732595609684114, guid: ba60897240c9d460b88ccd7b0c9747cb, type: 3}
+  buffPanelImage: {fileID: 8858591584232066319, guid: dbd34f0ace5ee48edb4187e829d9ba6c, type: 3}
+  modulePanelImage: {fileID: 0}
+  weaponPanelImage: {fileID: 0}
+  upgradePanelImage: {fileID: 0}
+  gachaPanelImage: {fileID: 0}
+  buffCardFrame: {fileID: -9213898948811441504, guid: 602cc4343b6f34da1a82af9528f1cb22, type: 3}
+  moduleCardFrame: {fileID: 0}
+  weaponCardFrame: {fileID: 0}
+  upgradeCardFrame: {fileID: 0}
+  gachaCardFrame: {fileID: 0}
+  cardType: 0
+  prefab: {fileID: 6943430159757248662, guid: a1d14bca3111a4b9a9aa06c266a22109, type: 3}

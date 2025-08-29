@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
+  m_Name: BakeryFactory
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardName: 
+  cardSubtitle: Production Module
+  cardDescription: 
+  cardImage: {fileID: 4966732595609684114, guid: ba60897240c9d460b88ccd7b0c9747cb, type: 3}
+  buffPanelImage: {fileID: 2514165089026219096, guid: bfa45dba67f474f0ca8bd2f2d4b350d4, type: 3}
+  modulePanelImage: {fileID: 0}
+  weaponPanelImage: {fileID: 0}
+  upgradePanelImage: {fileID: 0}
+  gachaPanelImage: {fileID: 0}
+  buffCardFrame: {fileID: 104904327032030964, guid: 668bb9240e03a4ca8b5f3a3da4627191, type: 3}
+  moduleCardFrame: {fileID: 0}
+  weaponCardFrame: {fileID: 0}
+  upgradeCardFrame: {fileID: 0}
+  gachaCardFrame: {fileID: 0}
+  cardType: 1
+  prefab: {fileID: 83172890816215188, guid: 7506e8b6012dc44699eceaf34de85b6b, type: 3}
