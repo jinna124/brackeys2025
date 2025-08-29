@@ -10,6 +10,21 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] bool isFromEnemy = false;
     //private bool isHit = false;
     private HashSet<Collider2D> enemiesHit = new HashSet<Collider2D>();     // array holding the enemies hit
+    private PlayerStats playerstats;
+    private GameObject player; // assumes player has "Player" tag
+    public void Awake()
+    {
+        player = GameObject.FindWithTag("Player");
+        if (tag == "PlayerBullet")
+        {
+            if (player != null)
+            {
+                playerstats = player.GetComponent<PlayerStats>();
+                damage = playerstats.getWeaponDamage();
+            }
+        }
+
+    }
 
     public float GetDamage () => damage;
     public bool IsFromEnemy() => isFromEnemy;

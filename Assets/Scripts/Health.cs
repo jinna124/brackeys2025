@@ -10,8 +10,15 @@ public class Health : MonoBehaviour
     [SerializeField] float XPValue = 1f;
     XPManager XPManager;
 
+    private PlayerStats playerstats;
     void Awake()
     {
+        if (tag == "Player")
+        {
+            playerstats = GetComponent<PlayerStats>();
+            health = playerstats.getMaxHp();
+        }
+
         XPManager = FindAnyObjectByType<XPManager>();
         Debug.Log("XP MANAGER:" + XPManager);
     }

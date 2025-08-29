@@ -25,6 +25,7 @@ public class Default_Weapon : MonoBehaviour
     //[SerializeField] float minimum_firing_rate;
     private GameObject nearest_enemy;
     private bool isFiring = false;
+
     GameObject NearestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

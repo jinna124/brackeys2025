@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9038153069147783356}
   m_Layer: 7
   m_Name: mrMuffin
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damage: 20
   destroyOnHit: 0
+  isFromEnemy: 0

@@ -613,7 +613,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648271599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15559c742257e9e4087ad0d3e50aa162, type: 3}
   m_Name: 
@@ -1112,6 +1112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ranged_enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1211489528299582475, guid: a3e5493bc91e505478d0a52695cbab68, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2018499705121891108, guid: a3e5493bc91e505478d0a52695cbab68, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.05766
@@ -1151,6 +1155,14 @@ PrefabInstance:
     - target: {fileID: 2018499705121891108, guid: a3e5493bc91e505478d0a52695cbab68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179101788481616253, guid: a3e5493bc91e505478d0a52695cbab68, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066941558463880343, guid: a3e5493bc91e505478d0a52695cbab68, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1445,6 +1457,7 @@ GameObject:
   - component: {fileID: 1223953435}
   - component: {fileID: 1223953433}
   - component: {fileID: 1223953432}
+  - component: {fileID: 1223953441}
   - component: {fileID: 1223953434}
   - component: {fileID: 1223953439}
   - component: {fileID: 1223953440}
@@ -1519,7 +1532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4c777d5b1f641f08f052266bffafee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 13
 --- !u!50 &1223953435
 Rigidbody2D:
   serializedVersion: 5
@@ -1680,7 +1692,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223953431}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c3463c8a88783c41ae0411de5af7178, type: 3}
   m_Name: 
@@ -1693,6 +1705,21 @@ MonoBehaviour:
   mrMuffinFloatAmplitude: 0.5
   smoothenMovement: 1
   smoothing: 5
+--- !u!114 &1223953441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223953431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee706b37f3e0594988c1c7cee8be15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHp: 100
+  movementSpeed: 10
+  weaponDamage: 10
 --- !u!1 &1322915132
 GameObject:
   m_ObjectHideFlags: 0
