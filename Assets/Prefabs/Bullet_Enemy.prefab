@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4351762680388421487}
   - component: {fileID: 5893402608305671080}
   - component: {fileID: 8949860938260671965}
-  - component: {fileID: -1907634161218969193}
+  - component: {fileID: 5521206452889602232}
   m_Layer: 9
   m_Name: Bullet_Enemy
   m_TagString: Untagged
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-1907634161218969193
+--- !u!114 &5521206452889602232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4135567779468510222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf564116584034550843dc44cd1669e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 54bc0f1360aa84940ae9f1c2bf54067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damage: 10
+  destroyOnHit: 1
+  isFromEnemy: 1

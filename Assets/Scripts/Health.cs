@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using UnityEngine;
 
 // Health management for both the player and enemies
@@ -6,36 +6,36 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] float health = 100f;
-    XPManager XPManager;
     [SerializeField] bool isEnemy;
-    [SerializeField] int XPValue = 1;
+    [SerializeField] float XPValue = 1f;
+    XPManager XPManager;
 
     void Awake()
     {
         XPManager = FindAnyObjectByType<XPManager>();
         Debug.Log("XP MANAGER:" + XPManager);
     }
-    public float GetHealth()
-    {
-        return health;
-    }
+    public float GetHealth() => health;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, DamageDealer dealer = null)
     {
+        if (dealer != null)
+        {
+            if (isEnemy && dealer.IsFromEnemy()) return;
+            if (!isEnemy && !dealer.IsFromEnemy()) return;
+        }
+
+
         health -= damage;
         if (health <= 0)
         {
-            if (isEnemy)
+            if (isEnemy && XPManager != null)
             {
                 XPShard xpShard = Instantiate(XPManager.GetXPShardPrefab(), transform.position, Quaternion.identity);
                 xpShard.SetXPValue(XPValue);
                 Debug.Log("Enemy defeated, creating XP shard worth " + XPValue + " XP");
-                Die();
             }
-            else
-            {
-                Die();
-            }
+            Die();
         }
     }
 
@@ -44,14 +44,35 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
         if (damageDealer != null)
         {
-            if (isEnemy && other.CompareTag("Enemy")) return;   //if i am the enemy and the other tag is not the player then ignore
-            TakeDamage(damageDealer.GetDamage());
-            damageDealer.Hit();
+            // Enemy bullet → Player
+            if (damageDealer.IsFromEnemy() && !isEnemy)
+            {
+                TakeDamage(damageDealer.GetDamage(), damageDealer);
+                damageDealer.Hit();
+            }
+            // Player bullet → Enemy
+            else if (!damageDealer.IsFromEnemy() && isEnemy)
+            {
+                TakeDamage(damageDealer.GetDamage(), damageDealer);
+                damageDealer.Hit();
+            }
+            return; // done if it's a projectile
+        }
+
+        // Handle physical enemy <-> player collisions
+        if (isEnemy && other.CompareTag("Player"))
+        {
+            Health playerHealth = other.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10f); // enemy body deals damage to player
+                Die(); // enemy dies after collision
+            }
         }
     }
 }

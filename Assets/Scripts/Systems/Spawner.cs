@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] GameObject bounds;
     [SerializeField] GameObject enemy_prefab;
     [SerializeField] LayerMask enemy_layer;
     [SerializeField] float cooldown = 3f;
@@ -14,7 +15,8 @@ public class Spawner : MonoBehaviour
     private float camera_height;
     private float camera_width;
     private bool isSpawning = false;
-
+    private Vector2 minbounds;
+    private Vector2 maxbounds;
 
     void SpawnOffScreen()
     {
@@ -39,7 +41,10 @@ public class Spawner : MonoBehaviour
         {
             Vector2 cluster_offset = Random.insideUnitCircle * cluster_radius;
             Vector2 spawn_position = cluster_center + cluster_offset;
-
+            // -----KEEP IN BOUNDS-------
+            spawn_position.x = Mathf.Clamp(spawn_position.x, minbounds.x + 1, maxbounds.x - 1);
+            spawn_position.y = Mathf.Clamp(spawn_position.y, minbounds.y + 1, maxbounds.y - 1);
+            // ------ENSURE IT DOESNT SPAWN OVER ANOTHER ENEMY-------
             Collider2D hit = Physics2D.OverlapCircle(spawn_position, min_spacing_bet_enemies, enemy_layer);
 
             if (hit == null)
@@ -64,6 +69,10 @@ public class Spawner : MonoBehaviour
     
     private void Awake()
     {
+        SpriteRenderer sr = bounds.GetComponent<SpriteRenderer>();
+        minbounds = sr.bounds.min;
+        maxbounds = sr.bounds.max;
+
         Camera = Camera.main;
         camera_height = Camera.orthographicSize * 2f;
         camera_width = camera_height * Camera.aspect;

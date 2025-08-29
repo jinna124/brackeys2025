@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1293009184115768465}
   - component: {fileID: 1385408735958116583}
   - component: {fileID: 3126754500678920815}
+  - component: {fileID: -5632310260769579780}
   - component: {fileID: 6117173493154319761}
-  - component: {fileID: 3529062291188463231}
   - component: {fileID: 8208738256686388114}
+  - component: {fileID: -3530365032928525856}
   m_Layer: 8
   m_Name: rushing_enemy
   m_TagString: Enemy
@@ -132,7 +133,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c72e7623432944647a73fda80e020da7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -158,6 +159,42 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.015848756, y: 0}
   m_Radius: 0.110824585
+--- !u!58 &-5632310260769579780
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180437253118036063}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.13
 --- !u!114 &6117173493154319761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,19 +214,6 @@ MonoBehaviour:
   chargingTime: 1
   charging_speed: 30
   cooldown: 1
---- !u!114 &3529062291188463231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180437253118036063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf564116584034550843dc44cd1669e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 50
 --- !u!114 &8208738256686388114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,4 +228,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   health: 20
   isEnemy: 1
-  XPValue: 50
+  XPValue: 10
+--- !u!114 &-3530365032928525856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180437253118036063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc0f1360aa84940ae9f1c2bf54067b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
+  damage: 20
+  destroyOnHit: 1
+  isFromEnemy: 1

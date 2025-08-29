@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4351762680388421487}
   - component: {fileID: 5893402608305671080}
   - component: {fileID: 8949860938260671965}
-  - component: {fileID: -1907634161218969193}
+  - component: {fileID: 1497261852577467677}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4135567779468510222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.641362, y: 0.48687804, z: 0}
+  m_LocalPosition: {x: -4.45002, y: -3.3413692, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-1907634161218969193
+--- !u!114 &1497261852577467677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4135567779468510222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf564116584034550843dc44cd1669e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 54bc0f1360aa84940ae9f1c2bf54067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damage: 10
+  destroyOnHit: 1

@@ -52,16 +52,20 @@ public class Enemy_Gun : MonoBehaviour
 
     void Fire()
     {
-        float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
-        if (isFiring && firingCoroutine == null && distance_to_player <= firing_range)
+        if (player != null)
         {
-            firingCoroutine = StartCoroutine("FireContinuously");
+            float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
+            if (isFiring && firingCoroutine == null && distance_to_player <= firing_range)
+            {
+                firingCoroutine = StartCoroutine("FireContinuously");
+            }
+            else if ((distance_to_player > firing_range || !isFiring) && firingCoroutine != null)
+            {
+                StopCoroutine(firingCoroutine);
+                firingCoroutine = null;
+            }
         }
-        else if ((distance_to_player > firing_range || !isFiring) && firingCoroutine != null)
-        {
-            StopCoroutine(firingCoroutine);
-            firingCoroutine = null;
-        }
+
     }
 
     IEnumerator FireContinuously()
