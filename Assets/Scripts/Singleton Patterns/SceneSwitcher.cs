@@ -20,10 +20,11 @@ public class SceneSwitcher : MonoBehaviour
 
     private void Update()
     {
+        /* for debugging purposes
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             LoadUpgradesScene();
-        }
+        }*/
     }
 
     public void LoadCombatScene()
