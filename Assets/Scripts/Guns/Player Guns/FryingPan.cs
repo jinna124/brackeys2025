@@ -1,120 +1,109 @@
-//using System.Collections;
-//using UnityEditor.Experimental.GraphView;
-//using UnityEngine;
-//using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine;
 
-//public class FryingPan : MonoBehaviour
-//{
+public class FryingPan : MonoBehaviour
+{
+    [Header("Weapon Settings")]
+    [SerializeField] Transform tipOfWeapon;
 
-//    [Header("Weapon Settings")]
-//    [Space]
-//    [SerializeField] GameObject tip_of_weapon;
-//    [Space]
+    [Header("Pan Settings")]
+    [SerializeField] GameObject panPrefab;
+    [SerializeField] float panSpeed = 5f;
+    [SerializeField] float spinSpeed = 360f; // degrees per second
 
-//    [Header("Projectile Settings")]
-//    [Space]
-//    [SerializeField] GameObject bullet;
-//    [SerializeField] float projectile_speed;
-//    [SerializeField] float distance_to_target;
-//    [Space]
-//    [Header("____Firing rate and range")]
-//    [SerializeField] float firing_rate;
-//    [SerializeField] float firing_range = 6f;
-//    //[SerializeField] float firing_variance;           // these are not implemented yet
-//    //[SerializeField] float minimum_firing_rate;
-//    private GameObject nearest_enemy;
-//    private bool isFiring = false;
-//    private enum panState { going, returning }
-//    private panState state = panState.going;
-//    GameObject NearestEnemy()
-//    {
-//        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-//        if (enemies.Length == 0) return null;
+    [Header("Firing Rate & Range")]
+    [SerializeField] float firingRange = 6f;
+    [SerializeField] float firingRate = 1f;
 
-//        GameObject nearest_enemy = enemies[0];
-//        float distance_to_nearest_enemy = Vector2.Distance(transform.position, enemies[0].transform.position);
-//        foreach (GameObject enemy in enemies)
-//        {
-//            float distance_to_enemy = Vector2.Distance(transform.position, enemy.transform.position);
-//            if (distance_to_enemy < distance_to_nearest_enemy)
-//            {
-//                distance_to_nearest_enemy = distance_to_enemy;
-//                nearest_enemy = enemy;
-//            }
-//        }
+    private GameObject nearestEnemy;
+    private bool isFiring = false;
 
-//        return nearest_enemy;
-//    }
-//    IEnumerator StartSearching()
-//    {
-//        while (true)
-//        {
-//            nearest_enemy = NearestEnemy();
-//            yield return new WaitForSeconds(0.1f);
-//        }
-//    }
+    private enum PanState { NotShot, Going, Returning }
+    private PanState state = PanState.NotShot;
 
-//    //void StartShooting()
-//    //{
-//    //    isFiring = true;
-//    //    nearest_enemy = NearestEnemy();     // find nearest enemy per bullet
-//    //    AimAndShootAutomatically(nearest_enemy);
-//    //    yield return new WaitForSeconds(firing_rate);   // this makes it so that each bullet that gets out depends on the nearest enemy
-//    //    isFiring = false;
-//    //}
-//    //void AimAndShootAutomatically(GameObject enemy)
-//    //{
-//    //    // -----------bullet-------------
-//    //    Vector2 direction = (enemy.transform.position - transform.position).normalized;
-//    //    float angle = Mathf.Atan2 (-direction.y, -direction.x) * Mathf.Rad2Deg;
-//    //    GameObject bullet_instance = Instantiate(bullet, tip_of_weapon.transform.position, Quaternion.Euler(0f, 0f, angle));
-//    //    Rigidbody2D bullet_rb = bullet_instance.GetComponent<Rigidbody2D>();
-//    //    bullet_rb.linearVelocity = direction * projectile_speed;
-//    //    Destroy(bullet_instance, projectile_lifetime);
-//    //    // -------------------------------
-//    //}
+    private void Start()
+    {
+        StartCoroutine(SearchNearestEnemy());
+    }
 
+    private void Update()
+    {
+        if (nearestEnemy == null || isFiring) return;
 
-//    void shoot()
-//    {
-//        if(state == panState.going)
-//        {
-//            Direction = gametransform.position - distanc
-//        }
-//    }
+        float distance = Vector2.Distance(transform.position, nearestEnemy.transform.position);
+        if (distance <= firingRange)
+        {
+            StartCoroutine(ShootPan(nearestEnemy));
+        }
+    }
 
-//    void Start()
-//    {
-//        StartCoroutine(StartSearching());
-//    }
+    private IEnumerator SearchNearestEnemy()
+    {
+        while (true)
+        {
+            nearestEnemy = FindNearestEnemy();
+            yield return new WaitForSeconds(0.1f); // small interval to avoid expensive calls every frame
+        }
+    }
 
-//    void Update()
-//    {
-//        if (nearest_enemy == null) return;
+    private GameObject FindNearestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length == 0) return null;
 
+        GameObject nearest = enemies[0];
+        float minDist = Vector2.Distance(transform.position, nearest.transform.position);
 
-//        float distance = Vector2.Distance(transform.position, nearest_enemy.transform.position);
-//        if (distance <= firing_range && !isFiring)
-//        {
-//            Vector2 direction = (nearest_enemy.transform.position - transform.position).normalized;
-//            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 85;
-//            transform.rotation = Quaternion.Euler(0f, 0f, angle);
-//            if (0 > angle && angle > -180)
-//            {
-//                if (transform.localScale.x != -1)
-//                {
-//                    transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-//                }
-//            }
-//            else
-//            {
-//                if (transform.localScale.x != 1)
-//                {
-//                    transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-//                }
-//            }
-//            StartCoroutine(StartShooting());    
-//        }
+        foreach (GameObject enemy in enemies)
+        {
+            float dist = Vector2.Distance(transform.position, enemy.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = enemy;
+            }
+        }
 
-//    }
-//}
+        return nearest;
+    }
+
+    private IEnumerator ShootPan(GameObject target)
+    {
+        isFiring = true;
+        state = PanState.Going;
+
+        // Spawn at the tip
+        Vector2 spawnPoint = tipOfWeapon.position;
+        Vector2 direction = ((Vector2)target.transform.position - spawnPoint).normalized;
+        Vector2 travelPoint = (Vector2)target.transform.position + direction * firingRange;
+
+        // Instantiate pan
+        GameObject panInstance = Instantiate(panPrefab, spawnPoint, Quaternion.identity);
+
+        // Going out
+        while (Vector2.Distance(panInstance.transform.position, travelPoint) > 0.1f)
+        {
+            panInstance.transform.position = Vector2.MoveTowards(panInstance.transform.position, travelPoint, panSpeed * Time.deltaTime);
+            panInstance.transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Returning
+        state = PanState.Returning;
+        while (Vector2.Distance(panInstance.transform.position, tipOfWeapon.position) > 0.1f)
+        {
+            // Always move toward the current tip position
+            panInstance.transform.position = Vector2.MoveTowards(panInstance.transform.position, tipOfWeapon.position, panSpeed * Time.deltaTime);
+            panInstance.transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Snap to tip and destroy
+        panInstance.transform.position = tipOfWeapon.position;
+        Destroy(panInstance);
+
+        state = PanState.NotShot;
+        isFiring = false;
+    }
+
+}
