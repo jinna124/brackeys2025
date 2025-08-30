@@ -35,7 +35,7 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && !(enemiesHit.Contains(collision)))       // checks if the collision is a new enemy not hit before
+        if (collision.tag == "Enemy" && !(enemiesHit.Contains(collision)) && !isFromEnemy)       // checks if the collision is a new enemy not hit before
         {
             enemiesHit.Add(collision);
             Health health = collision.GetComponent<Health>();

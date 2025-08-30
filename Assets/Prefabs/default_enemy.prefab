@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5781562682757504000}
   - component: {fileID: 8208738256686388114}
   - component: {fileID: -3860793287065005025}
+  - component: {fileID: 4436738617234685671}
   m_Layer: 8
   m_Name: default_enemy
   m_TagString: Enemy
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7, y: 0.02, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,9 +86,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4569161321755363472, guid: c097b3397db514380bbd9a236397b798, type: 3}
+  m_Sprite: {fileID: 4320949192650773422, guid: d22fff232baae844da4360efee03c1d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.26, y: 0.2}
@@ -157,8 +158,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015848756, y: 0}
-  m_Radius: 0.110824585
+  m_Offset: {x: -0.00019478798, y: 0}
+  m_Radius: 0.28146958
 --- !u!58 &5586059272533071279
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -193,8 +194,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.13
+  m_Offset: {x: 0, y: 0.014584988}
+  m_Radius: 0.2816845
 --- !u!114 &5781562682757504000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,8 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce9e7f66dba21644bb0848c4bf5d555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  movement_speed: 10
-  melee_range: 0
+  movement_speed: 1
+  melee_range: 5
+  animator: {fileID: 4436738617234685671}
 --- !u!114 &8208738256686388114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116b56c0ccb63460e82ddc262e583d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  health: 50
+  Maxhealth: 50
   isEnemy: 1
   XPValue: 10
 --- !u!114 &-3860793287065005025
@@ -239,3 +241,25 @@ MonoBehaviour:
   damage: 10
   destroyOnHit: 1
   isFromEnemy: 1
+--- !u!95 &4436738617234685671
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180437253118036063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15b03ae28d556be4eb558eb0582decb4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

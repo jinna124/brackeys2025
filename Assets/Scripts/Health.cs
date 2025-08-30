@@ -1,6 +1,8 @@
 ﻿using System.Net;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 // Health management for both the player and enemies
 
 public class Health : MonoBehaviour
@@ -11,6 +13,7 @@ public class Health : MonoBehaviour
     XPManager XPManager;
     private float currentHealth;
     private PlayerStats playerstats;
+    private Animator animator;
     void Awake()
     {
         if (tag == "Player")
@@ -18,12 +21,13 @@ public class Health : MonoBehaviour
             playerstats = GetComponent<PlayerStats>();
             Maxhealth = playerstats.getMaxHp();
             currentHealth = Maxhealth;
+            animator = GetComponent<Animator>();
         }
-
+        currentHealth = Maxhealth;
         XPManager = FindAnyObjectByType<XPManager>();
         Debug.Log("XP MANAGER:" + XPManager);
     }
-    public float GetHealth() => Maxhealth;
+    public float GetHealth() => currentHealth;
 
     public void TakeDamage(float damage, DamageDealer dealer = null)
     {
@@ -35,6 +39,7 @@ public class Health : MonoBehaviour
 
 
         currentHealth -= damage;
+        if (!isEnemy) { animator.Play("GrannyHit"); }
         if (currentHealth <= 0)
         {
             if (isEnemy && XPManager != null)
@@ -49,7 +54,12 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        if (!isEnemy)
+        {
+            StartCoroutine(playerDeathAnimation());
+        }
+        else
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -91,5 +101,32 @@ public class Health : MonoBehaviour
     public void Fullheal()
     {
         currentHealth = Maxhealth;
+    }
+
+    IEnumerator playerDeathAnimation()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Collider2D col = rb.GetComponent<Collider2D>();
+        rb.linearVelocity = Vector3.zero;
+        rb.simulated = false;
+        col.enabled = false;
+        animator.Play("GrannyDies");
+        yield return null;
+        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float Length = animatorStateInfo.length;
+        // Wait for the length of the animation
+        yield return new WaitForSeconds(Length + 5);
+        Destroy(gameObject);
+    }
+
+    IEnumerator playerHitAnimation()
+    {
+        animator.SetBool("isHit", true);
+        yield return null;
+        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float Length = animatorStateInfo.length;
+        // Wait for the length of the animation
+        yield return new WaitForSeconds(Length);
+        animator.SetBool("isHit", false);
     }
 }

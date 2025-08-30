@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     Vector2 rawInput;
     Rigidbody2D rb;
     private PlayerStats playerstats;
+    private Animator animator;
 
+    private bool isMoving = false;
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     {
         playerstats = GetComponent<PlayerStats>();
         moveSpeed = playerstats.getMovementSpeed();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +35,15 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();    
+        
+        if(rawInput.x != 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Sign(rawInput.x), 1, 1);
+        }
+
+        // set walking to be true if it is moving
+        bool isWalking = rawInput.sqrMagnitude > 0;
+        animator.SetBool("isWalking", isWalking);       // cause x!= 0 works only on horizontal movement
     }
     void Move()
     {

@@ -6,6 +6,12 @@ public class ProductionManager : MonoBehaviour
     List<Module> moduleList;
     CookieManager cookieManager;
     float timeSinceLastProduction;
+    //static ProductionManager instance;
+
+    //private void Awake()
+    //{
+    //    ManageSingleton();
+    //}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,4 +55,19 @@ public class ProductionManager : MonoBehaviour
     {
         return moduleList;
     }
+
+    //void ManageSingleton()
+    //{
+    //    if (instance != null)
+    //    {
+    //        gameObject.SetActive(false);
+    //        Destroy(gameObject);
+    //    }
+
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 }

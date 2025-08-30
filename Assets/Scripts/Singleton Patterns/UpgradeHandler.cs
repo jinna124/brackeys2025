@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradeHandler : MonoBehaviour
 {
+    //static UpgradeHandler instance;
 
     List<GameObject> buffs;
     List<GameObject> weapons;
@@ -21,6 +22,8 @@ public class UpgradeHandler : MonoBehaviour
         productionManager = FindAnyObjectByType<ProductionManager>();
         player = FindAnyObjectByType<Player>();
         playerStats = player.GetComponent<PlayerStats>();
+
+        //ManageSingleton();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -93,4 +96,19 @@ public class UpgradeHandler : MonoBehaviour
     {
         return weaponCount;
     }
+
+    //void ManageSingleton()
+    //{
+    //    if (instance != null)
+    //    {
+    //        gameObject.SetActive(false);
+    //        Destroy(gameObject);
+    //    }
+
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 }

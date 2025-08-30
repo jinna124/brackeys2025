@@ -55,11 +55,11 @@ public class Enemy_Gun : MonoBehaviour
         if (player != null)
         {
             float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
-            if (isFiring && firingCoroutine == null && distance_to_player <= firing_range)
+            if (isFiring && firingCoroutine == null && distance_to_player - 1 <= firing_range)
             {
                 firingCoroutine = StartCoroutine("FireContinuously");
             }
-            else if ((distance_to_player > firing_range || !isFiring) && firingCoroutine != null)
+            else if ((distance_to_player - 1 > firing_range || !isFiring) && firingCoroutine != null)
             {
                 StopCoroutine(firingCoroutine);
                 firingCoroutine = null;

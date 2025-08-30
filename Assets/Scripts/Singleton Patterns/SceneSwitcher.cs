@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
+    //static SceneSwitcher instance;
+
+    private void Awake()
+    {
+        //ManageSingleton();
+    }
+
     public void LoadGachaScene()
     {
         LoadScene("Gacha");
@@ -32,4 +39,19 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    //void ManageSingleton()
+    //{
+    //    if (instance != null)
+    //    {
+    //        gameObject.SetActive(false);
+    //        Destroy(gameObject);
+    //    }
+
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 }

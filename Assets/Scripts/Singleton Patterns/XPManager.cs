@@ -13,6 +13,14 @@ public class XPManager : MonoBehaviour
     int[] XPPerLevel = { 0, 10, 20, 20, 30, 40, 40, 50 }; // XP required for each level
     SceneSwitcher sceneSwitcher;
 
+    //static XPManager instance;
+
+
+    private void Awake()
+    {
+        //ManageSingleton();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +50,20 @@ public class XPManager : MonoBehaviour
         level++;
         sceneSwitcher.LoadUpgradesScene();
         ResetXP();
-        
     }
+
+    //void ManageSingleton()
+    //{
+    //    if (instance != null)
+    //    {
+    //        gameObject.SetActive(false);
+    //        Destroy(gameObject);
+    //    }
+
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 }

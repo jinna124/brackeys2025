@@ -18,6 +18,22 @@ public class Ranged_Enemy : enemy_movement
     private float timer = 0f;
     private float strafing_direction;       // 1 = clockwise, -1 = anticlock
 
+    private void Update()
+    {
+        if (player != null)
+        {
+            // Flip sprite horizontally based on player position
+            if (player.transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+    }
+
 
     private void Start()
     {
