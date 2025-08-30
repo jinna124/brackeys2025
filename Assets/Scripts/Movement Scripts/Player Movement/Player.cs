@@ -12,10 +12,18 @@ public class Player : MonoBehaviour
     private PlayerStats playerstats;
     private Animator animator;
 
+    public Vector2 currentDirection => rawInput;    
+    public Vector2 lastDirection { get; set; } = Vector2.zero;      // autoimplemented property
+
     private bool isMoving = false;
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
+
+        if(rawInput != Vector2.zero)        // if he is moving update the lastdirection (shootingdirection)
+        {
+            lastDirection = rawInput.normalized;
+        }
     }
 
     private void Awake()
