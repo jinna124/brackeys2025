@@ -16,7 +16,7 @@ MonoBehaviour:
   cardSubtitle: Weapon
   cardDescription: "Falls from above with a massive crash. Don\u2019t ask how Nonna
     lifts it, baking is serious business."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 7650306437698843898, guid: 38f1d28f11c0a4b95ac06eeea75b68a3, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}

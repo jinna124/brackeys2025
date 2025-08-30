@@ -11,7 +11,7 @@ public class XPShard : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            XPManager xpManager = FindAnyObjectByType<XPManager>();
+            XPManager xpManager = XPManager.instance;
             xpManager.AddXP(5); // Give 10 XP to the player
             Debug.Log("XP shard collected by player");
             Destroy(gameObject);

@@ -35,15 +35,14 @@ public class CardChoice : MonoBehaviour
         // cardDescriptionText = GetComponentInChildren<TextMeshProUGUI>();
         // cardImage = GetComponentInChildren<Image>();
 
-        upgradeHandler = FindAnyObjectByType<UpgradeHandler>();
-        sceneSwitcher = FindAnyObjectByType<SceneSwitcher>();
+        upgradeHandler = UpgradeHandler.instance;
+        sceneSwitcher = SceneSwitcher.instance;
         Debug.Log("Upgrade Handler: " + upgradeHandler);
     }
     
 
     void Start()
     {
-        chooseButton.onClick.AddListener(OnChooseButtonClicked);
         RenderCard(SelectRandomCard());
         
     }
@@ -63,7 +62,7 @@ public class CardChoice : MonoBehaviour
         Debug.Log("Card Rendered: " + card.GetCardName);
     }
 
-    void OnChooseButtonClicked()
+    public void OnChooseButtonClicked()
     {
         if (cardType == Card.CardType.Buff)
         {

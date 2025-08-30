@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UpgradeHandler : MonoBehaviour
 {
-    static UpgradeHandler instance;
+    public static UpgradeHandler instance;
     List<GameObject> buffs;
     List<GameObject> weapons;
     List<Module> modules;
@@ -20,7 +20,7 @@ public class UpgradeHandler : MonoBehaviour
     void Awake()
     {
         ManageSingleton();
-        productionManager = FindAnyObjectByType<ProductionManager>();
+        productionManager = ProductionManager.instance;
         if (SceneManager.GetActiveScene().name == "BulletHell")
         {
             player = FindAnyObjectByType<Player>();

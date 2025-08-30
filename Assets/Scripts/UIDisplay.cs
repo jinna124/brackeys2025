@@ -19,7 +19,7 @@ public class UIDisplay : MonoBehaviour
         XPText = GetComponentInChildren<TextMeshProUGUI>();
         player = FindAnyObjectByType<Player>();
         playerHealth = player.GetComponent<Health>();
-        XPManager = FindAnyObjectByType<XPManager>();
+        XPManager = XPManager.instance;
     }
 
     void Start()

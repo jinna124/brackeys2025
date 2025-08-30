@@ -4,7 +4,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class XPManager : MonoBehaviour
 {
-    static XPManager instance;
+    public static XPManager instance;
     // Singleton pattern (probably bad practice, but eh)
     [SerializeField] XPShard XPShardPrefab;
     int XP = 0;
@@ -23,7 +23,7 @@ public class XPManager : MonoBehaviour
     void Start()
     {
         XPRequirement = baseXPRequirement;
-        sceneSwitcher = FindAnyObjectByType<SceneSwitcher>();
+        sceneSwitcher = SceneSwitcher.instance;
     }
 
     // Update is called once per frame

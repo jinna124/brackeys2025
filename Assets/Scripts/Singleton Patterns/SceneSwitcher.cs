@@ -3,11 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    static SceneSwitcher instance;
+    public static SceneSwitcher instance;
+    [SerializeField] GameObject upgradeCanvas;
+    [SerializeField] GameObject cookiePanel;
 
     void Awake()
     {
         ManageSingleton();
+        upgradeCanvas.SetActive(false);
+        cookiePanel.SetActive(true);
     }
     public void LoadGachaScene()
     {
@@ -21,7 +25,8 @@ public class SceneSwitcher : MonoBehaviour
 
     public void LoadUpgradesScene()
     {
-        LoadScene("Upgrades");
+        upgradeCanvas.SetActive(true);
+        cookiePanel.SetActive(false);
     }
 
     public void LoadManufacturingScene()

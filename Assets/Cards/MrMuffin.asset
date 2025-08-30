@@ -16,7 +16,7 @@ MonoBehaviour:
   cardSubtitle: Weapon
   cardDescription: Circles loyally around Nonna, scratching anything that gets too
     close. A very good boy (most of the time).
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 9219470463251115190, guid: 254df0d8ab10c4aff9c84ad4df2503f0, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}

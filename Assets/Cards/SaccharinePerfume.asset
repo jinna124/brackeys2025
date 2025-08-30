@@ -16,7 +16,7 @@ MonoBehaviour:
   cardSubtitle: Weapon
   cardDescription: Spreads a sweet-smelling aura that melts nearby foes. Too bad
     it stings more than it charms.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2666492547758751955, guid: 5a31240fe59124ad2bb14c776ca8a24d, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}

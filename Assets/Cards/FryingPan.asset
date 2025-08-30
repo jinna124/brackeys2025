@@ -16,7 +16,7 @@ MonoBehaviour:
   cardSubtitle: Weapon
   cardDescription: Swings forward and arcs back like a deadly boomerang. Breakfast
     was never meant to be this violent.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -1370896627413979123, guid: 150b71f6dd3e840d98eb5afe2b48b857, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}

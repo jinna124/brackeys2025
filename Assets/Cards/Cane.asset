@@ -16,7 +16,7 @@ MonoBehaviour:
   cardSubtitle: Weapon
   cardDescription: "Shoots straight ahead with every swing. Nonna doesn\u2019t need
     it to walk \u2014 she needs it to smack pastries."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2435747434856292156, guid: 5941357d28af44803bef3e24cabaaf81, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}

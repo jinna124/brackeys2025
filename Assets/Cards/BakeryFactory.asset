@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: 
   cardSubtitle: Production Module
   cardDescription: 
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2484731718687604672, guid: 5da9083ad34ea4de9a2624316b20ffd1, type: 3}
   buffPanelImage: {fileID: 0}
   modulePanelImage: {fileID: 2514165089026219096, guid: bfa45dba67f474f0ca8bd2f2d4b350d4, type: 3}
   weaponPanelImage: {fileID: 0}

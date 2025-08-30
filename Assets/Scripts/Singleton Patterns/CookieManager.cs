@@ -3,7 +3,7 @@ using UnityEngine;
 // Cookie or currency manager
 public class CookieManager : MonoBehaviour
 {
-    static CookieManager instance;
+    public static CookieManager instance;
     [SerializeField] int cookies = 0;
     //static CookieManager instance;
 
