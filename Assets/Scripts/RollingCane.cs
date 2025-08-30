@@ -52,5 +52,7 @@ public class RollingCane : MonoBehaviour
         Rigidbody2D rb = rollingCane.GetComponent<Rigidbody2D>();
         rb.linearVelocity = direction * cane_speed;
         rb.angularVelocity = rotating_speed;
+
+        Destroy(rollingCane, 5f);
     }
 }
