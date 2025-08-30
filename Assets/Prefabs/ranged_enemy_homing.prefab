@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4569161321755363472, guid: c097b3397db514380bbd9a236397b798, type: 3}
+  m_Sprite: {fileID: -4238390659308463208, guid: 7bf888c5f25344f4db7eb669f6b163f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116b56c0ccb63460e82ddc262e583d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  health: 150
+  Maxhealth: 100
   isEnemy: 1
   XPValue: 20
 --- !u!114 &9028443911874612686
