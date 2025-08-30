@@ -12,10 +12,18 @@ public class Player : MonoBehaviour
     private PlayerStats playerstats;
     private Animator animator;
 
+
+    public Vector2 currentDirection => rawInput;
+    public Vector2 lastDirection { get; private set; } = Vector2.zero;
     private bool isMoving = false;
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
+
+        if (rawInput != Vector2.zero)
+        {
+            lastDirection = rawInput.normalized;
+        }
     }
 
     private void Awake()
@@ -34,9 +42,9 @@ public class Player : MonoBehaviour
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()
     {
-        Move();    
-        
-        if(rawInput.x != 0)
+        Move();
+
+        if (rawInput.x != 0)
         {
             transform.localScale = new Vector3(-Mathf.Sign(rawInput.x), 1, 1);
         }
@@ -56,4 +64,3 @@ public class Player : MonoBehaviour
         moveSpeed += addedvalue;
     }
 }
-
