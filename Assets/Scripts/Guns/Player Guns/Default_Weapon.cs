@@ -26,39 +26,13 @@ public class Default_Weapon : MonoBehaviour
     private GameObject nearest_enemy;
     private bool isFiring = false;
 
-    GameObject NearestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length == 0) return null;
-
-        GameObject nearest_enemy = enemies[0];
-        float distance_to_nearest_enemy = Vector2.Distance(transform.position, enemies[0].transform.position);
-        foreach (GameObject enemy in enemies)
-        {
-            float distance_to_enemy = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance_to_enemy < distance_to_nearest_enemy)
-            {
-                distance_to_nearest_enemy = distance_to_enemy;
-                nearest_enemy = enemy;
-            }
-        }
-
-        return nearest_enemy;
-    }
-    IEnumerator StartSearching()
-    {
-        while (true)
-        {
-            nearest_enemy = NearestEnemy();
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
 
     IEnumerator StartShooting()
     {
         isFiring = true;
-        nearest_enemy = NearestEnemy();     // find nearest enemy per bullet
-        AimAndShootAutomatically(nearest_enemy);
+        nearest_enemy = EnemyManager.instance.GetNearestEnemy();     // find nearest enemy per bullet
+        if(nearest_enemy != null ) 
+            AimAndShootAutomatically(nearest_enemy);
         yield return new WaitForSeconds(firing_rate);   // this makes it so that each bullet that gets out depends on the nearest enemy
         isFiring = false;
     }
@@ -74,14 +48,10 @@ public class Default_Weapon : MonoBehaviour
         Destroy(bullet_instance, projectile_lifetime);
         // -------------------------------
     }
-
-    void Start()
-    {
-        StartCoroutine(StartSearching());
-    }
-
     void Update()
     {
+        nearest_enemy = EnemyManager.instance.GetNearestEnemy(tip_of_weapon.transform.position);
+
         if (nearest_enemy == null) return;
 
 

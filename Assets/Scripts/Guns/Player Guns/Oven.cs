@@ -21,14 +21,9 @@ public class Oven : MonoBehaviour
     private GameObject nearestEnemy;
     private bool isFiring = false;
 
-
-    private void Start()
-    {
-        StartCoroutine(SearchNearestEnemy());
-    }
-
     private void Update()
     {
+        nearestEnemy = EnemyManager.instance.GetNearestEnemy(transform.position);
         if (nearestEnemy == null || isFiring) return;
 
         float distance = Vector2.Distance(transform.position, nearestEnemy.transform.position);
@@ -37,37 +32,6 @@ public class Oven : MonoBehaviour
             StartCoroutine(throwOven(nearestEnemy));
         }
     }
-
-    private IEnumerator SearchNearestEnemy()
-    {
-        while (true)
-        {
-            nearestEnemy = FindNearestEnemy();
-            yield return new WaitForSeconds(0.1f); // small interval to avoid expensive calls every frame
-        }
-    }
-
-    private GameObject FindNearestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length == 0) return null;
-
-        GameObject nearest = enemies[0];
-        float minDist = Vector2.Distance(transform.position, nearest.transform.position);
-
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector2.Distance(transform.position, enemy.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                nearest = enemy;
-            }
-        }
-
-        return nearest;
-    }
-
     IEnumerator throwOven(GameObject nearestEnemy)
     {
         isFiring = true;
