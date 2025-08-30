@@ -3,7 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public static SceneSwitcher instance;
+=======
+    static SceneSwitcher instance;
+>>>>>>> Stashed changes
     [SerializeField] GameObject upgradeCanvas;
     [SerializeField] GameObject cookiePanel;
 

@@ -30,7 +30,7 @@ public class UIDisplay : MonoBehaviour
     void Update()
     {
         healthSlider.value = playerHealth.GetHealth();
-        XPText.text = XPManager.GetXP().ToString() + " XP";
+        XPText.text = XPManager.GetXP().ToString() + "/" + XPManager.GetXPRequirement() + " XP";
 
         Debug.Log("Health:" + playerHealth.GetHealth());
     }
