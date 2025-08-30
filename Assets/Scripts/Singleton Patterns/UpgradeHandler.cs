@@ -20,7 +20,7 @@ public class UpgradeHandler : MonoBehaviour
     void Awake()
     {
         ManageSingleton();
-        productionManager = ProductionManager.instance;
+       
         if (SceneManager.GetActiveScene().name == "BulletHell")
         {
             player = FindAnyObjectByType<Player>();
@@ -30,6 +30,7 @@ public class UpgradeHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        productionManager = ProductionManager.instance;
         if (weapons != null)
         {
 

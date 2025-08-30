@@ -18,13 +18,25 @@ public class SceneSwitcher : MonoBehaviour
         LoadScene("Gacha");
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadUpgradesScene();
+        }
+    }
+
     public void LoadCombatScene()
     {
-        LoadScene("BulletHell");
+        Time.timeScale = 1f; // Pause the game
+        cookiePanel.SetActive(true);
+        upgradeCanvas.SetActive(false);
+        //LoadScene("BulletHell");
     }
 
     public void LoadUpgradesScene()
     {
+        Time.timeScale = 0f; // Pause the game
         upgradeCanvas.SetActive(true);
         cookiePanel.SetActive(false);
     }

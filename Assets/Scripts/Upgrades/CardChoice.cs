@@ -35,16 +35,16 @@ public class CardChoice : MonoBehaviour
         // cardDescriptionText = GetComponentInChildren<TextMeshProUGUI>();
         // cardImage = GetComponentInChildren<Image>();
 
-        upgradeHandler = UpgradeHandler.instance;
-        sceneSwitcher = SceneSwitcher.instance;
-        Debug.Log("Upgrade Handler: " + upgradeHandler);
+
     }
     
 
     void Start()
     {
-        RenderCard(SelectRandomCard());
-        
+        upgradeHandler = UpgradeHandler.instance;
+        sceneSwitcher = SceneSwitcher.instance;
+        Debug.Log("Upgrade Handler: " + upgradeHandler);
+        RenderCard(SelectRandomCard());      
     }
 
     void RenderCard(Card card)
