@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: 
   cardSubtitle: Combat Buff
   cardDescription: 
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -473962149624249597, guid: 407714f9d377c40a8bf731d3e83f9033, type: 3}
   buffPanelImage: {fileID: 8858591584232066319, guid: dbd34f0ace5ee48edb4187e829d9ba6c, type: 3}
   modulePanelImage: {fileID: 0}
   weaponPanelImage: {fileID: 0}

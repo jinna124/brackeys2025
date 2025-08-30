@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProductionManager : MonoBehaviour
 {
-    static ProductionManager instance;
+    public static ProductionManager instance;
     List<Module> moduleList;
     CookieManager cookieManager;
     float timeSinceLastProduction;
@@ -15,7 +15,7 @@ public class ProductionManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cookieManager = FindAnyObjectByType<CookieManager>();
+        cookieManager = CookieManager.instance;
     }
 
     // Update is called once per frame
@@ -44,7 +44,6 @@ public class ProductionManager : MonoBehaviour
 
     public void BuyModule(GameObject prefab)
     {
-        CookieManager cookieManager = FindAnyObjectByType<CookieManager>();
         if (cookieManager.GetCookies() >= prefab.GetComponent<Module>().GetPrice())
         {
             cookieManager.SpendCookies(prefab.GetComponent<Module>().GetPrice());
