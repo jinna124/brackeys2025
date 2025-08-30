@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class ProductionManager : MonoBehaviour
 {
+    static ProductionManager instance;
     List<Module> moduleList;
     CookieManager cookieManager;
     float timeSinceLastProduction;
-    //static ProductionManager instance;
 
-    //private void Awake()
-    //{
-    //    ManageSingleton();
-    //}
-
+    void Awake()
+    {
+        ManageSingleton();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,24 +22,34 @@ public class ProductionManager : MonoBehaviour
     void Update()
     {
         timeSinceLastProduction += Time.deltaTime;
-        
+
         if (timeSinceLastProduction >= 1f)
         {
-            foreach (Module module in moduleList)
+            if (moduleList != null)
             {
-                cookieManager.AddCookies(module.GetCPS());
+                foreach (Module module in moduleList)
+                {
+                    cookieManager.AddCookies(module.GetCPS());
+                }
+                timeSinceLastProduction = 0f;
+
             }
-            timeSinceLastProduction = 0f;
+            else
+            {
+                Debug.Log("ModuleList is Null! Have you added a module yet?");
+            }
+
         }
     }
 
-    public void BuyModule(string name, int price)
+    public void BuyModule(GameObject prefab)
     {
         CookieManager cookieManager = FindAnyObjectByType<CookieManager>();
-        if (cookieManager.GetCookies() >= price)
+        if (cookieManager.GetCookies() >= prefab.GetComponent<Module>().GetPrice())
         {
-            cookieManager.SpendCookies(price);
-            Debug.Log("Bought " + name + " for " + price + " cookies.");
+            cookieManager.SpendCookies(prefab.GetComponent<Module>().GetPrice());
+            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for " + prefab.GetComponent<Module>().GetPrice() + " cookies.");
+            moduleList.Add(prefab.GetComponent<Module>());
 
 
         }
@@ -55,19 +64,19 @@ public class ProductionManager : MonoBehaviour
     {
         return moduleList;
     }
+    
+    void ManageSingleton()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
 
-    //void ManageSingleton()
-    //{
-    //    if (instance != null)
-    //    {
-    //        gameObject.SetActive(false);
-    //        Destroy(gameObject);
-    //    }
-
-    //    else
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //}
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 }

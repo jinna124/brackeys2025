@@ -37,6 +37,7 @@ public class CardChoice : MonoBehaviour
 
         upgradeHandler = FindAnyObjectByType<UpgradeHandler>();
         sceneSwitcher = FindAnyObjectByType<SceneSwitcher>();
+        Debug.Log("Upgrade Handler: " + upgradeHandler);
     }
     
 
@@ -68,7 +69,10 @@ public class CardChoice : MonoBehaviour
         {
             // TODO: Apply buff
             Debug.Log("Buff card chosen: " + card.GetCardName);
-            upgradeHandler.AddBuff(card.GetPrefab);
+
+            Debug.Log("Card: " + card);
+            Debug.Log("CardPrefab: " + card.GetPrefab);
+            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             sceneSwitcher.LoadCombatScene();
         }
         else if (cardType == Card.CardType.Module)
@@ -76,6 +80,9 @@ public class CardChoice : MonoBehaviour
             // TODO: Add module to module list
             Debug.Log("Module card chosen: " + card.GetCardName);
             upgradeHandler.AddModule(card.GetPrefab);
+            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Card: " + card);
+            Debug.Log("CardPrefab: " + card.GetPrefab);
             sceneSwitcher.LoadCombatScene();
             // TODO: Switch to Manufacturing scene with a scene transition
         }
@@ -83,6 +90,10 @@ public class CardChoice : MonoBehaviour
         {
             // TODO: Handle weapon card
             Debug.Log("Weapon card chosen: " + card.GetCardName);
+
+            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Card: " + card);
+            Debug.Log("CardPrefab: " + card.GetPrefab);
             // TODO: Switch to appropriate scene with a scene transition
             upgradeHandler.AddWeapon(card.GetPrefab);
             sceneSwitcher.LoadCombatScene();
@@ -90,6 +101,9 @@ public class CardChoice : MonoBehaviour
         else if (cardType == Card.CardType.Upgrade)
         {
             // TODO: Handle upgrade card
+            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Card: " + card);
+            Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade card chosen: " + card.GetCardName);
             Debug.Log("Create Upgrade Weapon Card handling");
             sceneSwitcher.LoadCombatScene();
@@ -119,11 +133,11 @@ public class CardChoice : MonoBehaviour
         {
             RenderCard(SelectRandomCard());
             hasRerolled = true;
+            rerollText.text = "Reroll (x0)";
         }
         else
         {
             Debug.Log("You can only reroll once!");
-            rerollText.text = "Reroll (x0)";
         }
     }
 

@@ -15,14 +15,14 @@ MonoBehaviour:
   cardName: 
   cardSubtitle: Production Module
   cardDescription: 
-  cardImage: {fileID: 4966732595609684114, guid: ba60897240c9d460b88ccd7b0c9747cb, type: 3}
-  buffPanelImage: {fileID: 2514165089026219096, guid: bfa45dba67f474f0ca8bd2f2d4b350d4, type: 3}
-  modulePanelImage: {fileID: 0}
+  cardImage: {fileID: 0}
+  buffPanelImage: {fileID: 0}
+  modulePanelImage: {fileID: 2514165089026219096, guid: bfa45dba67f474f0ca8bd2f2d4b350d4, type: 3}
   weaponPanelImage: {fileID: 0}
   upgradePanelImage: {fileID: 0}
   gachaPanelImage: {fileID: 0}
-  buffCardFrame: {fileID: 104904327032030964, guid: 668bb9240e03a4ca8b5f3a3da4627191, type: 3}
-  moduleCardFrame: {fileID: 0}
+  buffCardFrame: {fileID: 0}
+  moduleCardFrame: {fileID: 104904327032030964, guid: 668bb9240e03a4ca8b5f3a3da4627191, type: 3}
   weaponCardFrame: {fileID: 0}
   upgradeCardFrame: {fileID: 0}
   gachaCardFrame: {fileID: 0}

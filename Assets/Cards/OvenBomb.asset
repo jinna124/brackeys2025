@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
-  m_Name: HandMixer
+  m_Name: OvenBomb
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: 
-  cardSubtitle: Production Module
-  cardDescription: 
+  cardName: Oven (Bomb)
+  cardSubtitle: Weapon
+  cardDescription: "Falls from above with a massive crash. Don\u2019t ask how Nonna
+    lifts it, baking is serious business."
   cardImage: {fileID: 0}
   buffPanelImage: {fileID: 0}
-  modulePanelImage: {fileID: 2514165089026219096, guid: bfa45dba67f474f0ca8bd2f2d4b350d4, type: 3}
-  weaponPanelImage: {fileID: 0}
+  modulePanelImage: {fileID: 0}
+  weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}
   upgradePanelImage: {fileID: 0}
   gachaPanelImage: {fileID: 0}
   buffCardFrame: {fileID: 0}
-  moduleCardFrame: {fileID: 104904327032030964, guid: 668bb9240e03a4ca8b5f3a3da4627191, type: 3}
-  weaponCardFrame: {fileID: 0}
+  moduleCardFrame: {fileID: 0}
+  weaponCardFrame: {fileID: 1025329114486500286, guid: 66c492970a5be4b168377f9b38a3589c, type: 3}
   upgradeCardFrame: {fileID: 0}
   gachaCardFrame: {fileID: 0}
-  cardType: 1
-  prefab: {fileID: 2345251598738365548, guid: 28d1d958d002c4fb3a37e1cb378aa408, type: 3}
+  cardType: 2
+  prefab: {fileID: 0}

@@ -3,13 +3,15 @@ using UnityEngine;
 // Cookie or currency manager
 public class CookieManager : MonoBehaviour
 {
+    static CookieManager instance;
     [SerializeField] int cookies = 0;
     //static CookieManager instance;
 
-    private void Awake()
+    void Awake()
     {
-        //ManageSingleton();
+        ManageSingleton();
     }
+
     public int GetCookies()
     {
         return cookies;
@@ -50,18 +52,19 @@ public class CookieManager : MonoBehaviour
         return cps;
     }
 
-    //void ManageSingleton()
-    //{
-    //    if (instance != null)
-    //    {
-    //        gameObject.SetActive(false);
-    //        Destroy(gameObject);
-    //    }
+    void ManageSingleton()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
 
-    //    else
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //}
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
 }
