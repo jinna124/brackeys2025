@@ -72,7 +72,9 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
-            sceneSwitcher.LoadCombatScene();
+
+
+            sceneSwitcher.LoadUpgradeScene();
         }
         else if (cardType == Card.CardType.Module)
         {
@@ -82,7 +84,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
-            sceneSwitcher.LoadCombatScene();
+            sceneSwitcher.LoadUpgradeScene();
             // TODO: Switch to Manufacturing scene with a scene transition
         }
         else if (cardType == Card.CardType.Weapon)
@@ -95,7 +97,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("CardPrefab: " + card.GetPrefab);
             // TODO: Switch to appropriate scene with a scene transition
             upgradeHandler.AddWeapon(card.GetPrefab);
-            sceneSwitcher.LoadCombatScene();
+            sceneSwitcher.LoadUpgradeScene();
         }
         else if (cardType == Card.CardType.Upgrade)
         {
@@ -105,7 +107,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade card chosen: " + card.GetCardName);
             Debug.Log("Create Upgrade Weapon Card handling");
-            sceneSwitcher.LoadCombatScene();
+            sceneSwitcher.LoadUpgradeScene();
             // TODO: Switch to appropriate scene with a scene transition
         }
         else if (cardType == Card.CardType.Gacha)

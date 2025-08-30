@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,12 +28,17 @@ public class SceneSwitcher : MonoBehaviour
         }*/
     }
 
-    public void LoadCombatScene()
+    public void LoadUpgradeScene()
     {
         Time.timeScale = 1f; // Pause the game
         cookiePanel.SetActive(true);
         upgradeCanvas.SetActive(false);
         //LoadScene("BulletHell");
+    }
+
+    public void LoadCombatScene()
+    {
+        LoadScene("BulletHell");
     }
 
     public void LoadUpgradesScene()
