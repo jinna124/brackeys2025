@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5781562682757504000, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
       propertyPath: melee_range
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5781562682757504000, guid: 2d61f69aeb01ecc48a20245a8aba0e03, type: 3}
       propertyPath: movement_speed
@@ -1296,6 +1296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rushing_enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1180437253118036063, guid: 36d5ce9a5efacf54baa205d77f2ae0c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2018499705121891108, guid: 36d5ce9a5efacf54baa205d77f2ae0c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.74879
@@ -1663,8 +1667,9 @@ GameObject:
   - component: {fileID: 1223953434}
   - component: {fileID: 1223953439}
   - component: {fileID: 1223953440}
-  - component: {fileID: 1223953442}
   - component: {fileID: 1223953443}
+  - component: {fileID: 1223953444}
+  - component: {fileID: 1223953442}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1941,8 +1946,26 @@ MonoBehaviour:
   panPrefab: {fileID: 4135567779468510222, guid: 1fb373883bfac29439bcb444e47c20e4, type: 3}
   panSpeed: 15
   spinSpeed: 360
-  firingRange: 5
+  firingRange: 3
   firingRate: 1
+--- !u!114 &1223953444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223953431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626835c5efd01024eae1e29ffe8f30ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  tipOfWeapon: {fileID: 1824090534}
+  ovenPrefab: {fileID: 4135567779468510222, guid: 14d888b720607714da098a5aa946b6d6, type: 3}
+  firingRange: 6
+  firingRate: 1
+  maxHeight: 2
+  duration: 1
 --- !u!1 &1322915132
 GameObject:
   m_ObjectHideFlags: 0
