@@ -30,7 +30,7 @@ public class Default_Weapon : MonoBehaviour
     IEnumerator StartShooting()
     {
         isFiring = true;
-        nearest_enemy = EnemyManager.instance.GetNearestEnemy();     // find nearest enemy per bullet
+        nearest_enemy = EnemyManager.instance.GetNearestEnemy(tip_of_weapon.transform.position);     // find nearest enemy per bullet
         if(nearest_enemy != null ) 
             AimAndShootAutomatically(nearest_enemy);
         yield return new WaitForSeconds(firing_rate);   // this makes it so that each bullet that gets out depends on the nearest enemy

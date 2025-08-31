@@ -91,11 +91,26 @@ public class CardChoice : MonoBehaviour
         {
             // TODO: Handle weapon card
             Debug.Log("Weapon card chosen: " + card.GetCardName);
-
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
+         //-----------------------------------------------------------
             // TODO: Switch to appropriate scene with a scene transition
+            Weapons[] all_weapons = upgradeHandler.Player.GetComponents<Weapons>();
+            //Weapons cardWeapon = card.GetPrefab.GetComponent<Weapons>();
+            if (all_weapons.Length > 0)
+            {
+                int chosen = Random.Range(0, all_weapons.Length);
+
+                all_weapons[chosen].enabled = true;
+
+                Debug.Log("Enabled weapon: " + all_weapons[0].GetType().Name);
+            }
+            else
+            {
+                Debug.LogWarning("Card prefab does not have a WeaponBase script!");
+            }
+            // ---------------THE PART I ADDED-------------------------------
             upgradeHandler.AddWeapon(card.GetPrefab);
             sceneSwitcher.LoadUpgradeScene();
         }

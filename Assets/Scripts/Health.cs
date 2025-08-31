@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     private float currentHealth;
     private PlayerStats playerstats;
     private Animator animator;
+    private bool isDead = false;
+
     void Awake()
     {
         if (tag == "Player")
@@ -31,17 +33,19 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage, DamageDealer dealer = null)
     {
+        if (isDead) return;
         if (dealer != null)
         {
             if (isEnemy && dealer.IsFromEnemy()) return;
             if (!isEnemy && !dealer.IsFromEnemy()) return;
         }
 
-
-        currentHealth -= damage;
+        if (!isEnemy) currentHealth -= damage / 7f;
+        else currentHealth -= damage;
         if (!isEnemy) { animator.Play("GrannyHit"); }
         if (currentHealth <= 0)
         {
+            isDead = true;
             if (isEnemy && XPManager != null)
             {
                 XPShard xpShard = Instantiate(XPManager.GetXPShardPrefab(), transform.position, Quaternion.identity);

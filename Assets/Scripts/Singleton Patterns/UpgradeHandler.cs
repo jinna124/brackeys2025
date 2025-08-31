@@ -12,6 +12,7 @@ public class UpgradeHandler : MonoBehaviour
 
     ProductionManager productionManager;
     Player player;
+    public Player Player => player;     // public autoimplemented property to use in cardchoice
     PlayerStats playerStats;
     // THESE LISTS ARE USED FOR INVENTORY TRACKING
 

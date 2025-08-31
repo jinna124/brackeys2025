@@ -57,8 +57,11 @@ public class SceneSwitcher : MonoBehaviour
     {
         LoadScene("Inventory");
     }
-
-    void LoadScene(string sceneName)
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+    public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }

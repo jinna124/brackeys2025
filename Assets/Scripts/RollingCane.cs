@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class RollingCane : MonoBehaviour
+public class RollingCane : Weapons
 {
     [Header("Weapon Settings")]
     [SerializeField] GameObject rollingCanePrefab;

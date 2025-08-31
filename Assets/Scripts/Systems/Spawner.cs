@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     private Vector2 minbounds;
     private Vector2 maxbounds;
 
-    void SpawnOffScreen()
+    IEnumerator SpawnOffScreen()
     {
         // get radius of the circle that we will spawn from (large enough to be outside of camera)
         float radius = Mathf.Sqrt(Mathf.Pow(camera_height / 2f, 2) + Mathf.Pow(camera_width / 2f, 2));      // radius = hypotenuse of the width and height
@@ -52,6 +52,7 @@ public class Spawner : MonoBehaviour
                 Instantiate(enemy_prefab, spawn_position, Quaternion.identity);
                 i++;
             }
+            yield return null;
         }   
     }
     IEnumerator Spawn()
@@ -60,7 +61,7 @@ public class Spawner : MonoBehaviour
         {
             isSpawning = true;
             yield return new WaitForSeconds(cooldown);
-            SpawnOffScreen();
+            StartCoroutine(SpawnOffScreen());
             Debug.Log("Enemy spawned");
             isSpawning=false;
         }

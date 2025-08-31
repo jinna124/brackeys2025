@@ -9,7 +9,7 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] bool destroyOnHit = true;
     [SerializeField] bool isFromEnemy = false;
     //private bool isHit = false;
-    private HashSet<Collider2D> enemiesHit = new HashSet<Collider2D>();     // array holding the enemies hit
+    private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();     // array holding the enemies hit
     private PlayerStats playerstats;
     private GameObject player; // assumes player has "Player" tag
     public void Awake()
@@ -33,12 +33,17 @@ public class DamageDealer : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private HashSet<GameObject> objectsHit = new HashSet<GameObject>();
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && !(enemiesHit.Contains(collision)) && !isFromEnemy)       // checks if the collision is a new enemy not hit before
+        GameObject target = collision.gameObject;
+
+        // Player bullet hits enemy
+        if (collision.tag == "Enemy" && !objectsHit.Contains(target) && !isFromEnemy)
         {
-            enemiesHit.Add(collision);
-            Health health = collision.GetComponent<Health>();
+            objectsHit.Add(target);
+            Health health = target.GetComponent<Health>();
 
             if (health != null)
             {
@@ -46,11 +51,12 @@ public class DamageDealer : MonoBehaviour
             }
             Hit();
         }
-
-        else if (isFromEnemy && collision.tag == "Player")
+        // Enemy bullet hits player
+        else if (isFromEnemy && collision.tag == "Player" && !objectsHit.Contains(target))
         {
-            Health health = collision.GetComponent<Health>();
-            if(health != null)
+            objectsHit.Add(target);
+            Health health = target.GetComponent<Health>();
+            if (health != null)
                 health.TakeDamage(GetDamage(), this);
             Hit();
         }
@@ -58,9 +64,10 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && (enemiesHit.Contains(collision)))
-        {
-            enemiesHit.Remove(collision);
-        }
+        GameObject target = collision.gameObject;
+
+        if (objectsHit.Contains(target))
+            objectsHit.Remove(target);
     }
+
 }

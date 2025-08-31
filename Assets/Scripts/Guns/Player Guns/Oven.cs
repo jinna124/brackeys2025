@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Oven : MonoBehaviour
+public class Oven : Weapons
 {
     [Header("Weapon Settings")]
     [SerializeField] Transform tipOfWeapon;

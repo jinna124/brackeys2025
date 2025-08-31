@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce9e7f66dba21644bb0848c4bf5d555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  movement_speed: 1
-  melee_range: 5
+  movement_speed: 5
+  melee_range: 0
   animator: {fileID: 4436738617234685671}
 --- !u!114 &8208738256686388114
 MonoBehaviour:

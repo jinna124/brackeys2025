@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MrMuffin : MonoBehaviour
+public class MrMuffin : Weapons
 {
     [Header("General Settings")]
     [Space]

@@ -562,37 +562,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &652035516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 652035517}
-  m_Layer: 0
-  m_Name: SceneSwitcherTemp (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &652035517
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652035516}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 428.76874, y: 231.57953, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883244892
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +781,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012547780}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
         m_MethodName: LoadCombatScene
         m_Mode: 1
@@ -946,6 +915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172356975}
+  - component: {fileID: 1172356976}
   m_Layer: 0
   m_Name: SceneSwitcherTemp
   m_TagString: Untagged
@@ -968,6 +938,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172356976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172356974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63cd421768875d4db4ccba49e06bb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  startButton: {fileID: 937308226}
 --- !u!1 &1257232480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,82 +1730,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982329075}
   m_CullTransparentMesh: 1
---- !u!1001 &2012547779
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2052846736801419100, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_Name
-      value: SceneSwitcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493661293190262043, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: cookiePanel
-      value: 
-      objectReference: {fileID: 652035516}
-    - target: {fileID: 4493661293190262043, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: upgradeCanvas
-      value: 
-      objectReference: {fileID: 1172356974}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.41144
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.95285
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144744735401658762, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
---- !u!114 &2012547780 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4493661293190262043, guid: 5a8157a5676844d59b234bbf7e87017d, type: 3}
-  m_PrefabInstance: {fileID: 2012547779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb36c43a0405d485ea07eeaaecc6c919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneSwitcher
 --- !u!1 &2046425836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,7 +1976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.702}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -39}
+  m_AnchoredPosition: {x: 0, y: -67}
   m_SizeDelta: {x: -708, y: -103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092964744
@@ -2092,10 +1999,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sweet Apocalypse
+  m_text: Sweet\nApocalypse
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2086611a1e196497fb4ce24f9e250e55, type: 2}
-  m_sharedMaterial: {fileID: -719335532465333507, guid: 2086611a1e196497fb4ce24f9e250e55, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d032e698a9c0f544c888fd7ecea7821d, type: 2}
+  m_sharedMaterial: {fileID: -719335532465333507, guid: d032e698a9c0f544c888fd7ecea7821d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2127,7 +2034,7 @@ MonoBehaviour:
   m_fontSizeMax: 90
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2178,6 +2085,4 @@ SceneRoots:
   - {fileID: 1932999060}
   - {fileID: 2046425839}
   - {fileID: 439564669}
-  - {fileID: 2012547779}
   - {fileID: 1172356975}
-  - {fileID: 652035517}
