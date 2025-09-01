@@ -1,18 +1,27 @@
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneSwitcher : MonoBehaviour
 {
     public static SceneSwitcher instance;
     [SerializeField] GameObject upgradeCanvas;
     [SerializeField] GameObject cookiePanel;
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] TextMeshProUGUI cookieCountText;
+    [SerializeField] TextMeshProUGUI roundsSurvivedText;
+    CookieManager cookieManager;
+    XPManager xpManager;
 
     void Awake()
     {
         ManageSingleton();
         upgradeCanvas.SetActive(false);
         cookiePanel.SetActive(true);
+        gameOverScreen.SetActive(false);
+        cookieManager = CookieManager.instance;
+        xpManager = XPManager.instance;
     }
     public void LoadGachaScene()
     {
@@ -61,6 +70,14 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void LoadGameOver()
+    {
+        gameOverScreen.SetActive(true);
+        cookieCountText.text = "and produced " + CookiePanel.FormatNumber(cookieManager.GetCookies()) + " cookies!";
+        roundsSurvivedText.text = "You survived " + xpManager.GetLevel() + " rounds";
+    }
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

@@ -42,7 +42,7 @@ public class ProductionManager : MonoBehaviour
         }
     }
 
-    public void BuyModule(GameObject prefab)
+    public void BuyModule(GameObject prefab, int price)
     {
         if (cookieManager.GetCookies() >= prefab.GetComponent<Module>().GetPrice())
         {
@@ -50,6 +50,13 @@ public class ProductionManager : MonoBehaviour
             Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for " + prefab.GetComponent<Module>().GetPrice() + " cookies.");
             moduleList.Add(prefab.GetComponent<Module>());
 
+
+        }
+        if (price == 0)
+        {
+
+            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for 0 cookies- this was from the Upgrades Panel.");
+            moduleList.Add(prefab.GetComponent<Module>());
 
         }
         else

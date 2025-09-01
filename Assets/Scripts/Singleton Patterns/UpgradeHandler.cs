@@ -98,7 +98,7 @@ public class UpgradeHandler : MonoBehaviour
 
     public void AddModule(GameObject prefab)
     {
-        productionManager.BuyModule(prefab);
+        productionManager.BuyModule(prefab, 0);
     }
 
     public void AddBuff(GameObject prefab)

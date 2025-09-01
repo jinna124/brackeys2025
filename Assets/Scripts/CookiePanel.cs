@@ -45,7 +45,7 @@ public class CookiePanel : MonoBehaviour
         "quintillion", "sextillion", "septillion", "octillion", "nonillion", "decillion"
     };
 
-    static string FormatNumber(float number)
+    public static string FormatNumber(float number)
     {
         if (number == 0)
             return "0";

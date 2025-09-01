@@ -39,6 +39,7 @@ public class XPManager : MonoBehaviour
     public int GetXP() { return XP; }
     public void AddXP(int value) { XP += value; }
     public void ResetXP() { XP = 0; }
+    public int GetLevel() { return level; }
     public XPShard GetXPShardPrefab() { return XPShardPrefab; }
 
     void LevelUp()

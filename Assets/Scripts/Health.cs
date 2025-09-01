@@ -120,6 +120,8 @@ public class Health : MonoBehaviour
         float Length = animatorStateInfo.length;
         // Wait for the length of the animation
         yield return new WaitForSeconds(Length + 5);
+        SceneSwitcher sceneSwitcher = SceneSwitcher.instance;
+        sceneSwitcher.LoadGameOver();
         Destroy(gameObject);
     }
 
