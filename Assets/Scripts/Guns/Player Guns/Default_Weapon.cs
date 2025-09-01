@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Default_Weapon : MonoBehaviour
 {

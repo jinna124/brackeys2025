@@ -1,6 +1,4 @@
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class XPManager : MonoBehaviour
 {
