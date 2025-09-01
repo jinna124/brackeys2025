@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class XPManager : MonoBehaviour
 {
@@ -39,10 +41,12 @@ public class XPManager : MonoBehaviour
     public void ResetXP() { XP = 0; }
     public int GetLevel() { return level; }
     public XPShard GetXPShardPrefab() { return XPShardPrefab; }
+    public int GetXPRequirement() { return XPRequirement; }
 
     void LevelUp()
     {
-        XPRequirement = baseXPRequirement + XPPerLevel[level];
+        int xpIndex = Mathf.Min(level, XPPerLevel.Length - 1);
+        XPRequirement = baseXPRequirement + XPPerLevel[xpIndex];
         Debug.Log("Level Up! New XP Requirement: " + XPRequirement);
         level++;
         sceneSwitcher.LoadUpgradesScene();

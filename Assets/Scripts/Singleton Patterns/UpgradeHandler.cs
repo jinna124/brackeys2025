@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class UpgradeHandler : MonoBehaviour
 {
     public static UpgradeHandler instance;
-    List<GameObject> buffs;
-    List<GameObject> weapons;
-    List<Module> modules;
+    List<GameObject> buffs = new List<GameObject>();
+    List<GameObject> weapons = new List<GameObject>();
+    List<Module> modules = new List<Module>();
 
     ProductionManager productionManager;
     Player player;
@@ -76,10 +76,6 @@ public class UpgradeHandler : MonoBehaviour
                 }
             }
         }
-        modules = productionManager.GetModuleList();
-        Debug.Log("module list: " + modules);
-        Debug.Log("buff list: " + buffs);
-        Debug.Log("weapon list: " + weapons);
 
     }
 
@@ -87,6 +83,10 @@ public class UpgradeHandler : MonoBehaviour
     void Update()
     {
 
+        modules = productionManager.GetModuleList();
+        Debug.Log("module list: " + modules);
+        Debug.Log("buff list: " + buffs);
+        Debug.Log("weapon list: " + weapons);
     }
 
     public void AddWeapon(GameObject prefab)

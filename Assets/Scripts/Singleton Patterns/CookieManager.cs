@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 // Cookie or currency manager
 public class CookieManager : MonoBehaviour
@@ -43,8 +44,8 @@ public class CookieManager : MonoBehaviour
     public float GetCPS()
     {
         // Calculate cookies per second based on owned modules
-        Module[] modules = FindObjectsByType<Module>(FindObjectsSortMode.None);
         float cps = 0f;
+        List<Module> modules = ProductionManager.instance.GetModuleList();
         foreach (var module in modules)
         {
             cps += module.GetCPS();

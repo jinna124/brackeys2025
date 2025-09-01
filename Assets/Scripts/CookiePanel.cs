@@ -55,6 +55,6 @@ public class CookiePanel : MonoBehaviour
 
         float shortNumber = (float)(number / Math.Pow(1000, magnitude));
 
-        return shortNumber.ToString("0.##") + " " + suffixes[magnitude];
+        return shortNumber.ToString("0.##") + " " + suffixes[magnitude] + " cookies";
     }
 }

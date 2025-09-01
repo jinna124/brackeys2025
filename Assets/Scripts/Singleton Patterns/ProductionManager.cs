@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProductionManager : MonoBehaviour
 {
     public static ProductionManager instance;
-    List<Module> moduleList;
+    List<Module> moduleList = new List<Module>();
     CookieManager cookieManager;
     float timeSinceLastProduction;
 
@@ -44,19 +44,20 @@ public class ProductionManager : MonoBehaviour
 
     public void BuyModule(GameObject prefab, int price)
     {
+
+        if (price == 0)
+        {
+
+            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for 0 cookies- this was from the Upgrades Panel.");
+            moduleList.Add(prefab.GetComponent<Module>());
+
+        }
         if (cookieManager.GetCookies() >= prefab.GetComponent<Module>().GetPrice())
         {
             cookieManager.SpendCookies(prefab.GetComponent<Module>().GetPrice());
             Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for " + prefab.GetComponent<Module>().GetPrice() + " cookies.");
             moduleList.Add(prefab.GetComponent<Module>());
 
-
-        }
-        if (price == 0)
-        {
-
-            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for 0 cookies- this was from the Upgrades Panel.");
-            moduleList.Add(prefab.GetComponent<Module>());
 
         }
         else
