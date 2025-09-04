@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] float XPValue = 1f;
     [SerializeField] SpriteRenderer spriterenderer;
     [SerializeField] float time_of_red = 0.5f;
+    [SerializeField] CameraShake camerashake;
     public float currentHealth;
     private PlayerStats playerstats;
     XPManager XPManager;
@@ -44,7 +45,7 @@ public class Health : MonoBehaviour
 
         if (!isEnemy) currentHealth -= damage / 7f;
         else currentHealth -= damage;
-        if (!isEnemy && spriterenderer != null) 
+        if (!isEnemy && spriterenderer != null && camerashake != null) 
         {
             StartCoroutine(GetHit());
         }
@@ -145,6 +146,7 @@ public class Health : MonoBehaviour
     {
         spriterenderer.color = new Color(1f, 0.5f, 0.5f);
         animator.Play("GrannyHit");
+        camerashake.Shake();
         yield return new WaitForSeconds(time_of_red);
         spriterenderer.color = Color.white;
     }
