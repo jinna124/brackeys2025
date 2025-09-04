@@ -14,27 +14,14 @@ public class Ranged_Enemy : enemy_movement
     [SerializeField] float strafing_speed = 10;
     [Tooltip("Time interval in seconds when the player will generate another strafing direction")]
     [SerializeField] float nextStrafeInterval = 3f;
-
+    [SerializeField] Animator animator;
     private float timer = 0f;
     private float strafing_direction;       // 1 = clockwise, -1 = anticlock
 
     private void Update()
     {
-        if (player != null)
-        {
-            // Flip sprite horizontally based on player position
-            if (player.transform.position.x < transform.position.x)
-            {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
-            else
-            {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-            }
-        }
+        HandleFacingAndAnimation();
     }
-
-
     private void Start()
     {
         strafing_direction = 1 - 2 * Random.Range(0, 2);  // clockwise or anti-clockwise
@@ -51,9 +38,8 @@ public class Ranged_Enemy : enemy_movement
             // fetch unit vector in direction of player and distance
             Vector2 direction_to_player = (player.transform.position - transform.position).normalized; 
             float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
-
             // checking
-            if(distance_to_player > max_range)
+            if (distance_to_player > max_range)
             {
                 approach(direction_to_player, distance_to_player);
             }
@@ -65,6 +51,10 @@ public class Ranged_Enemy : enemy_movement
             {
                 strafe(direction_to_player);
             }
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 
@@ -111,5 +101,30 @@ public class Ranged_Enemy : enemy_movement
 
         rb.MovePosition(Vector2.Lerp(rb.position,target_position, 0.3f));
         timer += Time.fixedDeltaTime;
+    }
+
+    void HandleFacingAndAnimation()
+    {
+        if (player != null)
+        {
+            // Flip sprite horizontally based on player position
+            if (player.transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+
+            float distance_to_player = Vector2.Distance(transform.position, player.transform.position);
+
+            bool isMoving = distance_to_player > max_range || distance_to_player < min_range;
+            animator.SetBool("isMoving", isMoving);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 }

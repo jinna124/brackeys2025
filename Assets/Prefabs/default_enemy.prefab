@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5781562682757504000}
   - component: {fileID: 8208738256686388114}
   - component: {fileID: -3860793287065005025}
-  - component: {fileID: 4436738617234685671}
+  - component: {fileID: 3996243423871503854}
   m_Layer: 8
   m_Name: default_enemy
   m_TagString: Enemy
@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7, y: 0.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4320949192650773422, guid: d22fff232baae844da4360efee03c1d0, type: 3}
+  m_Sprite: {fileID: 2602078276542935847, guid: 24435d0ab1dbc004b98e69b65b0a5b4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -209,8 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movement_speed: 5
+  animator: {fileID: 3996243423871503854}
   melee_range: 0
-  animator: {fileID: 4436738617234685671}
+  melee_damage: 10
+  cooldown: 0.5
 --- !u!114 &8208738256686388114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +228,7 @@ MonoBehaviour:
   Maxhealth: 50
   isEnemy: 1
   XPValue: 10
+  currentHealth: 0
 --- !u!114 &-3860793287065005025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +244,7 @@ MonoBehaviour:
   damage: 10
   destroyOnHit: 1
   isFromEnemy: 1
---- !u!95 &4436738617234685671
+--- !u!95 &3996243423871503854
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

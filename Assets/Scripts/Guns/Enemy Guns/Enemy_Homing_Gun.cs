@@ -37,7 +37,7 @@ public class Enemy_Homing_Gun : MonoBehaviour
     Player player;
 
     Coroutine firingCoroutine;
-
+    [SerializeField] Animator animator;
     void Awake()
     {
         player = FindAnyObjectByType<Player>();
@@ -74,6 +74,10 @@ public class Enemy_Homing_Gun : MonoBehaviour
     {
         while (true)
         {
+            if (animator != null)
+            {
+                animator.SetTrigger("Shoot");
+            }
             // first insantiate a bullet prefab at the location and rotation of the enemy and fetch the rigidbody of that instance
             GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
             Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();

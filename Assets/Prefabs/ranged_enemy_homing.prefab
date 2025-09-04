@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -2398531356272500859}
   - component: {fileID: 8208738256686388114}
   - component: {fileID: 9028443911874612686}
+  - component: {fileID: 5636118709766872085}
   m_Layer: 8
   m_Name: ranged_enemy_homing
   m_TagString: Enemy
@@ -34,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7, y: 0.02, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,9 +87,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4569161321755363472, guid: c097b3397db514380bbd9a236397b798, type: 3}
+  m_Sprite: {fileID: -4238390659308463208, guid: add4ecc70cb8d3f4aa6dd7f10f24d343, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.26, y: 0.2}
@@ -159,7 +160,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.13
+  m_Radius: 0.4119923
 --- !u!58 &3126754500678920815
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,8 +195,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015848756, y: 0}
-  m_Radius: 0.110824585
+  m_Offset: {x: 0.015848756, y: -0.012260675}
+  m_Radius: 0.3805561
 --- !u!114 &-7122786596299809874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,7 @@ MonoBehaviour:
   minimumFiringTime: 0.1
   firing_range: 10
   isFiring: 0
+  animator: {fileID: 5636118709766872085}
 --- !u!114 &-2398531356272500859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +237,7 @@ MonoBehaviour:
   min_range: 5
   strafing_speed: 10
   nextStrafeInterval: 3
+  animator: {fileID: 5636118709766872085}
 --- !u!114 &8208738256686388114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,9 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116b56c0ccb63460e82ddc262e583d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  health: 150
+  Maxhealth: 100
   isEnemy: 1
   XPValue: 20
+  currentHealth: 0
 --- !u!114 &9028443911874612686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +269,25 @@ MonoBehaviour:
   damage: 10
   destroyOnHit: 1
   isFromEnemy: 1
+--- !u!95 &5636118709766872085
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180437253118036063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9de95f3d09560874aa0aaa9057040d5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

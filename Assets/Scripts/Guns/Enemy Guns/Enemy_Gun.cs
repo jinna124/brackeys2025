@@ -72,6 +72,14 @@ public class Enemy_Gun : MonoBehaviour
     {
         while (true)    
         {
+
+            // Play shooting animation
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Shoot");
+            }
+
             // first insantiate a bullet prefab at the location and rotation of the enemy and fetch the rigidbody of that instance
             GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
             Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();

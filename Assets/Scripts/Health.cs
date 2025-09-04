@@ -10,9 +10,9 @@ public class Health : MonoBehaviour
     [SerializeField] float Maxhealth = 100f;
     [SerializeField] bool isEnemy;
     [SerializeField] float XPValue = 1f;
-    XPManager XPManager;
-    private float currentHealth;
+    public float currentHealth;
     private PlayerStats playerstats;
+    XPManager XPManager;
     private Animator animator;
     private bool isDead = false;
 
