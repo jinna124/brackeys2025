@@ -228,6 +228,8 @@ MonoBehaviour:
   Maxhealth: 50
   isEnemy: 1
   XPValue: 10
+  spriterenderer: {fileID: 0}
+  time_of_red: 0
   currentHealth: 0
 --- !u!114 &-3860793287065005025
 MonoBehaviour:

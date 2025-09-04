@@ -10,12 +10,14 @@ public class Health : MonoBehaviour
     [SerializeField] float Maxhealth = 100f;
     [SerializeField] bool isEnemy;
     [SerializeField] float XPValue = 1f;
+    [SerializeField] SpriteRenderer spriterenderer;
+    [SerializeField] float time_of_red = 0.5f;
     public float currentHealth;
     private PlayerStats playerstats;
     XPManager XPManager;
     private Animator animator;
     private bool isDead = false;
-
+    
     void Awake()
     {
         if (tag == "Player")
@@ -42,7 +44,10 @@ public class Health : MonoBehaviour
 
         if (!isEnemy) currentHealth -= damage / 7f;
         else currentHealth -= damage;
-        if (!isEnemy) { animator.Play("GrannyHit"); }
+        if (!isEnemy && spriterenderer != null) 
+        {
+            StartCoroutine(GetHit());
+        }
         if (currentHealth <= 0)
         {
             isDead = true;
@@ -134,5 +139,13 @@ public class Health : MonoBehaviour
         // Wait for the length of the animation
         yield return new WaitForSeconds(Length);
         animator.SetBool("isHit", false);
+    }
+
+    IEnumerator GetHit()
+    {
+        spriterenderer.color = new Color(1f, 0.5f, 0.5f);
+        animator.Play("GrannyHit");
+        yield return new WaitForSeconds(time_of_red);
+        spriterenderer.color = Color.white;
     }
 }

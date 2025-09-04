@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0.7071068, w: -0.7071068}
   m_LocalPosition: {x: -4.45002, y: -3.3413692, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,8 +127,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0007840419, y: -0.019192757}
-  m_Size: {x: 0.7601256, y: 0.6343944}
+  m_Offset: {x: 0.002234816, y: 0.0049599404}
+  m_Size: {x: 0.9785565, y: 0.9725157}
   m_Direction: 1
 --- !u!50 &8949860938260671965
 Rigidbody2D:
@@ -169,6 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc0f1360aa84940ae9f1c2bf54067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 100
+  damage: 200
   destroyOnHit: 1
   isFromEnemy: 0

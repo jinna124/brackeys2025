@@ -65,7 +65,7 @@ public class Oven : Weapons
             instance.transform.position = linear_Movement;
 
             // scale for it to look a bit 3d
-            float scale = Mathf.Lerp(1f, 1.5f, time_multiplier <= 0.5f ? time_multiplier * 2f : (1 - time_multiplier) * 2f);    // i hate maths (not really)
+            float scale = Mathf.Lerp(2f, 2.5f, time_multiplier <= 0.5f ? time_multiplier * 2f : (1 - time_multiplier) * 2f);    // i hate maths (not really)
             instance.transform.localScale = new Vector3(scale, scale, 1f);
 
             yield return null;
@@ -73,7 +73,7 @@ public class Oven : Weapons
         if (col != null) col.enabled = true;
 
         instance.transform.position = travelPoint;
-        instance.transform.localScale = new Vector3(1f, 1f, 1f);
+        instance.transform.localScale = new Vector3(2f, 2f, 2f);
 
         isFiring = false;
 

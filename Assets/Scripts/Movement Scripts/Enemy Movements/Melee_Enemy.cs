@@ -49,10 +49,9 @@ public class Melee_Enemy : enemy_movement
     }
 
     void HandleFacingAndAnimation()
-    {
-        if (player != null)     
+    {                                   
+        if (player != null)
         {
-
             // Flip sprite horizontally based on player position
             if (player.transform.position.x < transform.position.x)
             {
@@ -70,7 +69,6 @@ public class Melee_Enemy : enemy_movement
         }
         else
         {
-
             animator.SetBool("isMoving", false);
         }
     }
