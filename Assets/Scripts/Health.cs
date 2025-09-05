@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
         Debug.Log("XP MANAGER:" + XPManager);
     }
     public float GetHealth() => currentHealth;
-
+    public float GetMaxHealth() => Maxhealth;
     public void TakeDamage(float damage, DamageDealer dealer = null)
     {
         if (isDead) return;

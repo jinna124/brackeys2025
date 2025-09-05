@@ -53,6 +53,7 @@ public class SceneSwitcher : MonoBehaviour
     public void LoadUpgradesScene()
     {
         Time.timeScale = 0f; // Pause the game
+        
         upgradeCanvas.SetActive(true);
         cookiePanel.SetActive(false);
     }
@@ -74,6 +75,7 @@ public class SceneSwitcher : MonoBehaviour
     public void LoadGameOver()
     {
         gameOverScreen.SetActive(true);
+        cookiePanel.SetActive(false);
         cookieCountText.text = "and produced " + CookiePanel.FormatNumber(cookieManager.GetCookies()) + " cookies!";
         roundsSurvivedText.text = "You survived " + xpManager.GetLevel() + " rounds";
     }
