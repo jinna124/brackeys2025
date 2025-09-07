@@ -43,6 +43,11 @@ public class SceneSwitcher : MonoBehaviour
         cookiePanel.SetActive(true);
         upgradeCanvas.SetActive(false);
         //LoadScene("BulletHell");
+        var cardChoices = upgradeCanvas.GetComponentsInChildren<CardChoice>();
+        foreach (var cardChoice in cardChoices)
+        {
+            cardChoice.Start();
+        }
     }
 
     public void LoadCombatScene()

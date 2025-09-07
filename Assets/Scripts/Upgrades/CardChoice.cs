@@ -37,14 +37,15 @@ public class CardChoice : MonoBehaviour
 
 
     }
-    
 
-    void Start()
+
+    public void Start()
     {
         upgradeHandler = UpgradeHandler.instance;
         sceneSwitcher = SceneSwitcher.instance;
         Debug.Log("Upgrade Handler: " + upgradeHandler);
-        RenderCard(SelectRandomCard());      
+        RenderCard(SelectRandomCard());
+        ResetReroll();
     }
 
     void RenderCard(Card card)
@@ -155,6 +156,12 @@ public class CardChoice : MonoBehaviour
         {
             Debug.Log("You can only reroll once!");
         }
+    }
+
+    public void ResetReroll()
+    {
+        hasRerolled = false;
+        rerollText.text = "Reroll (x1)";
     }
 
     Card SelectRandomCard()

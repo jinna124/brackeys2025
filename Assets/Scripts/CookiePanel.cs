@@ -22,7 +22,7 @@ public class CookiePanel : MonoBehaviour
     void Update()
     {
         cookieText.text = FormatNumber(cookieManager.GetCookies());
-        cpsText.text = FormatNumber(cookieManager.GetCPS()) + " CPS";
+        cpsText.text = "CPS: " + FormatNumber(cookieManager.GetCPS());
     }
 
     void PlayParticleEffect()
