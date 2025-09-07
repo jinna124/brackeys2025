@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     XPManager XPManager;
     private Animator animator;
     private bool isDead = false;
-    
+    public bool isFrozen = false;
     void Awake()
     {
         if (tag == "Player")
@@ -31,6 +31,12 @@ public class Health : MonoBehaviour
         currentHealth = Maxhealth;
         XPManager = FindAnyObjectByType<XPManager>();
         Debug.Log("XP MANAGER:" + XPManager);
+
+        if (tag == "Enemy")
+        {
+            animator = GetComponent<Animator>();
+            spriterenderer = GetComponent<SpriteRenderer>();
+        }
     }
     public float GetHealth() => currentHealth;
     public float GetMaxHealth() => Maxhealth;
@@ -45,10 +51,16 @@ public class Health : MonoBehaviour
 
         if (!isEnemy) currentHealth -= damage / 7f;
         else currentHealth -= damage;
+        // these are for the effects
         if (!isEnemy && spriterenderer != null && camerashake != null) 
         {
-            StartCoroutine(GetHit());
+            StartCoroutine(PlayerGetHit());
         }
+        else if(isEnemy && spriterenderer != null && animator != null)
+        {
+            StartCoroutine(EnemyGetHit());
+        }
+
         if (currentHealth <= 0)
         {
             isDead = true;
@@ -142,11 +154,32 @@ public class Health : MonoBehaviour
         animator.SetBool("isHit", false);
     }
 
-    IEnumerator GetHit()
+    IEnumerator PlayerGetHit()
     {
         spriterenderer.color = new Color(1f, 0.5f, 0.5f);
         animator.Play("GrannyHit");
         camerashake.Shake();
+
+        // pause the game for a brief moment when the player gets hit
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(0.03f);
+        Time.timeScale = 1f;
+
+        yield return new WaitForSeconds(time_of_red);
+        spriterenderer.color = Color.white;
+    }
+
+    IEnumerator EnemyGetHit()
+    {
+        spriterenderer.color = new Color(1f, 0.5f, 0.5f);
+        isFrozen = true;
+        animator.speed = 0f;
+
+        yield return new WaitForSecondsRealtime(0.08f);
+
+        isFrozen = false;
+        animator.speed = 1f;
+
         yield return new WaitForSeconds(time_of_red);
         spriterenderer.color = Color.white;
     }

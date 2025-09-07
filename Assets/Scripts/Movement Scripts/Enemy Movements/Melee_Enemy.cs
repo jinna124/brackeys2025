@@ -16,10 +16,12 @@ public class Melee_Enemy : enemy_movement
     private float nextAttackTime = 0;
     private void Update()       // this is where ill handle facing and animation
     {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
         HandleFacingAndAnimation();
     }
     private void FixedUpdate()  // this is where we will handle the movement
     {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
         MoveEnemy();
     }
     

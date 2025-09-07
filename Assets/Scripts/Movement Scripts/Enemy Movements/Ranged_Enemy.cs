@@ -18,16 +18,18 @@ public class Ranged_Enemy : enemy_movement
     private float timer = 0f;
     private float strafing_direction;       // 1 = clockwise, -1 = anticlock
 
-    private void Update()
-    {
-        HandleFacingAndAnimation();
-    }
     private void Start()
     {
         strafing_direction = 1 - 2 * Random.Range(0, 2);  // clockwise or anti-clockwise
     }
+    private void Update()
+    {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
+        HandleFacingAndAnimation();
+    }
     private void FixedUpdate()
     {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
         MoveEnemy();
     }
 

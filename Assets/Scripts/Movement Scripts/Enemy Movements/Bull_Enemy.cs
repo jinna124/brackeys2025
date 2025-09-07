@@ -28,6 +28,7 @@ public class Bull_Enemy : enemy_movement
 
     private void Update()
     {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
         if (player != null)
         {
             if (!isCharging)
@@ -48,6 +49,7 @@ public class Bull_Enemy : enemy_movement
 
     private void FixedUpdate()
     {
+        if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
         if (!isCharging && !isWindingUp)
             MoveEnemy();
     }
