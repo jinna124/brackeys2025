@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
   m_Name: MaxHP
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: 
+  cardName: MaxHP
   cardSubtitle: Combat Buff
   cardDescription: 
   cardImage: {fileID: -7482583315414052917, guid: 0f3c8c357666944eeae915f889fd0e1d, type: 3}

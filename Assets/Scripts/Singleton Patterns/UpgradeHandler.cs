@@ -83,10 +83,10 @@ public class UpgradeHandler : MonoBehaviour
     void Update()
     {
 
-        modules = productionManager.GetModuleList();
-        Debug.Log("module list: " + modules);
-        Debug.Log("buff list: " + buffs);
-        Debug.Log("weapon list: " + weapons);
+        //modules = productionManager.GetModuleList();
+        //Debug.Log("module list: " + modules);
+        //Debug.Log("buff list: " + buffs);
+        //Debug.Log("weapon list: " + weapons);
     }
 
     public void AddWeapon(GameObject prefab)

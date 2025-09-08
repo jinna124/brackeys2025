@@ -98,7 +98,7 @@ public class Bull_Enemy : enemy_movement
         float windupSpeed = 3f;       // speed at which the enemy will wind up
         float traveled = 0f;            // a placeholder to track the traveled distances  
 
-        while(traveled < windupDistance)
+        while(traveled < windupDistance && player != null)
         {
             Vector2 direction_ = ((Vector2)player.transform.position - rb.position).normalized;
             transform.localScale = new Vector3(Mathf.Sign(direction_.x), 1, 1);

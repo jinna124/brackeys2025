@@ -27,6 +27,9 @@ public class CardChoice : MonoBehaviour
     SceneSwitcher sceneSwitcher;
     UpgradeHandler upgradeHandler;
 
+
+    [Header("Player scripts")]
+    [SerializeField] GameObject player;
     void Awake()
     {
         // chooseButton = GetComponentInChildren<Button>();
@@ -34,8 +37,6 @@ public class CardChoice : MonoBehaviour
         // cardSubtitleText = GetComponentInChildren<TextMeshProUGUI>();
         // cardDescriptionText = GetComponentInChildren<TextMeshProUGUI>();
         // cardImage = GetComponentInChildren<Image>();
-
-
     }
 
 
@@ -73,8 +74,16 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
-
-
+            // --------------------------------------------------
+            PlayerStats playerstats = player.GetComponent<PlayerStats>();
+            switch(card.GetCardName)
+            {
+                case "MaxHP":
+                    playerstats.setMaxHp(5); break;
+                case "MoveSpeed":
+                    playerstats.setMovementSpeed(2); break;
+            }
+            // -----------THE PART I ADDED-----------------------
             sceneSwitcher.LoadUpgradeScene();
         }
         else if (cardType == Card.CardType.Module)
@@ -95,24 +104,28 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
-         //-----------------------------------------------------------
-            // TODO: Switch to appropriate scene with a scene transition
-            Weapons[] all_weapons = upgradeHandler.Player.GetComponents<Weapons>();
-            //Weapons cardWeapon = card.GetPrefab.GetComponent<Weapons>();
-            if (all_weapons.Length > 0)
-            {
-                int chosen = Random.Range(0, all_weapons.Length);
+            //-----------------------------------------------------------       // HEY JINNA IF U CAN ADD TRANSFER THIS PART OF CODE TO THE "ADDWEAPON()" FN INSTEAD
+            Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
+            Debug.Log("Weapon card name: " + card.GetCardName);
+            if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
 
-                all_weapons[chosen].enabled = true;
-
-                Debug.Log("Enabled weapon: " + all_weapons[0].GetType().Name);
-            }
-            else
+            switch (card.GetCardName)       // based on the cardname enable the respective script/gameobject
             {
-                Debug.LogWarning("Card prefab does not have a WeaponBase script!");
+                case "Cane":
+                    weaponsscript.EnableRollingCane(); break;
+                case "Frying Pan":
+                    weaponsscript.EnableFryingPan(); break;
+                case "Mr. Muffin":
+                    Debug.Log("Card Type when chosen: " + cardType);
+                    weaponsscript.EnableMrMuffins(); break;
+                case "Oven (Bomb)":
+                    weaponsscript.EnableOven(); break;
+                case "Saccharine Perfume":
+                    weaponsscript.EnableSacchirePerfume(); break;
+                default: Debug.Log("Weapon not found"); break;
             }
             // ---------------THE PART I ADDED-------------------------------
-            upgradeHandler.AddWeapon(card.GetPrefab);
+            //upgradeHandler.AddWeapon(card.GetPrefab);     // commented this part since we dont instantiate prefabs anymore 
             sceneSwitcher.LoadUpgradeScene();
         }
         else if (cardType == Card.CardType.Upgrade)

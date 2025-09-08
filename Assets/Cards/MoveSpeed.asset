@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
   m_Name: MoveSpeed
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: 
+  cardName: MoveSpeed
   cardSubtitle: Combat Buff
   cardDescription: 
   cardImage: {fileID: -473962149624249597, guid: 407714f9d377c40a8bf731d3e83f9033, type: 3}

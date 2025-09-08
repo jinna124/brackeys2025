@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 // NOT IMPLEMENTED IN SCENE YET!!!
 
@@ -101,9 +102,10 @@ public class Enemy_Homing_Gun : MonoBehaviour
 
     IEnumerator HomingBullet(Rigidbody2D rb, Transform target, float speed, float homingDuration, float turnRate)
     {
+        if (rb == null) yield break;          // safety check
         float timer = 0f;
 
-        while(timer < homingDuration  && target != null)
+        while(timer < homingDuration  && target != null && rb != null)
         {
             Vector2 direction = ((Vector2)(target.position) - rb.position).normalized;
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FryingPan : Weapons
+public class FryingPan : MonoBehaviour
 {
     [Header("Weapon Settings")]
     [SerializeField] Transform tipOfWeapon;

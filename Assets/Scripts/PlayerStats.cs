@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour
     {
         // update maxHp
         healthComponent.addMaxHp(Hp);
+        healthComponent.Fullheal();
     }
 
     public void setMovementSpeed(float MovementSpeed)
@@ -32,11 +33,11 @@ public class PlayerStats : MonoBehaviour
     public void setWeaponDamage(int WeaponDamage)
     {
         // update weaponDamage
-        foreach(GameObject bullet in  playerBullets)
+        foreach(GameObject bullet in playerBullets)
         {
             damageDealer = bullet.GetComponent<DamageDealer>();
             damageDealer.damage += weaponDamage;
-        }
+        } 
     }
 
     private void Awake()

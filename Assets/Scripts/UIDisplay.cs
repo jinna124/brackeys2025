@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class UIDisplay : MonoBehaviour
 {
 
-    Slider healthSlider;
-    [SerializeField ]Slider xpSlider;
-    TextMeshProUGUI XPText;
+    [SerializeField] Slider healthSlider;
+    [SerializeField] Slider xpSlider;
+    [SerializeField] TextMeshProUGUI XPText;
     Player player;
     Health playerHealth;
     XPManager XPManager;
@@ -19,8 +19,6 @@ public class UIDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        healthSlider = GetComponentInChildren<Slider>();
-        XPText = GetComponentInChildren<TextMeshProUGUI>();
         player = FindAnyObjectByType<Player>();
         playerHealth = player.GetComponent<Health>();
         XPManager = XPManager.instance;
@@ -28,8 +26,10 @@ public class UIDisplay : MonoBehaviour
 
     void Start()
     {
-        healthSlider.maxValue = playerHealth.GetMaxHealth();
-        xpSlider.maxValue = XPManager.GetXPRequirement();
+        if(playerHealth != null)
+            healthSlider.maxValue = playerHealth.GetMaxHealth();
+        if(XPManager != null )
+            xpSlider.maxValue = XPManager.GetXPRequirement();
     }
     // Update is called once per frame
     void Update()

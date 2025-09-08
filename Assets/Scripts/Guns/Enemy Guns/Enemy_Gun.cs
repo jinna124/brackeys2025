@@ -85,7 +85,7 @@ public class Enemy_Gun : MonoBehaviour
             Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();
 
             // exception handling part to check for if there is a rigidbody for that instance
-            if (rb != null)
+            if (rb != null && player != null)
             {
                 // fetch the direction of movement towards the player with respect to the enemy
                 Vector2 direction = (player.transform.position - transform.position);
