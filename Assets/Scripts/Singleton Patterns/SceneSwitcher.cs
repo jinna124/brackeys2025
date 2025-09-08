@@ -13,9 +13,10 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundsSurvivedText;
     CookieManager cookieManager;
     XPManager xpManager;
-
+    AudioSource audioSource;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         ManageSingleton();
         upgradeCanvas.SetActive(false);
         cookiePanel.SetActive(true);
@@ -52,6 +53,7 @@ public class SceneSwitcher : MonoBehaviour
 
     public void LoadCombatScene()
     {
+        audioSource.Play();
         LoadScene("BulletHell");
     }
 
@@ -74,6 +76,7 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void LoadMainMenuScene()
     {
+        audioSource.Play();
         SceneManager.LoadScene("Main Menu");
     }
 

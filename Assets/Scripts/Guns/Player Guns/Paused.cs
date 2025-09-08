@@ -4,8 +4,12 @@ public class Paused : MonoBehaviour
 {
     [SerializeField] GameObject pausetextobject;
     private bool isPaused = false;
-    
+    private AudioSource pauseaudiosource;
 
+    void Awake()
+    {
+        pauseaudiosource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         checkforinput();
@@ -15,6 +19,7 @@ public class Paused : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            pauseaudiosource.Play();
             if (!isPaused)
             {
                 pausetextobject.SetActive(true);
