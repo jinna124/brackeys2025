@@ -74,7 +74,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
-            // --------------------------------------------------
+            // --------------------------------------------------           // again jinna if u can make this the "addbuff()" fn in upgradehandler instead
             PlayerStats playerstats = player.GetComponent<PlayerStats>();
             switch(card.GetCardName)
             {
@@ -82,6 +82,8 @@ public class CardChoice : MonoBehaviour
                     playerstats.setMaxHp(5); break;
                 case "MoveSpeed":
                     playerstats.setMovementSpeed(2); break;
+                default:
+                    Debug.Log("buff not defined or still not implemented"); break;
             }
             // -----------THE PART I ADDED-----------------------
             sceneSwitcher.LoadUpgradeScene();
