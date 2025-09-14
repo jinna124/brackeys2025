@@ -86,7 +86,7 @@ public class CardChoice : MonoBehaviour
                     Debug.Log("buff not defined or still not implemented"); break;
             }
             // -----------THE PART I ADDED-----------------------
-            sceneSwitcher.LoadUpgradeScene();
+            sceneSwitcher.UnpauseGame();
         }
         else if (cardType == Card.CardType.Module)
         {
@@ -96,7 +96,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
-            sceneSwitcher.LoadUpgradeScene();
+            sceneSwitcher.UnpauseGame();
             // TODO: Switch to Manufacturing scene with a scene transition
         }
         else if (cardType == Card.CardType.Weapon)
@@ -128,7 +128,7 @@ public class CardChoice : MonoBehaviour
             }
             // ---------------THE PART I ADDED-------------------------------
             //upgradeHandler.AddWeapon(card.GetPrefab);     // commented this part since we dont instantiate prefabs anymore 
-            sceneSwitcher.LoadUpgradeScene();
+            sceneSwitcher.UnpauseGame();
         }
         else if (cardType == Card.CardType.Upgrade)
         {
@@ -138,7 +138,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade card chosen: " + card.GetCardName);
             Debug.Log("Create Upgrade Weapon Card handling");
-            sceneSwitcher.LoadUpgradeScene();
+            sceneSwitcher.UnpauseGame();
             // TODO: Switch to appropriate scene with a scene transition
         }
         else if (cardType == Card.CardType.Gacha)

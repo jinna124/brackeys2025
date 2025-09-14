@@ -2,6 +2,8 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SceneSwitcher : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] GameObject upgradeCanvas;
     [SerializeField] GameObject cookiePanel;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject gachaScreen;
+    [SerializeField] GameObject UIOverlay;
     [SerializeField] TextMeshProUGUI cookieCountText;
     [SerializeField] TextMeshProUGUI roundsSurvivedText;
     CookieManager cookieManager;
@@ -20,13 +24,17 @@ public class SceneSwitcher : MonoBehaviour
         ManageSingleton();
         upgradeCanvas.SetActive(false);
         cookiePanel.SetActive(true);
+        gachaScreen.SetActive(false);
         gameOverScreen.SetActive(false);
         cookieManager = CookieManager.instance;
         xpManager = XPManager.instance;
     }
     public void LoadGachaScene()
     {
-        LoadScene("Gacha");
+        gachaScreen.SetActive(true);
+        cookiePanel.SetActive(false);
+        UIOverlay.SetActive(false);
+        upgradeCanvas.SetActive(false);
     }
 
     private void Update()
@@ -38,9 +46,9 @@ public class SceneSwitcher : MonoBehaviour
         }*/
     }
 
-    public void LoadUpgradeScene()
+    public void UnpauseGame()
     {
-        Time.timeScale = 1f; // Pause the game
+        Time.timeScale = 1f; // Unpause the game
         cookiePanel.SetActive(true);
         upgradeCanvas.SetActive(false);
         //LoadScene("BulletHell");
@@ -49,6 +57,11 @@ public class SceneSwitcher : MonoBehaviour
         {
             cardChoice.Start();
         }
+        Player player = FindAnyObjectByType<Player>();
+        // Comment this out if needed
+        player.gameObject.GetComponent<Health>().Fullheal();
+        UIOverlay.SetActive(true);
+        gachaScreen.SetActive(false);
     }
 
     public void LoadCombatScene()
@@ -60,9 +73,10 @@ public class SceneSwitcher : MonoBehaviour
     public void LoadUpgradesScene()
     {
         Time.timeScale = 0f; // Pause the game
-        
+
         upgradeCanvas.SetActive(true);
         cookiePanel.SetActive(false);
+        UIOverlay.SetActive(false);
     }
 
     public void LoadManufacturingScene()

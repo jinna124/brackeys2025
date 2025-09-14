@@ -48,7 +48,7 @@ public class CookiePanel : MonoBehaviour
     public static string FormatNumber(float number)
     {
         if (number == 0)
-            return "0";
+            return "0 cookies";
 
         int magnitude = (int)Math.Floor(Math.Log10(number) / 3);
         magnitude = Math.Min(magnitude, suffixes.Length - 1);
