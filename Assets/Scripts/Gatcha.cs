@@ -1,51 +1,67 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class Gatcha : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private Slider gachaslider;
-    private TextMeshProUGUI gachatxt;
-    [SerializeField] GameObject gachatxtgameobject;
-    private TextMeshProUGUI pullcounttxt;
-    [SerializeField] GameObject pullcounttxtgameobject;
+    [SerializeField] private Slider gachaSlider;
+    [SerializeField] GameObject gachaTxtGameobject;
+    [SerializeField] GameObject pullCountTxtGameobject;
 
     private Health playerHealth;
+    private TextMeshProUGUI gachaTxt;
+    private TextMeshProUGUI pullCountTxt;
 
     void Start()
     {
         if (player != null)
             playerHealth = player.GetComponent<Health>();
-        if (gachatxtgameobject != null)
-            gachatxt = gachatxtgameobject.GetComponent<TextMeshProUGUI>();
-        if (pullcounttxtgameobject != null)
-        {
-            pullcounttxt = pullcounttxtgameobject.GetComponent<TextMeshProUGUI>();
-        }
+        if (gachaTxtGameobject != null)
+            gachaTxt = gachaTxtGameobject.GetComponent<TextMeshProUGUI>();
+        if (pullCountTxtGameobject != null)
+            pullCountTxt = pullCountTxtGameobject.GetComponent<TextMeshProUGUI>();
+
+        gachaSlider.onValueChanged.AddListener(SliderJump);
     }
     void Update()
     {
-        if (playerHealth != null)
-        {
-            MaxSliderValue();
-            CurrertText();
-        }
+        MaxSliderValue();
+        CurrertText();
     }
     void MaxSliderValue()
     {
         if (playerHealth != null)
-            gachaslider.maxValue = playerHealth.GetHealth();
+            gachaSlider.maxValue = playerHealth.GetHealth();
     }
     void CurrertText()
     {
-        gachatxt.text = multiply(((gachaslider.value) / 20), 20).ToString() + " / " + gachaslider.maxValue.ToString("0") + " HP cost";
-        pullcounttxt.text = Mathf.Floor(((gachaslider.value) / 20)).ToString("0") + " pulls";
+        gachaTxt.text =
+            ((int)(gachaSlider.value / 20) * 20).ToString()
+            + " / "
+            + gachaSlider.maxValue.ToString("0")
+            + " HP cost";
+
+        pullCountTxt.text = Mathf.Floor(gachaSlider.value / 20).ToString("0") + " pulls";
     }
-    int multiply(float a, int b)
+
+    void SliderJump(float currentValue)         //
     {
-        int c = (int)a;
-        return c * b;
+        float stepSize = 20;
+
+        if (gachaSlider.value > currentValue)
+        {
+            gachaSlider.value += stepSize;
+        }
+        else if (gachaSlider.value < currentValue)
+        {
+            gachaSlider.value -= stepSize;
+        }
+
+        currentValue = gachaSlider.value;
+
     }
 }
