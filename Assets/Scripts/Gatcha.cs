@@ -15,6 +15,7 @@ public class Gatcha : MonoBehaviour
     private Health playerHealth;
     private TextMeshProUGUI gachaTxt;
     private TextMeshProUGUI pullCountTxt;
+    private float previousSliderValue;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class Gatcha : MonoBehaviour
         if (pullCountTxtGameobject != null)
             pullCountTxt = pullCountTxtGameobject.GetComponent<TextMeshProUGUI>();
 
+        previousSliderValue = gachaSlider.value;
         gachaSlider.onValueChanged.AddListener(SliderJump);
     }
     void Update()
@@ -48,20 +50,23 @@ public class Gatcha : MonoBehaviour
         pullCountTxt.text = Mathf.Floor(gachaSlider.value / 20).ToString("0") + " pulls";
     }
 
-    void SliderJump(float currentValue)         //
+    void SliderJump(float currentValue)      
     {
         float stepSize = 20;
 
-        if (gachaSlider.value > currentValue)
-        {
-            gachaSlider.value += stepSize;
-        }
-        else if (gachaSlider.value < currentValue)
-        {
-            gachaSlider.value -= stepSize;
-        }
+        //if (currentValue + previousSliderValue >= 2)
+        //{
+        //    gachaSlider.value = previousSliderValue + stepSize;
+        //}
+        //else if(Mathf.Abs(currentValue - previousSliderValue) >= 2f) 
+        //{
+        //    gachaSlider.value = previousSliderValue - stepSize;
+        //}
 
-        currentValue = gachaSlider.value;
+        //gachaSlider.value = Mathf.Clamp(gachaSlider.value, gachaSlider.minValue, gachaSlider.maxValue);
 
+        //previousSliderValue = gachaSlider.value;
+
+        gachaSlider.value = Mathf.Round(currentValue / stepSize) * stepSize;
     }
 }
