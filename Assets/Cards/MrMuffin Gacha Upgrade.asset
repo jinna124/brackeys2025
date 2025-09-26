@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
+  m_Name: MrMuffin Gacha Upgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardName: Mr. Muffin
+  cardSubtitle: Weapon
+  cardDescription: Circles loyally around Nonna, scratching anything that gets too
+    close. A very good boy (most of the time).
+  cardImage: {fileID: 9219470463251115190, guid: 254df0d8ab10c4aff9c84ad4df2503f0, type: 3}
+  buffPanelImage: {fileID: 0}
+  modulePanelImage: {fileID: 0}
+  weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}
+  upgradePanelImage: {fileID: 0}
+  gachaPanelImage: {fileID: 0}
+  buffCardFrame: {fileID: 0}
+  moduleCardFrame: {fileID: 0}
+  weaponCardFrame: {fileID: 1025329114486500286, guid: 66c492970a5be4b168377f9b38a3589c, type: 3}
+  upgradeCardFrame: {fileID: 0}
+  gachaCardFrame: {fileID: 0}
+  cardType: 2
+  prefab: {fileID: 0}

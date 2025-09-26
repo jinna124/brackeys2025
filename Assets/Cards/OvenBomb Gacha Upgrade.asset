@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
+  m_Name: OvenBomb Gacha Upgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardName: Oven (Bomb)
+  cardSubtitle: Weapon
+  cardDescription: "Falls from above with a massive crash. Don\u2019t ask how Nonna
+    lifts it, baking is serious business."
+  cardImage: {fileID: 7650306437698843898, guid: 38f1d28f11c0a4b95ac06eeea75b68a3, type: 3}
+  buffPanelImage: {fileID: 0}
+  modulePanelImage: {fileID: 0}
+  weaponPanelImage: {fileID: -5796226659982144275, guid: da60756b1753540d4b843946077136f6, type: 3}
+  upgradePanelImage: {fileID: 0}
+  gachaPanelImage: {fileID: 0}
+  buffCardFrame: {fileID: 0}
+  moduleCardFrame: {fileID: 0}
+  weaponCardFrame: {fileID: 104904327032030964, guid: 668bb9240e03a4ca8b5f3a3da4627191, type: 3}
+  upgradeCardFrame: {fileID: 0}
+  gachaCardFrame: {fileID: 0}
+  cardType: 2
+  prefab: {fileID: 0}
