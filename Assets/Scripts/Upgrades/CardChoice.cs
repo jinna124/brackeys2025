@@ -26,10 +26,6 @@ public class CardChoice : MonoBehaviour
 
     SceneSwitcher sceneSwitcher;
     UpgradeHandler upgradeHandler;
-
-
-    [Header("Player scripts")]
-    [SerializeField] GameObject player;
     void Awake()
     {
         // chooseButton = GetComponentInChildren<Button>();
@@ -58,7 +54,6 @@ public class CardChoice : MonoBehaviour
         cardType = card.GetCardType;
         cardFrame.sprite = card.GetCardFrame;
         panelImage.sprite = card.GetPanelImage;
-
 
         PlayCardAnimation();
         Debug.Log("Card Rendered: " + card.GetCardName);

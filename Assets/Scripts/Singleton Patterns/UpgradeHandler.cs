@@ -33,31 +33,6 @@ public class UpgradeHandler : MonoBehaviour
     void Start()
     {
         productionManager = ProductionManager.instance;
-        //if (buffs != null)
-        //{
-        //    foreach (GameObject buff in buffs)
-        //    {
-        //        Buff buffComponent = buff.GetComponent<Buff>();
-        //        Buff.BuffType buffType = buffComponent.GetBuffType;
-
-        //        if (buffType == Buff.BuffType.MaxHP)
-        //        {
-        //            playerStats.setMaxHp(5); // ADDS 5 HP
-        //        }
-        //        if (buffType == Buff.BuffType.MoveSpeed)
-        //        {
-        //            playerStats.setMovementSpeed(5); // ADDS 2 MOVEMENT SPEED
-        //        }
-        //        if (buffType == Buff.BuffType.GlobalDamage)
-        //        {
-        //            playerStats.setWeaponDamage(10); // ADDS 10 GLOBAL DAMAGE
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("Invalid buff type, unable to apply buff!");
-        //        }
-        //    }
-        //}
     }
 
     public void AddWeapon(string weaponName)
@@ -77,7 +52,7 @@ public class UpgradeHandler : MonoBehaviour
     public void AddBuff(string buffName)
     {
         buffs.Add(buffName);
-        HandleBuffs();
+        HandleBuffs(buffName);
         Debug.Log("Added buff: " + buffName);
         Debug.Log("Buffs list is now: ");
         foreach(string buff in buffs) Debug.Log(buff);
@@ -122,26 +97,18 @@ public class UpgradeHandler : MonoBehaviour
             }
         }
     }
-    public void HandleBuffs()
+    public void HandleBuffs(string buff)
     {
-        if (buffs != null)
-        {
-            foreach (string buff in buffs)
+        PlayerStats playerstats = player.GetComponent<PlayerStats>();
+            switch (buff)
             {
-                // fetches the weapon script from the player
-                // Weapon leveling logic
-                PlayerStats playerstats = player.GetComponent<PlayerStats>();
-                switch (buff)
-                {
-                    case "MaxHP":
-                        playerstats.setMaxHp(5); break;
-                    case "MoveSpeed":
-                        playerstats.setMovementSpeed(2); break;
-                    default:
-                        Debug.Log("buff not defined or still not implemented"); break;
-                }
+                case "MaxHP":
+                    playerstats.setMaxHp(5); break;
+                case "MoveSpeed":
+                    playerstats.setMovementSpeed(2); break;
+                default:
+                    Debug.Log("buff not defined or still not implemented"); break;
             }
-        }
     }
     void ManageSingleton()
     {
