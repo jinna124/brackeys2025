@@ -61,22 +61,13 @@ public class UpgradeHandler : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        //modules = productionManager.GetModuleList();
-        //Debug.Log("module list: " + modules);
-        //Debug.Log("buff list: " + buffs);
-        //Debug.Log("weapon list: " + weapons);
-        HandleWeapons(); // move this somewhere else later
-    }
-
     public void AddWeapon(string weaponName)
     {
         weapons.Add(weaponName);
+        HandleWeapons();
         Debug.Log("Added Weapon: " + weaponName);
-        Debug.Log("Weapons list is now: " + weapons);
+        Debug.Log("EQUIPPED WEAPONS ARE: ");
+        foreach(string weapon in weapons) Debug.Log(weapon);
     }
 
     public void AddModule(GameObject prefab)
@@ -98,49 +89,36 @@ public class UpgradeHandler : MonoBehaviour
 
     public void HandleWeapons()
     {
-        if (weapons != null && weaponCount < 3)
+        if (weapons != null)
         {
 
             foreach (string weapon in weapons)
-            {   
+            {
                 Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
                                                                                 // Weapon leveling logic
                 if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
-                if (weaponCount < 3)
+                if (player != null)
                 {
-                    if (player != null)
+                    switch (weapon)
                     {
-                        switch (weapon)
-                        {
-                            case "Cane":
-                                weaponsscript.EnableRollingCane(); break;
-                            case "Frying Pan":
-                                weaponsscript.EnableFryingPan(); break;
-                            case "Mr. Muffin":
-                                weaponsscript.EnableMrMuffins(); break;
-                            case "Oven (Bomb)":
-                                weaponsscript.EnableOven(); break;
-                            case "Saccharine Perfume":
-                                weaponsscript.EnableSacchirePerfume(); break;
-                            default: Debug.Log("Weapon not found"); break;
-
-                        }
+                        case "Cane":
+                            weaponsscript.EnableRollingCane(); break;
+                        case "Frying Pan":
+                            weaponsscript.EnableFryingPan(); break;
+                        case "Mr. Muffin":
+                            weaponsscript.EnableMrMuffins(); break;
+                        case "Oven (Bomb)":
+                            weaponsscript.EnableOven(); break;
+                        case "Saccharine Perfume":
+                            weaponsscript.EnableSacchirePerfume(); break;
+                        default: Debug.Log("Weapon not found"); break;
                     }
-                    else
-                    {
-                        Debug.Log("Player not found in UpgradeHandler!");
-                    }
-                    weaponCount++;
-                // Check if weapon is unique
                 }
-                
-                // Check if weapon is unique
+                else
+                {
+                    Debug.Log("Player not found in UpgradeHandler!");
+                }
             }
-        }
-        else
-        {
-            Debug.Log("No weapons to instantiate or weapon limit reached.");
-            Debug.Log("Current weapon count: " + weaponCount);
         }
     }
     
