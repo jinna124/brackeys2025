@@ -111,7 +111,6 @@ public class CardChoice : MonoBehaviour
         {
             // TODO: Handle module card
             Debug.Log("Gacha card chosen: " + card.GetCardName);
-
         }
         else
         {
