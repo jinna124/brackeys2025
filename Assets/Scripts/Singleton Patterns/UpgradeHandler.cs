@@ -7,7 +7,7 @@ public class UpgradeHandler : MonoBehaviour
 {
     public static UpgradeHandler instance;
     List<GameObject> buffs = new List<GameObject>();
-    List<GameObject> weapons = new List<GameObject>();
+    List<string> weapons = new List<string>();
     List<Module> modules = new List<Module>();
 
     ProductionManager productionManager;
@@ -32,25 +32,7 @@ public class UpgradeHandler : MonoBehaviour
     void Start()
     {
         productionManager = ProductionManager.instance;
-        if (weapons != null)
-        {
-
-            foreach (GameObject weapon in weapons)
-            {
-                // Weapon leveling logic
-                if (player != null)
-                {
-                    Instantiate(weapon, player.transform);
-                }
-                else
-                {
-                    Instantiate(weapon, transform);
-                    Debug.Log("Player not found, attaching weapon to UpgradeHandler instead.");
-                }
-                weaponCount++;
-                // Check if weapon is unique
-            }
-        }
+        
         if (buffs != null)
         {
             foreach (GameObject buff in buffs)
@@ -87,13 +69,14 @@ public class UpgradeHandler : MonoBehaviour
         //Debug.Log("module list: " + modules);
         //Debug.Log("buff list: " + buffs);
         //Debug.Log("weapon list: " + weapons);
+        HandleWeapons(); // move this somewhere else later
     }
 
-    public void AddWeapon(GameObject prefab)
+    public void AddWeapon(string weaponName)
     {
-        weapons.Add(prefab);
-        Debug.Log("Added Weapon: " + prefab);
-        Debug.Log("Weapons list is now: " + buffs);
+        weapons.Add(weaponName);
+        Debug.Log("Added Weapon: " + weaponName);
+        Debug.Log("Weapons list is now: " + weapons);
     }
 
     public void AddModule(GameObject prefab)
@@ -111,6 +94,54 @@ public class UpgradeHandler : MonoBehaviour
     public int GetWeaponCount()
     {
         return weaponCount;
+    }
+
+    public void HandleWeapons()
+    {
+        if (weapons != null && weaponCount < 3)
+        {
+
+            foreach (string weapon in weapons)
+            {   
+                Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
+                                                                                // Weapon leveling logic
+                if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
+                if (weaponCount < 3)
+                {
+                    if (player != null)
+                    {
+                        switch (weapon)
+                        {
+                            case "Cane":
+                                weaponsscript.EnableRollingCane(); break;
+                            case "Frying Pan":
+                                weaponsscript.EnableFryingPan(); break;
+                            case "Mr. Muffin":
+                                weaponsscript.EnableMrMuffins(); break;
+                            case "Oven (Bomb)":
+                                weaponsscript.EnableOven(); break;
+                            case "Saccharine Perfume":
+                                weaponsscript.EnableSacchirePerfume(); break;
+                            default: Debug.Log("Weapon not found"); break;
+
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Player not found in UpgradeHandler!");
+                    }
+                    weaponCount++;
+                // Check if weapon is unique
+                }
+                
+                // Check if weapon is unique
+            }
+        }
+        else
+        {
+            Debug.Log("No weapons to instantiate or weapon limit reached.");
+            Debug.Log("Current weapon count: " + weaponCount);
+        }
     }
     
     void ManageSingleton()
