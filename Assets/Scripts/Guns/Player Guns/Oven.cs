@@ -13,10 +13,10 @@ public class Oven : MonoBehaviour
 
     [Header("Firing Rate & Range")]
     [SerializeField] float firingRange = 6f;
-    [SerializeField] float firingRate = 1f;
+    //[SerializeField] float firingRate = 1f;
     [SerializeField] float maxHeight = 2f;
     [Tooltip("Time to reach maximum height")]
-    [SerializeField] float duration = 1f;
+    //[SerializeField] float duration = 1f;
 
     private GameObject nearestEnemy;
     private bool isFiring = false;

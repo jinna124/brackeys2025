@@ -7,8 +7,8 @@ public class Bull_Enemy : enemy_movement
     [Header("Movement Settings")]
     [Tooltip("Max range at which the enemy can be far away from the player")]
     [SerializeField] float max_range = 8;
-    [Tooltip("Minimum range at which the enemy can be close to the player")]
-    [SerializeField] float min_range = 5;
+    //[Tooltip("Minimum range at which the enemy can be close to the player")]
+    //[SerializeField] float min_range = 5;
     [Space]
 
     [Header("Charging Settings")]

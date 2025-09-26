@@ -13,13 +13,13 @@ public class FryingPan : MonoBehaviour
 
     [Header("Firing Rate & Range")]
     [SerializeField] float firingRange = 6f;
-    [SerializeField] float firingRate = 1f;
+    //[SerializeField] float firingRate = 1f;
 
     private GameObject nearestEnemy;
     private bool isFiring = false;
 
     private enum PanState { NotShot, Going, Returning }
-    private PanState state = PanState.NotShot;
+    //private PanState state = PanState.NotShot;
 
     private void Update()
     {
@@ -37,7 +37,7 @@ public class FryingPan : MonoBehaviour
     private IEnumerator ShootPan(GameObject target)
     {
         isFiring = true;
-        state = PanState.Going;
+        //state = PanState.Going;
 
         // Spawn at the tip
         Vector2 spawnPoint = tipOfWeapon.position;
@@ -56,7 +56,7 @@ public class FryingPan : MonoBehaviour
         }
 
         // Returning
-        state = PanState.Returning;
+        //state = PanState.Returning;
         while (Vector2.Distance(panInstance.transform.position, tipOfWeapon.position) > 0.1f)
         {
             // Always move toward the current tip position
@@ -69,7 +69,7 @@ public class FryingPan : MonoBehaviour
         panInstance.transform.position = tipOfWeapon.position;
         Destroy(panInstance);
 
-        state = PanState.NotShot;
+        //state = PanState.NotShot;
         isFiring = false;
     }
 

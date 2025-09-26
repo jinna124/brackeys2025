@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public Vector2 currentDirection => rawInput;
     public Vector2 lastDirection { get; private set; } = Vector2.zero;
-    private bool isMoving = false;
+    //private bool isMoving = false;
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();

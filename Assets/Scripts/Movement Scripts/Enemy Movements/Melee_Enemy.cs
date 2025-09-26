@@ -10,10 +10,10 @@ public class Melee_Enemy : enemy_movement
     [Header("Melee Settings")]
     [Tooltip("Range at which the enemy will stop to attack the player")]
     [SerializeField] float melee_range = 0.5f;
-    [SerializeField] float melee_damage = 10f;
-    [SerializeField] float cooldown = 0.5f;
-    private bool isAttacking = false;
-    private float nextAttackTime = 0;
+    //[SerializeField] float melee_damage = 10f;
+    //[SerializeField] float cooldown = 0.5f;
+    //private bool isAttacking = false;
+    //private float nextAttackTime = 0;
     private void Update()       // this is where ill handle facing and animation
     {
         if (GetComponent<Health>() != null && GetComponent<Health>().isFrozen == true) return;
@@ -85,10 +85,10 @@ public class Melee_Enemy : enemy_movement
             rb.AddForce(Vector2.MoveTowards(rb.position, player.transform.position, 50f));
         }
     }
-    void EndAttack()
-    {
-        Debug.Log("Attack ended");
-        isAttacking = false;
-    }
+    //void EndAttack()
+    //{
+    //    Debug.Log("Attack ended");
+    //    isAttacking = false;
+    //}
 }
 
