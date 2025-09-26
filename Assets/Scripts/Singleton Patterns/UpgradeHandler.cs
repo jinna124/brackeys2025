@@ -38,7 +38,7 @@ public class UpgradeHandler : MonoBehaviour
     public void AddWeapon(string weaponName)
     {
         weapons.Add(weaponName);
-        HandleWeapons();
+        HandleWeapons(weaponName);
         Debug.Log("Added Weapon: " + weaponName);
         Debug.Log("EQUIPPED WEAPONS ARE: ");
         foreach(string weapon in weapons) Debug.Log(weapon);
@@ -63,39 +63,32 @@ public class UpgradeHandler : MonoBehaviour
         return weaponCount;
     }
 
-    public void HandleWeapons()
+    public void HandleWeapons(string weaponName)
     {
-        if (weapons != null)
-        {
-
-            foreach (string weapon in weapons)
+            Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
+                                                                            // Weapon leveling logic
+            if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
+            if (player != null)
             {
-                Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
-                                                                                // Weapon leveling logic
-                if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
-                if (player != null)
+                switch (weaponName)
                 {
-                    switch (weapon)
-                    {
-                        case "Cane":
-                            weaponsscript.EnableRollingCane(); break;
-                        case "Frying Pan":
-                            weaponsscript.EnableFryingPan(); break;
-                        case "Mr. Muffin":
-                            weaponsscript.EnableMrMuffins(); break;
-                        case "Oven (Bomb)":
-                            weaponsscript.EnableOven(); break;
-                        case "Saccharine Perfume":
-                            weaponsscript.EnableSacchirePerfume(); break;
-                        default: Debug.Log("Weapon not found"); break;
-                    }
-                }
-                else
-                {
-                    Debug.Log("Player not found in UpgradeHandler!");
+                    case "Cane":
+                        weaponsscript.EnableRollingCane(); break;
+                    case "Frying Pan":
+                        weaponsscript.EnableFryingPan(); break;
+                    case "Mr. Muffin":
+                        weaponsscript.EnableMrMuffins(); break;
+                    case "Oven (Bomb)":
+                        weaponsscript.EnableOven(); break;
+                    case "Saccharine Perfume":
+                        weaponsscript.EnableSacchirePerfume(); break;
+                    default: Debug.Log("Weapon not found"); break;
                 }
             }
-        }
+            else
+            {
+                Debug.Log("Player not found in UpgradeHandler!");
+            }
     }
     public void HandleBuffs(string buff)
     {
