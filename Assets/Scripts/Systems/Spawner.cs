@@ -42,8 +42,6 @@ public class Spawner : MonoBehaviour
             Vector2 cluster_offset = Random.insideUnitCircle * cluster_radius;
             Vector2 spawn_position = cluster_center + cluster_offset;
             // -----KEEP IN BOUNDS-------
-            spawn_position.x = Mathf.Clamp(spawn_position.x, minbounds.x + 1, maxbounds.x - 1);
-            spawn_position.y = Mathf.Clamp(spawn_position.y, minbounds.y + 1, maxbounds.y - 1);
             // ------ENSURE IT DOESNT SPAWN OVER ANOTHER ENEMY-------
             Collider2D hit = Physics2D.OverlapCircle(spawn_position, min_spacing_bet_enemies, enemy_layer);
 
