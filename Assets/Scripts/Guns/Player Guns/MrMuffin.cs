@@ -47,7 +47,7 @@ public class MrMuffin : MonoBehaviour
         Vector2 finalPosition = offset + new Vector2(0, floatCrest);
 
         if (smoothenMovement)
-            mrMuffin.transform.position = Vector2.Lerp(mrMuffin.transform.position, finalPosition, smoothing * Time.fixedDeltaTime);
+            mrMuffin.transform.position = Vector2.Lerp(mrMuffin.transform.position, finalPosition, smoothing * Time.deltaTime);
         else
             mrMuffin.transform.position = finalPosition;
         angle += mrMuffinSpeed * Time.deltaTime;
