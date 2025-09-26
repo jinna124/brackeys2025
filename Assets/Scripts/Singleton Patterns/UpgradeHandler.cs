@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UpgradeHandler : MonoBehaviour
 {
     public static UpgradeHandler instance;
-    List<GameObject> buffs = new List<GameObject>();
+    List<string> buffs = new List<string>();
     List<string> weapons = new List<string>();
     List<Module> modules = new List<Module>();
 
@@ -32,33 +33,31 @@ public class UpgradeHandler : MonoBehaviour
     void Start()
     {
         productionManager = ProductionManager.instance;
-        
-        if (buffs != null)
-        {
-            foreach (GameObject buff in buffs)
-            {
-                Buff buffComponent = buff.GetComponent<Buff>();
-                Buff.BuffType buffType = buffComponent.GetBuffType;
+        //if (buffs != null)
+        //{
+        //    foreach (GameObject buff in buffs)
+        //    {
+        //        Buff buffComponent = buff.GetComponent<Buff>();
+        //        Buff.BuffType buffType = buffComponent.GetBuffType;
 
-                if (buffType == Buff.BuffType.MaxHP)
-                {
-                    playerStats.setMaxHp(5); // ADDS 5 HP
-                }
-                if (buffType == Buff.BuffType.MoveSpeed)
-                {
-                    playerStats.setMovementSpeed(5); // ADDS 2 MOVEMENT SPEED
-                }
-                if (buffType == Buff.BuffType.GlobalDamage)
-                {
-                    playerStats.setWeaponDamage(10); // ADDS 10 GLOBAL DAMAGE
-                }
-                else
-                {
-                    Debug.Log("Invalid buff type, unable to apply buff!");
-                }
-            }
-        }
-
+        //        if (buffType == Buff.BuffType.MaxHP)
+        //        {
+        //            playerStats.setMaxHp(5); // ADDS 5 HP
+        //        }
+        //        if (buffType == Buff.BuffType.MoveSpeed)
+        //        {
+        //            playerStats.setMovementSpeed(5); // ADDS 2 MOVEMENT SPEED
+        //        }
+        //        if (buffType == Buff.BuffType.GlobalDamage)
+        //        {
+        //            playerStats.setWeaponDamage(10); // ADDS 10 GLOBAL DAMAGE
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Invalid buff type, unable to apply buff!");
+        //        }
+        //    }
+        //}
     }
 
     public void AddWeapon(string weaponName)
@@ -75,11 +74,13 @@ public class UpgradeHandler : MonoBehaviour
         productionManager.BuyModule(prefab, 0);
     }
 
-    public void AddBuff(GameObject prefab)
+    public void AddBuff(string buffName)
     {
-        buffs.Add(prefab);
-        Debug.Log("Added buff: " + prefab);
-        Debug.Log("Buffs list is now: " + buffs);
+        buffs.Add(buffName);
+        HandleBuffs();
+        Debug.Log("Added buff: " + buffName);
+        Debug.Log("Buffs list is now: ");
+        foreach(string buff in buffs) Debug.Log(buff);
     }
 
     public int GetWeaponCount()
@@ -121,7 +122,27 @@ public class UpgradeHandler : MonoBehaviour
             }
         }
     }
-    
+    public void HandleBuffs()
+    {
+        if (buffs != null)
+        {
+            foreach (string buff in buffs)
+            {
+                // fetches the weapon script from the player
+                // Weapon leveling logic
+                PlayerStats playerstats = player.GetComponent<PlayerStats>();
+                switch (buff)
+                {
+                    case "MaxHP":
+                        playerstats.setMaxHp(5); break;
+                    case "MoveSpeed":
+                        playerstats.setMovementSpeed(2); break;
+                    default:
+                        Debug.Log("buff not defined or still not implemented"); break;
+                }
+            }
+        }
+    }
     void ManageSingleton()
     {
         if (instance != null)

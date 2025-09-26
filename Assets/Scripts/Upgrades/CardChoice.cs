@@ -68,24 +68,11 @@ public class CardChoice : MonoBehaviour
     {
         if (cardType == Card.CardType.Buff)
         {
-            // TODO: Apply buff
             Debug.Log("Buff card chosen: " + card.GetCardName);
-
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
-            // --------------------------------------------------           // again jinna if u can make this the "addbuff()" fn in upgradehandler instead
-            PlayerStats playerstats = player.GetComponent<PlayerStats>();
-            switch(card.GetCardName)
-            {
-                case "MaxHP":
-                    playerstats.setMaxHp(5); break;
-                case "MoveSpeed":
-                    playerstats.setMovementSpeed(2); break;
-                default:
-                    Debug.Log("buff not defined or still not implemented"); break;
-            }
-            // -----------THE PART I ADDED-----------------------
+            upgradeHandler.AddBuff(card.GetCardName);
             sceneSwitcher.UnpauseGame();
         }
         else if (cardType == Card.CardType.Module)
@@ -101,15 +88,11 @@ public class CardChoice : MonoBehaviour
         }
         else if (cardType == Card.CardType.Weapon)
         {
-            // TODO: Handle weapon card
             Debug.Log("Weapon card chosen: " + card.GetCardName);
             Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
-            
-            
             Debug.Log("Weapon card name: " + card.GetCardName);
-
             upgradeHandler.AddWeapon(card.GetCardName);
             sceneSwitcher.UnpauseGame();
         }
