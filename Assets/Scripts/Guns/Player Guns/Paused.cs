@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class Paused : MonoBehaviour
+public class PausedAndInventory : MonoBehaviour
 {
     [SerializeField] GameObject pausetextobject;
+    [SerializeField] GameObject inventorySystem;
     private bool isPaused = false;
     private AudioSource pauseaudiosource;
 
@@ -17,7 +18,7 @@ public class Paused : MonoBehaviour
 
     void checkforinput()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseaudiosource.Play();
             if (!isPaused)
@@ -32,7 +33,15 @@ public class Paused : MonoBehaviour
                 isPaused = false;
                 Time.timeScale = 1f;
             }
-                
+        }
+
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            inventorySystem.SetActive(true);
+        }
+        else
+        {
+            inventorySystem.SetActive(false);
         }
     }
 }

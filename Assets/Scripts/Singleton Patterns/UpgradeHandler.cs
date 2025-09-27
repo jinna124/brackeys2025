@@ -8,7 +8,7 @@ public class UpgradeHandler : MonoBehaviour
 {
     public static UpgradeHandler instance;
     List<string> buffs = new List<string>();
-    List<string> weapons = new List<string>();
+    [System.NonSerialized] public List<string> weapons = new List<string>();
     List<Module> modules = new List<Module>();
 
     ProductionManager productionManager;
@@ -16,7 +16,8 @@ public class UpgradeHandler : MonoBehaviour
     public Player Player => player;     // public autoimplemented property to use in cardchoice
     PlayerStats playerStats;
     // THESE LISTS ARE USED FOR INVENTORY TRACKING
-
+    [SerializeField] GameObject inventoryGO;
+    Inventory inventory;
     int weaponCount;
 
     void Awake()
@@ -33,15 +34,20 @@ public class UpgradeHandler : MonoBehaviour
     void Start()
     {
         productionManager = ProductionManager.instance;
+        inventory = inventoryGO.GetComponent<Inventory>();
     }
 
     public void AddWeapon(string weaponName)
     {
-        weapons.Add(weaponName);
-        HandleWeapons(weaponName);
-        Debug.Log("Added Weapon: " + weaponName);
-        Debug.Log("EQUIPPED WEAPONS ARE: ");
-        foreach(string weapon in weapons) Debug.Log(weapon);
+        if (!weapons.Contains(weaponName))
+        {
+            weapons.Add(weaponName);
+            HandleWeapons(weaponName);
+            inventory.UpdateInventory();
+            Debug.Log("Added Weapon: " + weaponName);
+            Debug.Log("EQUIPPED WEAPONS ARE: ");
+            foreach (string weapon in weapons) Debug.Log(weapon);
+        }
     }
 
     public void AddModule(GameObject prefab)
