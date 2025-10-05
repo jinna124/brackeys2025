@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b85ec20d506c45a18e83b8647033c80
+guid: e1c695d4cdbc547bda13cb6e81222d2b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7344718260458368024
-    second: Inventory_Frame_0
+      213: -1779109201868210548
+    second: Module_Factory_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 21, y: 17, z: 17, w: 15}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Inventory_Frame_0
+      name: Module_Factory_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
-        height: 150
+        width: 385
+        height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 20, y: 19, z: 0, w: 15}
+      border: {x: 6, y: 5, z: 7, w: 59}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e3dd06f7a1521a90800000000000000
-      internalID: -7344718260458368024
+      spriteID: c8e34066b955f47e0800000000000000
+      internalID: -1779109201868210548
       vertices: []
       indices: 
       edges: []
@@ -125,8 +125,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 580a5f16c8b1a4ecc954cace70691262
-    internalID: 1599025782
+    spriteID: 82a4cfdcc3bba4ff784cd951bf8159af
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Inventory_Frame_0: -7344718260458368024
+      Module_Factory_0: -1779109201868210548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

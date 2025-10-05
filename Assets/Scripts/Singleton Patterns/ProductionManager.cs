@@ -71,7 +71,7 @@ public class ProductionManager : MonoBehaviour
     {
         return moduleList;
     }
-    
+
     void ManageSingleton()
     {
         if (instance != null)
@@ -85,5 +85,18 @@ public class ProductionManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+    
+    public int GetModuleCount(GameObject prefab)
+    {
+        int count = 0;
+        foreach (Module module in moduleList)
+        {
+            if (module.GetName() == prefab.GetComponent<Module>().GetName())
+            {
+                count++;
+            }
+        }
+        return count;
     }
 }

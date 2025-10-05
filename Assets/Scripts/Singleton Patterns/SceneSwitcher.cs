@@ -12,6 +12,7 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] GameObject cookiePanel;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject gachaScreen;
+    [SerializeField] GameObject moduleShop;
     [SerializeField] GameObject UIOverlay;
     [SerializeField] TextMeshProUGUI cookieCountText;
     [SerializeField] TextMeshProUGUI roundsSurvivedText;
@@ -26,6 +27,8 @@ public class SceneSwitcher : MonoBehaviour
         cookiePanel.SetActive(true);
         gachaScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+        moduleShop.SetActive(false);
+        UIOverlay.SetActive(true);
         cookieManager = CookieManager.instance;
         xpManager = XPManager.instance;
     }
@@ -35,6 +38,7 @@ public class SceneSwitcher : MonoBehaviour
         cookiePanel.SetActive(false);
         UIOverlay.SetActive(false);
         upgradeCanvas.SetActive(false);
+        moduleShop.SetActive(false);
     }
 
     private void Update()
@@ -44,6 +48,15 @@ public class SceneSwitcher : MonoBehaviour
         {
             LoadUpgradesScene();
         }*/
+    }
+
+    public void LoadModuleShop()
+    {
+        gachaScreen.SetActive(false);
+        cookiePanel.SetActive(true);
+        UIOverlay.SetActive(false);
+        upgradeCanvas.SetActive(false);
+        moduleShop.SetActive(true);
     }
 
     public void UnpauseGame()
@@ -62,6 +75,7 @@ public class SceneSwitcher : MonoBehaviour
         player.gameObject.GetComponent<Health>().Fullheal();
         UIOverlay.SetActive(true);
         gachaScreen.SetActive(false);
+        moduleShop.SetActive(false);
     }
 
     public void LoadCombatScene()
@@ -77,6 +91,8 @@ public class SceneSwitcher : MonoBehaviour
         upgradeCanvas.SetActive(true);
         cookiePanel.SetActive(false);
         UIOverlay.SetActive(false);
+        gachaScreen.SetActive(false);
+        moduleShop.SetActive(false);
     }
 
     public void LoadManufacturingScene()
