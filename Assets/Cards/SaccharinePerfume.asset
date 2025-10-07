@@ -24,7 +24,7 @@ MonoBehaviour:
   gachaPanelImage: {fileID: 0}
   buffCardFrame: {fileID: 0}
   moduleCardFrame: {fileID: 0}
-  weaponCardFrame: {fileID: -7344718260458368024, guid: 5b85ec20d506c45a18e83b8647033c80, type: 3}
+  weaponCardFrame: {fileID: 1025329114486500286, guid: 66c492970a5be4b168377f9b38a3589c, type: 3}
   upgradeCardFrame: {fileID: 0}
   gachaCardFrame: {fileID: 0}
   cardType: 2
