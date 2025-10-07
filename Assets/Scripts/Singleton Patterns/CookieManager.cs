@@ -67,5 +67,4 @@ public class CookieManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
 }
