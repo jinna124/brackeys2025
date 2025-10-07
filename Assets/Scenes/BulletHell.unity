@@ -5259,7 +5259,7 @@ GameObject:
   - component: {fileID: 739655107}
   - component: {fileID: 739655106}
   m_Layer: 0
-  m_Name: postprocessing
+  m_Name: PostProcessing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
