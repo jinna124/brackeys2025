@@ -212,8 +212,6 @@ MonoBehaviour:
   movement_speed: 5
   animator: {fileID: 3996243423871503854}
   melee_range: 0
-  melee_damage: 10
-  cooldown: 0.5
 --- !u!114 &8208738256686388114
 MonoBehaviour:
   m_ObjectHideFlags: 0

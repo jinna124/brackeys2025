@@ -9,4 +9,9 @@ public class CameraShake : MonoBehaviour
     {
        impulseSource.GenerateImpulse(1);
     }
+    
+    public void Shake(int power)
+    {
+        impulseSource.GenerateImpulse(power);
+    }
 }

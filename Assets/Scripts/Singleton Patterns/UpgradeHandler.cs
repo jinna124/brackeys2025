@@ -105,6 +105,8 @@ public class UpgradeHandler : MonoBehaviour
                     playerstats.setMaxHp(5); break;
                 case "MoveSpeed":
                     playerstats.setMovementSpeed(2); break;
+                case "GlobalDamage":
+                    playerstats.setWeaponDamage(); break;
                 default:
                     Debug.Log("buff not defined or still not implemented"); break;
             }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b810b9e2a27454eb1a62d956e89422d6, type: 3}
   m_Name: GlobalDamage
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: 
+  cardName: GlobalDamage
   cardSubtitle: Combat Buff
   cardDescription: 
   cardImage: {fileID: -3845549597330787426, guid: e43b1c81ae1734b93a18ec6f430c9291, type: 3}

@@ -13,10 +13,11 @@ public class RollingCane : MonoBehaviour
 
     private Player player;      // to fetch the player movement script
     private Coroutine coroutine;
-
+    private PlayerStats playerStats;
     private void Start()
     {
         player = GetComponent<Player>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -49,6 +50,9 @@ public class RollingCane : MonoBehaviour
         Vector2 direction = player.lastDirection;
 
         GameObject rollingCane = Instantiate(rollingCanePrefab, tipOfWeapon.position, Quaternion.identity);
+        DamageDealer dealer = rollingCane.GetComponent<DamageDealer>();
+        dealer.damage = playerStats.getWeaponDamage(dealer.damage);
+
         Rigidbody2D rb = rollingCane.GetComponent<Rigidbody2D>();
         rb.linearVelocity = direction * cane_speed;
         rb.angularVelocity = rotating_speed;

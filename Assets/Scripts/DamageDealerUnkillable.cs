@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
@@ -14,15 +14,15 @@ public class DamageDealer : MonoBehaviour
     private GameObject player; // assumes player has "Player" tag
     public void Awake()
     {
-        player = GameObject.FindWithTag("Player");
-        if (tag == "PlayerBullet")
-        {
-            if (player != null)
-            {
-                playerstats = player.GetComponent<PlayerStats>();
-                damage = playerstats.getWeaponDamage();
-            }
-        }
+        //player = GameObject.FindWithTag("Player");
+        //if (tag == "PlayerBullet")
+        //{
+        //    if (player != null)
+        //    {
+        //        playerstats = player.GetComponent<PlayerStats>();
+        //        damage = playerstats.getWeaponDamage();
+        //    }
+        //}
     }
 
     public float GetDamage () => damage;

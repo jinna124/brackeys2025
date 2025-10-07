@@ -100,6 +100,7 @@ public class Health : MonoBehaviour
             {
                 TakeDamage(damageDealer.GetDamage(), damageDealer);
                 damageDealer.Hit();
+                Debug.Log("Enemy Health: " + currentHealth);
             }
             return; // done if it's a projectile
         }
@@ -141,17 +142,6 @@ public class Health : MonoBehaviour
         SceneSwitcher sceneSwitcher = SceneSwitcher.instance;
         sceneSwitcher.LoadGameOver();
         Destroy(gameObject);
-    }
-
-    IEnumerator playerHitAnimation()
-    {
-        animator.SetBool("isHit", true);
-        yield return null;
-        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float Length = animatorStateInfo.length;
-        // Wait for the length of the animation
-        yield return new WaitForSeconds(Length);
-        animator.SetBool("isHit", false);
     }
 
     IEnumerator PlayerGetHit()

@@ -17,9 +17,11 @@ public class FryingPan : MonoBehaviour
 
     private GameObject nearestEnemy;
     private bool isFiring = false;
-
+    private PlayerStats playerStats;
     private enum PanState { NotShot, Going, Returning }
     //private PanState state = PanState.NotShot;
+
+    private void Awake() => playerStats = GetComponent<PlayerStats>();
 
     private void Update()
     {
@@ -46,7 +48,8 @@ public class FryingPan : MonoBehaviour
 
         // Instantiate pan
         GameObject panInstance = Instantiate(panPrefab, spawnPoint, Quaternion.identity);
-
+        DamageDealer dealer = panInstance.GetComponent<DamageDealer>();
+        dealer.damage = playerStats.getWeaponDamage(dealer.damage);
         // Going out
         while (Vector2.Distance(panInstance.transform.position, travelPoint) > 0.1f)
         {
