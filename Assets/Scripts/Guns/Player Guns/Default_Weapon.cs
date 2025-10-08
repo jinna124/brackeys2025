@@ -25,7 +25,9 @@ public class Default_Weapon : MonoBehaviour
     //[SerializeField] float minimum_firing_rate;
     private GameObject nearest_enemy;
     private bool isFiring = false;
+    private AudioSource audioSource;
 
+    private void Awake() => audioSource = GetComponent<AudioSource>();
 
     IEnumerator StartShooting()
     {
@@ -44,6 +46,7 @@ public class Default_Weapon : MonoBehaviour
         float angle = Mathf.Atan2 (-direction.y, -direction.x) * Mathf.Rad2Deg + 90f;
         GameObject bullet_instance = Instantiate(bullet, tip_of_weapon.transform.position, Quaternion.Euler(0f, 0f, angle));
         Rigidbody2D bullet_rb = bullet_instance.GetComponent<Rigidbody2D>();
+        audioSource.Play();
         bullet_rb.linearVelocity = direction * projectile_speed;
         Destroy(bullet_instance, projectile_lifetime);
         // -------------------------------

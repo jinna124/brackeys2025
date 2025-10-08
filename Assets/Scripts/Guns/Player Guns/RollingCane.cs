@@ -10,14 +10,17 @@ public class RollingCane : MonoBehaviour
     [SerializeField] float cane_speed = 10f;
     [SerializeField] float firing_rate = 2f;
     [SerializeField] float rotating_speed = 360f;
+    [SerializeField] AudioClip audioClip;
 
     private Player player;      // to fetch the player movement script
     private Coroutine coroutine;
     private PlayerStats playerStats;
+    private AudioSource audioSource;
     private void Start()
     {
         player = GetComponent<Player>();
         playerStats = GetComponent<PlayerStats>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -50,6 +53,7 @@ public class RollingCane : MonoBehaviour
         Vector2 direction = player.lastDirection;
 
         GameObject rollingCane = Instantiate(rollingCanePrefab, tipOfWeapon.position, Quaternion.identity);
+        audioSource.PlayOneShot(audioClip);
         DamageDealer dealer = rollingCane.GetComponent<DamageDealer>();
         dealer.damage = playerStats.getWeaponDamage(dealer.damage);
 

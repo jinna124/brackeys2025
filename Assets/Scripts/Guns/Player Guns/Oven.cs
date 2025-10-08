@@ -24,9 +24,12 @@ public class Oven : MonoBehaviour
     private GameObject nearestEnemy;
     private bool isFiring = false;
     private float fireCooldown;
-
-    private void Awake() => playerstats = GetComponent<PlayerStats>();
-
+    private AudioSource audioSource;
+    private void Awake()
+    {
+        playerstats = GetComponent<PlayerStats>();
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         if (fireCooldown > 0)
@@ -95,9 +98,11 @@ public class Oven : MonoBehaviour
         if (col != null) col.enabled = true;
         instance.transform.position = travelPoint;
         instance.transform.localScale = new Vector3(2f, 2f, 2f);
+        if (audioSource != null) audioSource.Play();
         cameraShake.Shake(10);
 
         isFiring = false;
+
 
         if (instance != null) Destroy(instance, 0.5f);
     }

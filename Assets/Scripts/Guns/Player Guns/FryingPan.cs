@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FryingPan : MonoBehaviour
@@ -14,15 +15,20 @@ public class FryingPan : MonoBehaviour
     [Header("Firing Rate & Range")]
     [SerializeField] float firingRange = 6f;
     //[SerializeField] float firingRate = 1f;
-
+    [Header("Audio")]
+    [SerializeField] AudioClip audioClip;
     private GameObject nearestEnemy;
     private bool isFiring = false;
     private PlayerStats playerStats;
+    private AudioSource audioSource;
     private enum PanState { NotShot, Going, Returning }
     //private PanState state = PanState.NotShot;
 
-    private void Awake() => playerStats = GetComponent<PlayerStats>();
-
+    private void Awake()
+    {
+        playerStats = GetComponent<PlayerStats>();
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         nearestEnemy = EnemyManager.instance.GetNearestEnemy(tipOfWeapon.transform.position);
@@ -48,6 +54,9 @@ public class FryingPan : MonoBehaviour
 
         // Instantiate pan
         GameObject panInstance = Instantiate(panPrefab, spawnPoint, Quaternion.identity);
+        audioSource.PlayOneShot(audioClip);
+
+
         DamageDealer dealer = panInstance.GetComponent<DamageDealer>();
         dealer.damage = playerStats.getWeaponDamage(dealer.damage);
         // Going out
@@ -67,7 +76,6 @@ public class FryingPan : MonoBehaviour
             panInstance.transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
             yield return null;
         }
-
         // Snap to tip and destroy
         panInstance.transform.position = tipOfWeapon.position;
         Destroy(panInstance);
@@ -75,5 +83,4 @@ public class FryingPan : MonoBehaviour
         //state = PanState.NotShot;
         isFiring = false;
     }
-
 }
