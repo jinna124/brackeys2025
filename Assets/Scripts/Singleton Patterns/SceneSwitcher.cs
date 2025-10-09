@@ -23,15 +23,34 @@ public class SceneSwitcher : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         ManageSingleton();
-        upgradeCanvas.SetActive(false);
-        cookiePanel.SetActive(true);
-        gachaScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
-        moduleShop.SetActive(false);
-        UIOverlay.SetActive(true);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if(upgradeCanvas != null) upgradeCanvas.SetActive(false);
+        if (cookiePanel != null) cookiePanel.SetActive(true);
+        if (gachaScreen != null) gachaScreen.SetActive(false);
+        if (gameOverScreen != null) gameOverScreen.SetActive(false);
+        if (moduleShop != null) moduleShop.SetActive(false);
+        if (UIOverlay != null) UIOverlay.SetActive(true);
+        
         cookieManager = CookieManager.instance;
         xpManager = XPManager.instance;
     }
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        if (upgradeCanvas == null) upgradeCanvas = GameObject.Find("UpgradeCanvas");
+        if (cookiePanel == null) cookiePanel = GameObject.Find("CookiePanel");
+        if (gachaScreen == null) gachaScreen = GameObject.Find("GachaScreen");
+        if (gameOverScreen == null) gameOverScreen = GameObject.Find("GameOverScreen");
+        if (moduleShop == null) moduleShop = GameObject.Find("ModuleShop");
+        if (UIOverlay == null) UIOverlay = GameObject.Find("UIOverlay");
+    }
+
+    #region Loading Components
     public void LoadGachaScene()
     {
         gachaScreen.SetActive(true);
@@ -39,15 +58,6 @@ public class SceneSwitcher : MonoBehaviour
         UIOverlay.SetActive(false);
         upgradeCanvas.SetActive(false);
         moduleShop.SetActive(false);
-    }
-
-    private void Update()
-    {
-        /* for debugging purposes
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            LoadUpgradesScene();
-        }*/
     }
 
     public void LoadModuleShop()
@@ -122,7 +132,8 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
+    #endregion
+    
     void ManageSingleton()
     {
         if (instance != null)
