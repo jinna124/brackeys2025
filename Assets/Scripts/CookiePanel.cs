@@ -15,7 +15,8 @@ public class CookiePanel : MonoBehaviour
     {
         cookieManager = CookieManager.instance;
         cookieParticles = GetComponentInChildren<ParticleSystem>();
-        PlayParticleEffect();
+        cookieParticles.Play();
+        ScaleEmissionRate();
     }
 
     // Update is called once per frame
@@ -23,20 +24,29 @@ public class CookiePanel : MonoBehaviour
     {
         cookieText.text = FormatNumber(cookieManager.GetCookies());
         cpsText.text = "CPS: " + FormatNumber(cookieManager.GetCPS());
+        ScaleEmissionRate();
+        Debug.Log(cookieManager.GetCPS());
     }
 
-    void PlayParticleEffect()
+    void ScaleEmissionRate()
     {
-        cookieParticles.Play();
         var emission = cookieParticles.emission;
-        if (cookieManager.GetCPS() > 0)
+        float cps = cookieManager.GetCPS();
+
+        if (cps <= 0f)
         {
-            emission.rateOverTime = 10;
+            emission.rateOverTime = 0f;
+            return;
         }
-        else
-        {
-            emission.rateOverTime = 0;
-        }
+
+        // Simple linear scaling: tweak scale to taste
+        const float minRate = 5f;
+        const float maxRate = 60f;
+        const float scale = 0.02f; // emission particles per CPS
+
+        float rate = minRate + cps * scale;
+        rate = Mathf.Clamp(rate, minRate, maxRate);
+        emission.rateOverTime = rate;
     }
 
     [SerializeField] private static readonly string[] suffixes =
@@ -49,6 +59,9 @@ public class CookiePanel : MonoBehaviour
     {
         if (number == 0)
             return "0 cookies";
+        
+        if (number == 1)
+            return "1 cookie";
 
         int magnitude = (int)Math.Floor(Math.Log10(number) / 3);
         magnitude = Math.Min(magnitude, suffixes.Length - 1);

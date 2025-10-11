@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class XPShard : MonoBehaviour
-{      
+{
     float enemyXPValue;
 
     // There will only ever be one type of XP Shard, since XP Shard will take the XP value of the defeated enemy
@@ -16,5 +16,10 @@ public class XPShard : MonoBehaviour
             Debug.Log("XP shard collected by player");
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        Destroy(gameObject, 10f);
     }
 }
