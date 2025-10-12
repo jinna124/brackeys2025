@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03816ceac37d435789f9df1b6e45223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPShard
+  destroyAfterTime: 5
 --- !u!212 &183271872382980628
 SpriteRenderer:
   m_ObjectHideFlags: 0
