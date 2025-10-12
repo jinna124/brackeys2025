@@ -3,7 +3,7 @@ using UnityEngine;
 public class XPShard : MonoBehaviour
 {
     float enemyXPValue;
-
+    [SerializeField] float destroyAfterTime = 5f;
     // There will only ever be one type of XP Shard, since XP Shard will take the XP value of the defeated enemy
     public void SetXPValue(float value) { enemyXPValue = value; }
 
@@ -20,6 +20,6 @@ public class XPShard : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, destroyAfterTime);
     }
 }
