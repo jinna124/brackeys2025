@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,9 +31,12 @@ public class Default_Weapon : MonoBehaviour
     IEnumerator StartShooting()
     {
         isFiring = true;
-        nearest_enemy = EnemyManager.instance.GetNearestEnemy(tip_of_weapon.transform.position);     // find nearest enemy per bullet
-        if(nearest_enemy != null ) 
-            AimAndShootAutomatically(nearest_enemy);
+        if (EnemyManager.instance != null)
+        {
+            nearest_enemy = EnemyManager.instance.GetNearestEnemy(tip_of_weapon.transform.position);     // find nearest enemy per bullet
+            if(nearest_enemy != null ) 
+                AimAndShootAutomatically(nearest_enemy);
+        }
         yield return new WaitForSeconds(firing_rate);   // this makes it so that each bullet that gets out depends on the nearest enemy
         isFiring = false;
     }
@@ -53,6 +55,8 @@ public class Default_Weapon : MonoBehaviour
     }
     void Update()
     {
+        if (EnemyManager.instance == null) return;
+        
         nearest_enemy = EnemyManager.instance.GetNearestEnemy(tip_of_weapon.transform.position);
 
         if (nearest_enemy == null) return;

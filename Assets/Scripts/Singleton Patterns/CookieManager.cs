@@ -45,10 +45,17 @@ public class CookieManager : MonoBehaviour
     {
         // Calculate cookies per second based on owned modules
         float cps = 0f;
-        List<Module> modules = ProductionManager.instance.GetModuleList();
-        foreach (var module in modules)
+        if (ProductionManager.instance != null)
         {
-            cps += module.GetCPS();
+            List<Module> modules = ProductionManager.instance.GetModuleList();
+            foreach (var module in modules)
+            {
+                cps += module.GetCPS();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("ProductionManager.instance is null in CookieManager.cs GetCPS()");
         }
         return cps;
     }

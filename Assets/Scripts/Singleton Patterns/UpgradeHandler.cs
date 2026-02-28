@@ -23,18 +23,42 @@ public class UpgradeHandler : MonoBehaviour
     void Awake()
     {
         ManageSingleton();
-       
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        RefreshSceneReferences();
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        RefreshSceneReferences();
+    }
+
+    void RefreshSceneReferences()
+    {
         if (SceneManager.GetActiveScene().name == "BulletHell")
         {
             player = FindAnyObjectByType<Player>();
-            playerStats = player.GetComponent<PlayerStats>();
+            if (player != null)
+                playerStats = player.GetComponent<PlayerStats>();
         }
+
+        productionManager = ProductionManager.instance;
+
+        // Re-find inventory if the reference was lost after scene reload
+        if (inventory == null)
+            inventory = FindAnyObjectByType<Inventory>(FindObjectsInactive.Include);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         productionManager = ProductionManager.instance;
-        inventory = inventoryGO.GetComponent<Inventory>();
+        if (inventory == null)
+            inventory = FindAnyObjectByType<Inventory>(FindObjectsInactive.Include);
     }
 
     public void AddWeapon(string weaponName)
@@ -71,34 +95,30 @@ public class UpgradeHandler : MonoBehaviour
 
     public void HandleWeapons(string weaponName)
     {
-            Weapons weaponsscript = player.GetComponent<Weapons>();         // fetches the weapon script from the player
-                                                                            // Weapon leveling logic
-            if (weaponsscript == null) Debug.LogError("No Weapons script found on Player!");
-            if (player != null)
+            if (player == null) { Debug.Log("Player not found in UpgradeHandler!"); return; }
+            Weapons weaponsscript = player.GetComponent<Weapons>();
+            if (weaponsscript == null) { Debug.LogError("No Weapons script found on Player!"); return; }
+
+            switch (weaponName)
             {
-                switch (weaponName)
-                {
-                    case "Cane":
-                        weaponsscript.EnableRollingCane(); break;
-                    case "Frying Pan":
-                        weaponsscript.EnableFryingPan(); break;
-                    case "Mr. Muffin":
-                        weaponsscript.EnableMrMuffins(); break;
-                    case "Oven (Bomb)":
-                        weaponsscript.EnableOven(); break;
-                    case "Saccharine Perfume":
-                        weaponsscript.EnableSacchirePerfume(); break;
-                    default: Debug.Log("Weapon not found"); break;
-                }
-            }
-            else
-            {
-                Debug.Log("Player not found in UpgradeHandler!");
+                case "Cane":
+                    weaponsscript.EnableRollingCane(); break;
+                case "Frying Pan":
+                    weaponsscript.EnableFryingPan(); break;
+                case "Mr. Muffin":
+                    weaponsscript.EnableMrMuffins(); break;
+                case "Oven (Bomb)":
+                    weaponsscript.EnableOven(); break;
+                case "Saccharine Perfume":
+                    weaponsscript.EnableSacchirePerfume(); break;
+                default: Debug.Log("Weapon not found"); break;
             }
     }
     public void HandleBuffs(string buff)
     {
+        if (player == null) { Debug.Log("Player not found in UpgradeHandler!"); return; }
         PlayerStats playerstats = player.GetComponent<PlayerStats>();
+        if (playerstats == null) { Debug.LogError("No PlayerStats found on Player!"); return; }
             switch (buff)
             {
                 case "MaxHP":

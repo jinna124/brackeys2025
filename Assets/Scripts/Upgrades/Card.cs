@@ -18,7 +18,6 @@ public class Card : ScriptableObject
     [SerializeField] Sprite weaponCardFrame;
     [SerializeField] Sprite upgradeCardFrame;
     [SerializeField] Sprite gachaCardFrame;
-    [SerializeField]
     public enum CardType
     {
         Buff,

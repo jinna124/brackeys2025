@@ -52,17 +52,17 @@ public class ProductionManager : MonoBehaviour
             moduleList.Add(prefab.GetComponent<Module>());
 
         }
-        if (cookieManager.GetCookies() >= prefab.GetComponent<Module>().GetPrice())
+        else if (cookieManager.GetCookies() >= price)
         {
-            cookieManager.SpendCookies(prefab.GetComponent<Module>().GetPrice());
-            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for " + prefab.GetComponent<Module>().GetPrice() + " cookies.");
+            cookieManager.SpendCookies(price);
+            Debug.Log("Bought " + prefab.GetComponent<Module>().GetName() + " for " + price + " cookies.");
             moduleList.Add(prefab.GetComponent<Module>());
 
 
         }
         else
         {
-            Debug.Log("Not enough cookies to buy " + name + ".");
+            Debug.Log("Not enough cookies to buy " + prefab.GetComponent<Module>().GetName() + ".");
 
         }
     }
@@ -70,6 +70,11 @@ public class ProductionManager : MonoBehaviour
     public List<Module> GetModuleList()
     {
         return moduleList;
+    }
+
+    public void ResetProduction()
+    {
+        moduleList.Clear();
     }
 
     void ManageSingleton()

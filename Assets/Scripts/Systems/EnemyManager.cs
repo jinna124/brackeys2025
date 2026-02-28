@@ -7,8 +7,7 @@ public class EnemyManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
+        ManageSingleton();
     }
 
     void Start()
@@ -73,5 +72,19 @@ public class EnemyManager : MonoBehaviour
     public GameObject GetNearestEnemy(Vector3 fromPosition)     // overloading
     {
         return NearestEnemy(fromPosition);
+    }
+
+    void ManageSingleton()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

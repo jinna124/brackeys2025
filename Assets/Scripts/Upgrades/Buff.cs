@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Buff : MonoBehaviour
 {
-    [SerializeField]
     public enum BuffType
     {
         MaxHP,

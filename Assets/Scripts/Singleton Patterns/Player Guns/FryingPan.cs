@@ -31,6 +31,8 @@ public class FryingPan : MonoBehaviour
     }
     private void Update()
     {
+        if (EnemyManager.instance == null) return;
+        
         nearestEnemy = EnemyManager.instance.GetNearestEnemy(tipOfWeapon.transform.position);
 
         if (nearestEnemy == null || isFiring) return;

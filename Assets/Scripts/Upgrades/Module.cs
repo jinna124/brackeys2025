@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Module : MonoBehaviour
 {
-    [SerializeField]
     enum ModuleType
     {
         Rolling_Pin,

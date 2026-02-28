@@ -1,7 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Oven : MonoBehaviour
 {
@@ -36,6 +34,8 @@ public class Oven : MonoBehaviour
         {
                 fireCooldown -= Time.deltaTime;
         }
+
+        if (EnemyManager.instance == null) return;
 
         nearestEnemy = EnemyManager.instance.GetNearestEnemy(transform.position);
         if (nearestEnemy == null || isFiring) return;

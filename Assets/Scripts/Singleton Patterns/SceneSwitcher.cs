@@ -1,9 +1,8 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class SceneSwitcher : MonoBehaviour
 {
@@ -42,12 +41,50 @@ public class SceneSwitcher : MonoBehaviour
 
     void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-        if (upgradeCanvas == null) upgradeCanvas = GameObject.Find("UpgradeCanvas");
-        if (cookiePanel == null) cookiePanel = GameObject.Find("CookiePanel");
-        if (gachaScreen == null) gachaScreen = GameObject.Find("GachaScreen");
-        if (gameOverScreen == null) gameOverScreen = GameObject.Find("GameOverScreen");
-        if (moduleShop == null) moduleShop = GameObject.Find("ModuleShop");
-        if (UIOverlay == null) UIOverlay = GameObject.Find("UIOverlay");
+        if (upgradeCanvas == null) upgradeCanvas = FindInactiveByName("Upgrades");
+        if (cookiePanel == null) cookiePanel = FindInactiveByName("CookiePanel");
+        if (gachaScreen == null) gachaScreen = FindInactiveByName("GachaScreen");
+        if (gameOverScreen == null) gameOverScreen = FindInactiveByName("GameOverScreen");
+        if (moduleShop == null) moduleShop = FindInactiveByName("ModuleShop");
+        if (UIOverlay == null) UIOverlay = FindInactiveByName("UIOverlay");
+
+        if (cookieCountText == null) cookieCountText = FindInactiveByName("CookiesCountText")?.GetComponent<TextMeshProUGUI>();
+        if (roundsSurvivedText == null) roundsSurvivedText = FindInactiveByName("RoundsSurvivedText")?.GetComponent<TextMeshProUGUI>();
+
+        cookieManager = CookieManager.instance;
+        xpManager = XPManager.instance;
+
+        RewireButtons();
+    }
+
+    void RewireButtons()
+    {
+        foreach (var button in Resources.FindObjectsOfTypeAll<Button>())
+        {
+            if (!button.gameObject.scene.isLoaded) continue;
+
+            var onClick = button.onClick;
+            for (int i = 0; i < onClick.GetPersistentEventCount(); i++)
+            {
+                Object target = onClick.GetPersistentTarget(i);
+                if (target == null || (target is SceneSwitcher && target != (Object)this))
+                {
+                    string methodName = onClick.GetPersistentMethodName(i);
+                    onClick.SetPersistentListenerState(i, UnityEventCallState.Off);
+                    onClick.AddListener(delegate { Invoke(methodName, 0f); });
+                }
+            }
+        }
+    }
+
+    GameObject FindInactiveByName(string name)
+    {
+        foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
+        {
+            if (obj.name == name && obj.scene.isLoaded)
+                return obj;
+        }
+        return null;
     }
 
     #region Loading Components
@@ -124,7 +161,7 @@ public class SceneSwitcher : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         cookiePanel.SetActive(false);
-        cookieCountText.text = "and produced " + CookiePanel.FormatNumber(cookieManager.GetCookies()) + " cookies!";
+        cookieCountText.text = "and produced " + CookiePanel.FormatNumber(cookieManager.GetCookies()) + "!";
         roundsSurvivedText.text = "You survived " + xpManager.GetLevel() + " rounds";
     }
 
