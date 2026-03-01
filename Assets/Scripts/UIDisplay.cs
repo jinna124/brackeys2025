@@ -9,6 +9,7 @@ public class UIDisplay : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider xpSlider;
     [SerializeField] TextMeshProUGUI XPText;
+    [SerializeField] TextMeshProUGUI HPText;
     Player player;
     Health playerHealth;
     XPManager XPManager;
@@ -43,6 +44,7 @@ public class UIDisplay : MonoBehaviour
         healthSlider.value = playerHealth.GetHealth();
         xpSlider.value = (XPManager.GetXP());
         XPText.text = XPManager.GetXP().ToString() + "/" + XPManager.GetXPRequirement() + " XP Lvl(" + XPManager.GetLevel() + ")";
+        HPText.text = playerHealth.GetHealth().ToString();
         // --------------------------------------------------
         
         Debug.Log("Health:" + playerHealth.GetHealth());
