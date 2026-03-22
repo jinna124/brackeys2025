@@ -11,7 +11,15 @@ public class CardChoice : MonoBehaviour
     // If you need it in another script just make it public
 
     Card card; // Placeholder for card data
-    [SerializeField] List<Card> cardPool;
+    // Auto-assigned by sibling index: 0 = Weapon, 1 = Buff, 2 = Module
+    Card.CardType assignedCardType;
+
+    // Auto-loaded from Resources/Cards based on CardType
+    List<Card> weaponCards;
+    List<Card> buffCards;
+    List<Card> moduleCards;
+
+    [Header("UI References")]
     [SerializeField] Button chooseButton;
     [SerializeField] TextMeshProUGUI cardNameText;
     [SerializeField] TextMeshProUGUI cardSubtitleText;
@@ -20,6 +28,7 @@ public class CardChoice : MonoBehaviour
     [SerializeField] Image panelImage;
     [SerializeField] Image cardFrame;
     Card.CardType cardType;
+    Card.CardType currentRollType;
     bool hasRerolled;
     [SerializeField] TextMeshProUGUI rerollText;
 
@@ -27,11 +36,40 @@ public class CardChoice : MonoBehaviour
     UpgradeHandler upgradeHandler;
     void Awake()
     {
-        // chooseButton = GetComponentInChildren<Button>();
-        // cardNameText = GetComponentInChildren<TextMeshProUGUI>();
-        // cardSubtitleText = GetComponentInChildren<TextMeshProUGUI>();
-        // cardDescriptionText = GetComponentInChildren<TextMeshProUGUI>();
-        // cardImage = GetComponentInChildren<Image>();
+        AssignCardType();
+        LoadCardPools();
+    }
+
+    void AssignCardType()
+    {
+        int index = transform.GetSiblingIndex();
+        switch (index)
+        {
+            case 0: assignedCardType = Card.CardType.Weapon; break;
+            case 1: assignedCardType = Card.CardType.Buff; break;
+            case 2: assignedCardType = Card.CardType.Module; break;
+            default: assignedCardType = Card.CardType.Weapon; break;
+        }
+        Debug.Log($"CardChoice slot {index} assigned to {assignedCardType}");
+    }
+
+    void LoadCardPools()
+    {
+        weaponCards = new List<Card>();
+        buffCards = new List<Card>();
+        moduleCards = new List<Card>();
+
+        Card[] allCards = Resources.LoadAll<Card>("Cards");
+        foreach (Card c in allCards)
+        {
+            switch (c.GetCardType)
+            {
+                case Card.CardType.Weapon: weaponCards.Add(c); break;
+                case Card.CardType.Buff:   buffCards.Add(c); break;
+                case Card.CardType.Module: moduleCards.Add(c); break;
+            }
+        }
+        Debug.Log($"Card pools loaded: {weaponCards.Count} weapons, {buffCards.Count} buffs, {moduleCards.Count} modules");
     }
 
 
@@ -40,9 +78,11 @@ public class CardChoice : MonoBehaviour
         upgradeHandler = UpgradeHandler.instance;
         sceneSwitcher = SceneSwitcher.instance;
         Debug.Log("Upgrade Handler: " + upgradeHandler);
-        RenderCard(SelectRandomCard());
+        RenderCard(SelectRandomCard(assignedCardType));
         ResetReroll();
     }
+
+    public void RollNewCard() { RenderCard(SelectRandomCard(assignedCardType)); ResetReroll(); }
 
     void RenderCard(Card card)
     {
@@ -65,7 +105,7 @@ public class CardChoice : MonoBehaviour
             Debug.Log("Buff card chosen: " + card.GetCardName);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
-            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Upgrade Handler: " + upgradeHandler);
             upgradeHandler.AddBuff(card.GetCardName);
             sceneSwitcher.LoadModuleShop();
         }
@@ -74,32 +114,20 @@ public class CardChoice : MonoBehaviour
             // TODO: Add module to module list
             Debug.Log("Module card chosen: " + card.GetCardName);
             upgradeHandler.AddModule(card.GetPrefab);
-            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Upgrade Handler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             sceneSwitcher.LoadModuleShop();
-            // TODO: Switch to Manufacturing scene with a scene transition
         }
         else if (cardType == Card.CardType.Weapon)
         {
             Debug.Log("Weapon card chosen: " + card.GetCardName);
-            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
+            Debug.Log("Upgrade Handler: " + upgradeHandler);
             Debug.Log("Card: " + card);
             Debug.Log("CardPrefab: " + card.GetPrefab);
             Debug.Log("Weapon card name: " + card.GetCardName);
             upgradeHandler.AddWeapon(card.GetCardName);
             sceneSwitcher.LoadModuleShop();
-        }
-        else if (cardType == Card.CardType.Upgrade)
-        {
-            // TODO: Handle upgrade card
-            Debug.Log("Upgrade Hand!wdsfasdfasdfler: " + upgradeHandler);
-            Debug.Log("Card: " + card);
-            Debug.Log("CardPrefab: " + card.GetPrefab);
-            Debug.Log("Upgrade card chosen: " + card.GetCardName);
-            Debug.Log("Create Upgrade Weapon Card handling");
-            sceneSwitcher.LoadModuleShop();
-            // TODO: Switch to appropriate scene with a scene transition
         }
         else if (cardType == Card.CardType.Gacha)
         {
@@ -122,7 +150,7 @@ public class CardChoice : MonoBehaviour
     {
         if (!hasRerolled)
         {
-            RenderCard(SelectRandomCard());
+            RenderCard(SelectRandomCard(assignedCardType));
             hasRerolled = true;
             rerollText.text = "Reroll (x0)";
         }
@@ -137,11 +165,42 @@ public class CardChoice : MonoBehaviour
         hasRerolled = false;
         rerollText.text = "Reroll (x1)";
     }
+    Card SelectRandomCard(Card.CardType rollType)
+    {
+        List<Card> pool = GetCardPool(rollType);
+        if (pool == null || pool.Count == 0)
+        {
+            Debug.LogWarning("No cards available for roll type: " + rollType);
+            return null;
+        }
 
+        int randomIndex = Random.Range(0, pool.Count);
+        card = pool[randomIndex];
+        currentRollType = rollType;
+        return card;
+    }
     Card SelectRandomCard()
     {
-        int randomIndex = Random.Range(0, cardPool.Count);
-        card = cardPool[randomIndex];
-        return card;
+        Card.CardType rollType = GetRandomRollType();
+        return SelectRandomCard(rollType);
+    }
+
+    List<Card> GetCardPool(Card.CardType rollType)
+    {
+        switch (rollType)
+        {
+            case Card.CardType.Weapon: return weaponCards;
+            case Card.CardType.Buff:   return buffCards;
+            case Card.CardType.Module: return moduleCards;
+            default:
+                Debug.LogWarning("No pool defined for card type: " + rollType);
+                return null;
+        }
+    }
+
+    Card.CardType GetRandomRollType()
+    {
+        Card.CardType[] availableTypes = { Card.CardType.Weapon, Card.CardType.Buff, Card.CardType.Module };
+        return availableTypes[Random.Range(0, availableTypes.Length)];
     }
 }

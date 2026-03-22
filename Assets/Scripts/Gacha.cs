@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class Gatcha : MonoBehaviour
+public class Gacha : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Slider gachaSlider;

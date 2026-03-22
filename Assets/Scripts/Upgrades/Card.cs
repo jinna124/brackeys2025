@@ -11,19 +11,16 @@ public class Card : ScriptableObject
     [SerializeField] Sprite buffPanelImage;
     [SerializeField] Sprite modulePanelImage;
     [SerializeField] Sprite weaponPanelImage;
-    [SerializeField] Sprite upgradePanelImage;
     [SerializeField] Sprite gachaPanelImage;
     [SerializeField] Sprite buffCardFrame;
     [SerializeField] Sprite moduleCardFrame;
     [SerializeField] Sprite weaponCardFrame;
-    [SerializeField] Sprite upgradeCardFrame;
     [SerializeField] Sprite gachaCardFrame;
     public enum CardType
     {
         Buff,
         Module,
         Weapon,
-        Upgrade,
         Gacha
     }
 
@@ -90,8 +87,6 @@ public class Card : ScriptableObject
                 return modulePanelImage;
             else if (cardType == CardType.Weapon && weaponPanelImage != null)
                 return weaponPanelImage;
-            else if (cardType == CardType.Upgrade && upgradePanelImage != null)
-                return upgradePanelImage;
             else if (cardType == CardType.Gacha && gachaPanelImage != null)
                 return gachaPanelImage;
             else
@@ -109,8 +104,6 @@ public class Card : ScriptableObject
                 return moduleCardFrame;
             else if (cardType == CardType.Weapon && weaponCardFrame != null)
                 return weaponCardFrame;
-            else if (cardType == CardType.Upgrade && upgradeCardFrame != null)
-                return upgradeCardFrame;
             else if (cardType == CardType.Gacha && gachaCardFrame != null)
                 return gachaCardFrame;
             else
